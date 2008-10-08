@@ -1,0 +1,329 @@
+<html>
+<!-- TODO: Need to make the ouptut window go to the bottom on new output. 
+Needs the line order changed. It's the same as trace2's
+-->
+<head>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all" />
+<style type="text/css">
+.highlight {
+	background-color: #DDDDFF;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+p {
+	text-indent: 1em;
+}
+
+table { 
+    border-style: solid; 
+    border-width: 1px;
+    border-collapse: collapse; 
+} 
+
+td { 
+    border-style: solid; 
+    border-width: 1px; 
+    padding: 4px; 
+}
+
+ol {
+	font-family: courier;
+}
+</style>
+<script type="text/javascript">
+
+function onBodyLoad()
+{
+	var currentStep = 1;
+	changeToStep(currentStep);
+}
+
+function insertHighlight(sourceCode, x)
+{
+	return sourceCode.substring(0, x) + ' class="highlight"' + sourceCode.substring(x, sourceCode.length);
+}
+
+function getLinesToColsMap(sourceCode)
+{
+	var arrOfIndexes = new Array();
+	arrOfIndexes[0] = 0; // Compensates for one-off error. This way step 1 is at arrOfIndexes[1].
+
+	ind = 0;
+	while (ind > -1)
+	{
+		ind = sourceCode.indexOf("<li>");
+		if (ind > -1)
+		{
+			arrOfIndexes.push(ind + 3);
+		}
+		sourceCode = sourceCode.replace("<li>","XXXX");
+	}
+	return arrOfIndexes;
+}
+
+// TODO: Need to handle error conditions for these "DisplayType" functions that can handle bad keys.
+
+function highlightedDisplayType(displayData, stepNum)
+{
+	// highlightData is an associate array with keys 'sourceCode' (a string), 'mapLinesToCols' (an array), 'linesExecutionOrder' (an associative array) 
+	return insertHighlight(displayData['sourceCode'], displayData['mapLinesToCols'][displayData['linesExecutionOrder'][stepNum]]);
+}
+
+function mostRecentKeyDisplayType(displayData, stepNum)
+{
+	stepToUse = stepNum;
+	while (displayData[stepToUse] == undefined)
+	{
+		stepToUse -= 1;
+		if (stepToUse <= 0) return "";
+	}
+	return displayData[stepToUse];
+}
+
+function cumulativeDisplayType(displayData, stepNum)
+{
+	var retVal = '';
+	for (i = 0 ; i <= stepNum ; i++)
+	{
+		if (displayData[i] != undefined)
+		{
+			retVal += displayData[i];
+		}
+	}
+	return retVal;
+}
+
+function oneToOneDisplayType(displayData, stepNum)
+{
+	if (displayData[stepNum] == undefined)
+	{
+		return '';
+	}
+	else
+	{
+		return displayData[stepNum];
+	}
+}
+
+function assocArraySize(assocArr)
+{
+	var counter = 0;
+	for (var i in assocArr)
+	{
+	counter++;
+	}
+	return counter;
+}
+
+var sourceCodeData = new Array();
+// This is a single string that contains an HTML Ordered List, with each line of source code in an <li/> tag.
+sourceCodeData['sourceCode'] = '<ol>\n<li>print \'What do you get when you cross a snowman with a vampire?\'<\/li>\n<li>raw_input()<\/li>\n<li>print \'Frostbite!\'<\/li>\n<li>print<\/li>\n<li>print \'What do dentists call a astronaut\\\'s cavity?\'<\/li>\n<li>raw_input()<\/li>\n<li>print \'A black hole!\'<\/li>\n<li>print<\/li>\n<li>print \'Knock knock.\'<\/li>\n<li>raw_input()<\/li>\n<li>print \"Who\'s there?\"<\/li>\n<li>raw_input()<\/li>\n<li>print \'Interrupting cow.\'<\/li>\n<li>raw_input()<\/li>\n<li>print \'Interrupting cow wh\',<\/li>\n<li>print \'MOO!\'<\/li>\n<li><\/li>\n<\/ol>\n';
+// mapLinesToCols gives the indexes inside sourceCodeData['sourceCode'] that each <li/> tag begins. This index is used to dynamically add HTML to make the <li/> tag highlighted. e.g. mapLinesToCols[4] is the index of <li/> for the fourth line of code. (mapLinesToCols[0] is just padded with 0).
+sourceCodeData['mapLinesToCols'] = getLinesToColsMap(sourceCodeData['sourceCode']);
+// linesExecutionOrder has keys for steps and values of source code line numbers. These are fed to mapLinesToCols to get the position in the sourceCodeData['sourceCode'] string to insert the HTML highlight string. Note the difference: The 4th line of code is not necessarily the 4th line of code executed in a program (blank lines or loops will through this off). This could have been an array instead of an associative array, but using the incrementing keys makes it easier to edit.
+sourceCodeData['linesExecutionOrder'] = {1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9, 10:10, 11:11, 12:12, 13:13, 14:14, 15:15, 16:16, 17:17}; 
+
+var currentStep = 1;
+var MAXSTEP = assocArraySize(sourceCodeData['linesExecutionOrder']);
+
+
+var variablesData = {1:""
+						};
+
+// notesData is the "one-to-one" display type. On step N, the N value will be in the window. If there is no N value, the window is blank.
+var notesData = {1:"This line prints some text.",
+					2:'This line asks the use for some input, but since we don\'t store it in a variable, we forget about it. Really, this just adds a pause for the user.',
+					3:"This line prints some text.",
+					4:"This line prints a blank line.",
+					5:"This line prints some text. Notice we have an escape character to print the single quote.",
+					6:'This line asks the use for some input, but since we don\'t store it in a variable, we forget about it. Really, this just adds a pause for the user.',
+					7:"This line prints some text.",
+					8:"This line prints a blank line.",
+					9:"This line prints some text.",
+					10:'This line asks the use for some input, but since we don\'t store it in a variable, we forget about it. Really, this just adds a pause for the user.',
+					11:"This line prints some text. We don\'t need an escape character for this single quote, because the string we are printing uses double quotes.",
+					12:'This line asks the use for some input, but since we don\'t store it in a variable, we forget about it. Really, this just adds a pause for the user.',
+					13:"This line prints some text.",
+					14:'This line asks the use for some input, but since we don\'t store it in a variable, we forget about it. Really, this just adds a pause for the user.',
+					15:"This line prints some text. The comma at the end of the <span class='m'>print</span> statment means it does not print a \"newline\".",
+					16:"This line prints some text.",
+					17:"There are no more lines of code, so the program terminates."
+					};
+
+// outputData is of the "cumulative" type. The window will contain all of the text up to the index of the step number. e.g. If you are on step 7, the window will contain the strings in 0, 5, and 6.
+var outputData = {2:"What do you get when you cross a snowman with a vampire?<br/>",
+					3:"<br/>",
+					4:"Frostbite!<br/>",
+					5:"<br/>",
+					6:"What do dentists call a astronaut\'s cavity?<br/>",
+					7:"<br/>",
+					8:"A black hole!<br/>",
+					9:"<br/>",
+					10:"Knock knock.<br/>",
+					11:"<br/>",
+					12:"Who\'s there?<br/>",
+					13:"<br/>",
+					14:"Interrupting cow.<br/>",
+					15:"<br/>",
+					16:"Interrupting cow wh ",
+					17:"MOO!"
+					};
+
+function set(viewport, displayString)
+{
+	document.getElementById(viewport).innerHTML = displayString;
+}
+
+function changeToStep(stepNum)
+{
+	set('codeVP', highlightedDisplayType(sourceCodeData, stepNum)); // "highlighted code" display type	
+	set('variablesVP', mostRecentKeyDisplayType(variablesData, stepNum)); // "most recent key" display type
+	set('notesVP', oneToOneDisplayType(notesData, stepNum)); // "one-to-one" display type
+	set('outputVP', cumulativeDisplayType(outputData, stepNum)); // "cumulative" display type
+	document.getElementById('stepNumDisplay').innerHTML = stepNum;
+}
+
+function next()
+{
+	if (currentStep == MAXSTEP) return;
+	currentStep += 1;
+	changeToStep(currentStep);
+}
+
+function previous()
+{
+	if (currentStep == 1) return;
+	currentStep -= 1;
+	changeToStep(currentStep);
+}
+
+function jump(stepNum)
+{
+	stepNum = parseInt(stepNum, 10);
+	if (stepNum < 1) return;
+	if (stepNum > MAXSTEP) return;
+	currentStep = stepNum;
+	changeToStep(currentStep);
+}
+
+//===BEGIN FLOATING MENU CODE==============================================================================
+<!--
+floatX=10;
+floatY=10;
+
+// This script is copyright (c) Henrik Petersen, NetKontoret
+// Feel free to use this script on your own pages as long as you do not change it.
+// It is illegal to distribute the script as part of a tutorial / script archive.
+// Updated version available at: http://www.echoecho.com/toolfloatinglayer.htm
+// This comment and the 4 lines above may not be removed from the code.
+
+NS6=false;
+IE4=(document.all);
+if (!IE4) {NS6=(document.getElementById);}
+NS4=(document.layers);
+
+function adjust() 
+{
+	if ((NS4) || (NS6)) 
+	{
+		lastX=window.pageXOffset + floatX;
+		lastY=window.pageYOffset + floatY;
+		
+		if (NS4)
+		{
+			document.layers['floatlayer'].pageX = lastX;
+			document.layers['floatlayer'].pageY = lastY;
+		}
+		if (NS6)
+		{
+			document.getElementById('floatlayer').style.left=lastX;
+			document.getElementById('floatlayer').style.top=lastY;
+		}
+	}
+	else if (IE4)
+	{
+		lastX=document.body.scrollLeft + floatX;
+		lastY=document.body.scrollTop + floatY;
+		document.all['floatlayer'].style.posLeft = lastX;
+		document.all['floatlayer'].style.posTop = lastY;
+	}
+	setTimeout('adjust()',50);
+}
+
+function define()
+{
+	if ((NS4) || (NS6))
+	{
+		floatX=ifloatX;
+		floatY=ifloatY;
+	}
+	if (IE4)
+	{
+		floatX=ifloatX;
+		floatY=ifloatY;
+	}
+}
+//===END FLOATING CODE==============================================================================
+//-->
+
+</script>
+
+</head>
+<body onLoad="onBodyLoad()">
+
+
+<div style="position:relative; width:100%; height:100%;">
+	<div style="position:absolute; width:50%; left:0px;"><br/><h1>Source code:guess.py</h1><span id='codeVP'></span></div>
+
+<script>
+if (NS4) {document.write('<LAYER NAME="floatlayer" LEFT="'+floatX+'" TOP="'+floatY+'">');}
+if ((IE4) || (NS6)) {document.write('<div id="floatlayer" style="background-color:CCCCCC; padding:6px; position:absolute; left:'+floatX+'; top:'+floatY+';">');}
+</script>
+	<span style='background-color:CCCCCC;'><center><input type='button' value='Previous' onClick='previous()'>
+	<input type='button' value='Next' onClick='next()'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' id='jumpTextfield' size='3' value='1'> <input type='button' value='Jump' onClick='jump(document.getElementById("jumpTextfield").value);'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step #<span id="stepNumDisplay"></span></center></span>
+<script>
+if (NS4)
+{
+	document.write('</LAYER>');
+}
+if ((IE4) || (NS6))
+{
+	document.write('</DIV>');
+}
+ifloatX=floatX;
+ifloatY=floatY;
+define();
+window.onresize=define;
+lastX=-1;
+lastY=-1;
+adjust();
+</script>
+
+	<div id='variablesPane' style="position:absolute; right:0px; width:50%; ">
+	<table border='0' width="100%">
+	<tr><td>
+	<h1>Current variable values</h1><span id='variablesVP'></span>
+	</td></tr>
+
+	<tr><td style="background-color:EEEEEE;">
+	<h1>Notes</h1><span id='notesVP'></span>
+	</td></tr>
+
+	<tr><td>
+	<div style='height:400; overflow:auto;'><h1>Program output</h1><span id='outputVP' style='color:0000FF;'></span></div>
+	</td></tr>
+	</table>
+</div>
+
+
+</body>
+</html>

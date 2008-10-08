@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>IYOCGwP Book 1 - Chapter 3 - Jokes</title>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
+</head>
+<body>
+
+<h1>Chapter 3 - Jokes</h1>
+
+<h2>How Programs Run on Computers</h2>
+
+<p>Now we will write a program to tell jokes to the user. Before we go into the code, you should know how your programs run on the computer.</p>
+
+<p>The computer you use runs a very large program, called an <span class='term'>operating system</span>. Your operating system (called an <span class='term'>OS</span> (pronounced like the letters "oh-ess") for short) may be Windows, MacOS, Linux or another one. The OS is a program that runs other programs called <span class='term'>applications</span> like a web browser, word processor, email client, or computer games. The OS makes it easy for programmers to write applications and games that can run on computers made up of different hardware.</p>
+
+<p><span class='term'>Hardware</span> are the parts of the computer that you can touch (the monitor, or the keyboard and mouse, or a printer). <span class='term'>Software</span> is another name for programs like the OS or applications or games that run on the computer. Think of the computer as if it were a book. The book's hardware would be the cover and paper pages and even the ink on the page (the things you can touch.) The book's software would be the story and characters that the book describes. Using software or playing games that were made by someone else is like reading a book of stories that was written by another person. But writing software (such as your own games) is like writing your own stories.</p>
+
+<p>It would be very difficult for programmers to make their programs run on several different pieces of hardware. For example, when you write your games, you don't need to know how to make text appear on all the different monitors made by all the different companies in the world. Your program just has a <span class='m'>print</span> statement, which tells the OS to figure out how to make it appear on the monitor no matter what brand or type of monitor the user has.</p>
+
+<p>The OS makes running programs easy on us, but it still only knows a language called <span class='term'>machine code</span>. Machine code has some very, very, very basic instructions that are simple enough for computer's main microchip (called the <span class='term'>CPU</span> ("see-pee-you"), or <span class='term'>Central Processing Unit</span>) to understand. Writing programs in the machine code language is very long and boring.</p>
+
+<!--<p>First, you need to tell the computer exactly what to do. If you think of a cake recipe as a program, a cake recipe in machine code would not just have a list of ingredients and steps. It would have a list of EVERY step you need to take, including how to open a bag of flour, how to hold a spoon and move your arm to stir, the exact steps to search for a bowl in a kitchen cupboard, or what to do in case you spill something. Every detail would have to be accounted for and instructed, even reminding the chef to keep breathing while mixing the ingredients. Such a cake recipe would be pages and pages long.</p>
+
+<p>Second, machine code is written in ones and zeros and look like pages and pages of this: 10101101 00110000 11000000. That isn't very easy for humans to work with.</p>-->
+
+<p>Machine code is written in ones and zeros and look like pages and pages of this: 10101101 00110000 11000000. These instructions aren't very easy for humans to work with. <span class='term'>Assembly language</span> gives instructions names like MOV, JMP, PUSH, or XOR. This makes reading and writing the instructions easier but putting them together in a program is still long and complicated.</p>
+
+<p>This is where <span class='term'>higher-level programming languages</span> come in. High-level languages include Python, Java, C++, Pascal, Perl, Basic, and many others. These languages take care of many of the details of machine code. A programmer writes her program in a higher-level language like Python, and then a program called the <span class='term'>interpreter</span> translates this language into machine code that the computer executes. Even though our "Hello world!" program was just one line long when written in Python, in machine code it would be several hundred or a few thousand lines.</p>
+
+<p>The interpreter is the program you downloaded from http://www.python.org and installed in chapter one. That download also included a program called IDLE, which is the program we type our code into. When we run a program in the file editor, or type an instruction into the interactive shell, the IDLE program sends that source code to the Python interpreter for translation. The interpreter translates it into machine code, and then the CPU understands how to run the program.</p>
+
+<p>Whew! That was a lot of information. As computers get faster and faster, they also become more and more complicated. To manage all of this complexity, programmers started to write programs that would help them write new programs! One of these programs is the Python interpreter that you are using. This is kind of like using a stone axe to help build a hammer, and then a hammer to help build a electric drill and other power tools, and then using those power tools to build a large bulldozer.</p>
+
+<p>The reason I am explaining all of this is so that you understand that when you write code in Python, it is being passed to another program called the Python interpreter, which then translates it so that the operating system and computer can run your code.</p>
+
+<p>This next program is simpler compared to the "Guess the Number" game in chapter two. Open a new file editor window by clicking on File, then clicking on New Window and enter this source code:</p>
+
+<h2>Sample Run</h2>
+<blockquote class="samplerun">
+What do you get when you cross a snowman with a vampire?<br/>
+<br/>
+Frostbite!<br/>
+<br/>
+What do dentists call an astronaut's cavity?<br/>
+<br/>
+A black hole!<br/>
+<br/>
+Knock knock.<br/>
+<br/>
+Who's there?<br/>
+<br/>
+Interrupting cow.<br/>
+<br/>
+Interrupting cow wh MOO!<br/>
+</blockquote>
+
+<h2>Source Code</h2>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>jokes.py</span><br/>
+<ol start=1>
+<li>print 'What do you get when you cross a snowman with a vampire?'</li>
+<li>raw_input()</li>
+<li>print 'Frostbite!'</li>
+<li>print</li>
+<li>print 'What do dentists call a astronaut\'s cavity?'</li>
+<li>raw_input()</li>
+<li>print 'A black hole!'</li>
+<li>print</li>
+<li>print 'Knock knock.'</li>
+<li>raw_input()</li>
+<li>print "Who's there?"</li>
+<li>raw_input()</li>
+<li>print 'Interrupting cow.'</li>
+<li>raw_input()</li>
+<li>print 'Interrupting cow wh',</li>
+<li>print 'MOO!'</li>
+</ol>
+</blockquote>
+
+<!--<p class='centeredImageP'><img src="images/4_jokessource.png" class='centeredImage'></p>
+
+<p class='centeredImageP'><img src="images/4_jokesrun.png" class='centeredImage'></p>
+-->
+
+<p>Don't worry if you don't understand eveyrthing in the program. Just save and run the program.</p>
+
+<h2>Code Explanation</h2>
+
+<p>Let's look at the code more carefully.</p>
+
+<blockquote class="sourcecode">
+<ol start=1>
+<li>print 'What do you get when you cross a snowman with a vampire?'</li>
+<li>raw_input()</li>
+<li>print 'Frostbite!'</li>
+<li>print</li>
+</ol>
+</blockquote>
+
+<p>Here we have three <span class='m'>print</span> statements. Because we don't want to tell the player what the joke's punchline is, we have a call to the <span class='m'>raw_input()</span> function after the first <span class='m'>print</span> statement. The player can read the first line, press Enter, and then read the punchline.</p>
+
+<p>The user can still type in a string and hit Enter, but because we aren't storing this string in any variable, the program will just forget about it and move to the next line of code.</p>
+
+<p>The last call to the <span class='m'>print</span> statement has no string. This tells the program to just print a blank line. Blank lines can be useful to keep our text from being bunched up together.</p>
+
+<blockquote class="sourcecode">
+<ol start=5>
+<li>print 'What do dentists call a astronaut\'s cavity?'</li>
+<li>raw_input()</li>
+<li>print 'A black hole!'</li>
+<li>print</li>
+</ol>
+</blockquote>
+
+<p>In the first <span class='m'>print</span> statement above, you'll notice that we have a slash right before the single quote (that is, the apostrophe). This backslash ( \ is a backslash, / is a forward slash) tells us that the letter right after it is an <span class='term'>escape character</span>. An escape character helps us print out letters that are hard to enter into the source code. There are several different escape characters, but in our <span class='m'>print</span> statement the escape character is the single quote.</p>
+
+<p>We have to have the single quote escape character because otherwise the Python interpreter would think that this quote meant the end of the string. But we want this quote to be a part of the string. When we print this string, the backslash will not show up.</p>
+
+<h2>Some Other Escape Characters</h2>
+<p>What if you really want to display a backslash? This line of code would not work:</p>
+
+<blockquote class='sourceblurb'>print 'He flew away in a green\teal helicopter.'</blockquote>
+
+<p>That print statement would show up as:</p>
+
+<blockquote class='sourceblurb'>He flew away in a green&nbsp;&nbsp;&nbsp;&nbsp;eal helicopter.</blockquote>
+
+<p>This is because the "t" in "teal" was seen as an escape character since it came after a backslash. The escape character t simulates pushing the Tab key on your keyboard. Escape characters are there so that strings can have characters that cannot be typed in.</p>
+
+<p>Instead, try this line:</p>
+<blockquote class='sourceblurb'>print 'He flew away in a green\\teal helicopter.'</blockquote>
+
+<p>Here is a list of escape characters in Python:</p>
+
+<table align='center' class='simplefulltable'>
+<tr><td colspan='3'><b>Escape Characters</b></td></tr>
+<tr><td align='center'>\\</td><td width='20'>&nbsp;</td><td align='center'>Backslash (\)</td></tr>
+<tr><td align='center'>\'</td><td width='20'>&nbsp;</td><td align='center'>Single quote (')</td></tr>
+<tr><td align='center'>\"</td><td width='20'>&nbsp;</td><td align='center'>Double quote (")</td></tr>
+<tr><td align='center'>\n</td><td width='20'>&nbsp;</td><td align='center'>Newline</td></tr>
+<tr><td align='center'>\t</td><td width='20'>&nbsp;</td><td align='center'>Tab</td></tr>
+</table>
+
+
+<h2>Quotes and Double Quotes</h2>
+<p>Strings don't always have to be in between single quotes in Python. You can also put them in between double quotes. These two lines print the same thing:</p>
+<blockquote class='sourceblurb'>print 'Hello world'<br/>
+print "Hello world"</blockquote>
+
+<p>But you cannot mix quotes. This line will give you an error if you try to use them:</p>
+
+<blockquote class='sourceblurb'>print 'Hello world"</blockquote>
+
+<p class='centeredImageP'><img src='images/4_eol1.png' class='centeredImage'></p>
+
+<p>I like to use single quotes because I don't have to hold down the shift key on the keyboard to type them. It's easier to type, and the computer doesn't care either way.</p>
+
+<p>But remember, just like you have to use the escape character \' to have a single quote in a string surrounded by single quotes, you need the escape character \" to have a double quote in a string surrounded by double quotes. For example, look at these two lines:</p>
+
+<blockquote class='sourceblurb'>print 'I asked to borrow Abe\'s car for a week. He said, "Sure."'<br/>
+print "He said, \"I can't believe you let him borrow your car.\""</blockquote>
+
+<p class='centeredImageP'><img src='images/4_borrowcar.png' class='centeredImage'></p>
+
+<p>Did you notice that in the single quote strings you do not need to escape double quotes, and in the double quote strings you do not need to escape single quotes. The Python interpreter is smart enough to know that if a string starts with one type of quote, the other type of quote doesn't mean the string is ending.</p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class="sourcecode">
+<ol start=9>
+<li>print 'Knock knock.'</li>
+<li>raw_input()</li>
+<li>print "Who's there?"</li>
+<li>raw_input()</li>
+<li>print 'Interrupting cow.'</li>
+<li>raw_input()</li>
+<li>print 'Interrupting cow wh',</li>
+<li>print 'MOO!'</li>
+</ol>
+</blockquote>
+
+<p>Did you notice the comma at the end of the second to last string? Normally, <span class='m'>print</span> adds a newline character to the end of the string it prints. (This is why a blank <span class='m'>print</span> statement will just print a newline.) This comma means we do not want to <span class='m'>print</span> a newline at the end. This is why <span class='m'>'MOO!'</span> appears next to the previous line, instead of on its own line.</p>
+
+<blockquote class='inthischapter'><h3>Things Covered In This Chapter</h3>
+<ul>
+<li>Using <span class='m'>print</span> with no parameters to display blank lines.</li>
+<li>Escape characters.</li>
+<li>Using single quotes and double quotes for strings.</li>
+<li>Using commas at the end of print statements.</li>
+</ul>
+</blockquote>
+
+</body>
+</html>
+
+

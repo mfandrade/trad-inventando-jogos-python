@@ -1,0 +1,625 @@
+<html>
+<head>
+<title>IYOCGwP Book 1 - Chapter 1 - "Hello World!", Your First Program</title>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
+</head>
+<body>
+<h1>Chapter 1 - "Hello World!", Your First Program</h1>
+
+<h2>Hello!</h2>
+
+<p>This is a book that will show you how to make computer games. All you need is a computer, some software called the Python Interpreter, and this book. The software is free. You can download it at no charge from the Internet. This book will show you how to set up your computer and program a few games. Once you learn how these games work, you will be able to use that knowledge to create games of your own.</p>
+
+<p>When I was a kid, I found a book like this that taught me how to write my first programs and games. It was fun and easy. Now as an adult, I still have fun programming computers as a job, and I get paid for it. But even if you don't become a computer programmer when you grow up, programming is a useful and fun skill to have. (I still sometimes invent my own computer games.)</p>
+
+<p>Computers are very useful machines. In the future, knowing how to program a computer may be as useful as knowing how to read a book. The good news is that learning to program isn't as hard as learning to read. If you can read this book, you can program a computer.</p>
+
+<p>To tell a computer what you want it to do, that is, to program a computer, you will need to learn the computer's language. There are many different programming languages: Basic, Java, Python, Pascal, Haskell, and C++ (pronounced, "see plus plus").</p>
+
+<p>The book I read when I was a kid taught me BASIC programming. Back then, most people who started to learn programming would learn to program in BASIC. But new programming languages have been invented since then. This book is about Python programming. Python is even easier to learn than Basic. Not only is it easy, but it is also a serious and useful programming language. Many adults use Python in their own jobs and hobbies. That’s why I chose to make this book about Python programming.</p>
+
+<h2>Downloading and Installing Python</h2>
+
+<p>You might want the help of an adult or someone else to download and install the Python software.</p>
+
+<p>The software that runs programs you write is called an interpreter. The <span class='term'>interpreter</span> is a program that runs programs written in the Python language. This interpreter program is called the Python interpreter (or sometimes, we just plainly call it Python). You can download the Python interpreter from this website:</p>
+
+<blockquote>http://www.python.org</blockquote>
+
+<!--
+<p>Click on the Download link on the left side of the web page.</p>
+
+<p class='centeredImageP'><img src='images/1_1_pythonorg.png' class='centeredImage'></p>
+
+<p>On the download page, click on the Python 2.5.1 Windows Installer to download the Python interpreter for Windows. There may be newer versions by the time you read this book. If so, you can download the new version and the programs in this book will still work.</p>
+
+<p class='centeredImageP'><img src='images/1_2_download.png' class='centeredImage'></p>
+
+<p>Double-click on the python-2.5.1.msi file that you've just downloaded. This will start the Python installer.</p>
+
+<p class='centeredImageP'><img src='images/1_3_doubleclick.png' class='centeredImage'></p>
+
+
+<p>All you need to do in the installer is click the Next button. The default choices in the installer are just fine.</p>
+
+
+<p class='centeredImageP'><img src='images/1_4_install.png' class='centeredImage'></p>
+<p class='centeredImageP'><img src='images/1_5_install.png' class='centeredImage'></p>
+<p class='centeredImageP'><img src='images/1_6_install.png' class='centeredImage'></p>
+<p class='centeredImageP'><img src='images/1_7_install.png' class='centeredImage'></p>
+<p class='centeredImageP'><img src='images/1_8_install.png' class='centeredImage'></p>
+
+<p>When the install is finished, click Finish.</p>
+
+<p>You may have to restart your computer. You should save any work you have in any other programs that are running, then click Yes. Then you will be ready to start programming!</p>
+
+<p class='centeredImageP'><img src='images/1_9_install.png' class='centeredImage'></p>
+-->
+
+<p>Click on the Download link on the left side of the web page. On the download page, click on the Python 2.5.1 Windows Installer to download the Python interpreter for Windows. (If you are running an operating system other than Windows, download the Python installer for your operating system instead.) There may be newer versions by the time you read this book. If so, you can download the new version and the programs in this book will still work.</p>
+
+<p class='centeredImageP'><img src='images/1_2_download.png' class='centeredImage'></p>
+
+<p>Double-click on the python-2.5.1.msi file that you've just downloaded. This will start the Python installer. All you need to do in the installer is click the Next button. The default choices in the installer are just fine. When the install is finished, click Finish. You may have to restart your computer. You should save any work you have in any other programs that are running, then click Yes. Then you will be ready to start programming!</p>
+
+<p>The games we'll create may seem simple compared to games you’ve played on the XBox, Playstation, or Wii. These games don’t have fancy graphics or music. But games don’t have to be very complicated to be fun. And unlike those video game consoles, you can always get more games by creating them yourself for free. All you need is a computer and this book.</p>
+
+<p>Okay, let’s get started!</p>
+
+<h2>Starting the Python Interpreter</h2>
+
+<p>After you have installed the Python interpreter, you can start it by clicking on Start, then Programs, then Python 2.5, then IDLE (Python GUI). Look at this picture for an example:
+
+<p class='centeredImageP'><img src='images/2_1_startidle.png' class='centeredImage'></p>
+
+<p>You will see a new window with the title, "Python Shell". It will look like this:
+
+<p class='centeredImageP'><img src='images/2_2_idle.png' class='centeredImage'></p>
+
+<p>This is the IDLE program. IDLE stands for Interactive DeveLopment Environment. <span class='term'>IDLE</span> is a program that helps us type in our own programs and games. This window appears when you first run IDLE and is called the <span class='term'>interactive shell</span>. We can type Python instructions into the shell to make the computer do what we want. A program is a whole bunch of instructions put together, like a story is made up of a whole bunch of sentences.</p>
+
+<p>Let's learn some basic instructions first. We'll learn how to make the computer solve some math problems in the Python shell. Don't worry if you don't know a lot of mathematics. If you know how to add and multiply, you know enough math to do programming. Even if you aren't very good at math, programming is more about problem solving in general than it is about solving math problems.</p>
+
+<h2>Some Simple Math Stuff</h2>
+
+<p>First, type in <span class='m'>2+2</span> into the shell and press the Enter key.</p>
+
+<p class='centeredImageP'><img src='images/2_2and2.png' class='centeredImage'></p>
+
+<p>Notice that the Python shell can be used like a calculator. The + sign will do addition and the - sign will do subtraction. The * sign (which is called an <span class='term'>asterisk</span>) is used for multiplication.</p>
+
+<p>We'll have the computer solve some math problems for us. In programming (and in mathematics), whole numbers are called <span class='term'>integers</span>. Integers are whole numbers like 4 and 99 and 0. Numbers with fractions or decimal points are not integers. The numbers 3.5 and 42.1 and 5.0 are not integers. In Python, the number 5 is an integer but if we wrote it as 5.0 it would not be an integer. Numbers with the decimal point are called <span class='term'>floating point</span> numbers.</p>
+
+<p>Try typing some of these math problems into the shell. Remember to press the Enter key after typing each one in.</p>
+
+<blockquote class='sourceblurb'>
+2+2+2+2+2<br/>
+8*6<br/>
+10-5+6<br/>
+2 +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br/>
+</blockquote>
+
+
+<p class='centeredImageP'><img src='images/2_math.png' class='centeredImage'></p>
+
+<p>These math problems are called expressions in Python.</p>
+
+<p>You can put any amount of spaces in between the integers and the math signs (which are called <span class='term'>operators</span>), and Python can tell what you mean. There are other operators besides the mathematical operators, but we will go into them later. These integers are also called <span class='term'>values</span>. There are other things that are also values (such as strings) which we will talk about later.</p>
+
+<p>Integers are a type of number. Numbers (and integers) are a type of value. Even though integers are numbers, not all numbers are integers. (For example, fractions and numbers with decimal points like <span class='m'>2.5</span> are numbers that are not integers.) This is like how a cat is a type of pet, but not all pets are cats. Someone may have a pet dog.</p>
+
+<p>Values, operators, and expressions may seem like fancy words for numbers, math signs, and math problems. But knowing these terms will help explain other programming instructions later on.</p>
+
+<p> Actually, expressions include other things besides math problems. An <span class='term'>expression</span> is made up of values (such as integers like <span class='m'>8</span> and <span class='m'>6</span>) connected by an operator (such as the * multiplication sign). A single value by itself is also considered an expression.</p>
+
+<p class='centeredImageP'><img src='images/2_expression.png' class='centeredImage'></p>
+
+<p>The Python shell is handy for solving large math problems very quickly. Try typing in <span class='m'>2063 * 3581</span>.</p>
+
+<p class='centeredImageP'><img src='images/2_bigmath.png' class='centeredImage'></p>
+
+<p>Notice that in Python, we don't put commas inside the numbers. We type 2063 instead of 2,063. The computer can do what you tell it to very quickly, but it needs you to tell it in a very specific way. Computer programming is all about writing out precise instructions to get the computer to do exactly what you want.</p>
+
+<p>In the expression <span class='m'>2 + 5 + 7</span>, the <span class='m'>2 + 5</span> part is also an expression. Expressions can contain other expressions, like a large Lego building made up of smaller Lego blocks.</p>
+
+<p>So even though computers are very fast and can store a lot of information, they aren't very smart at all. They need human programmers to tell them exactly what to do.</p>
+
+<h2>Evaluating Expressions</h2>
+
+<p>When the computer solves the expression <span class='m'>10 + 5</span> and gets the value <span class='m'>15</span>, we say the computer has evaluated the expression. <span class='term'>Evaluating</span> an expression reduces the expression to a single value, just like solving a math problem reduces the problem to a single number: the answer. The expressions <span class='m'>10 + 5</span> and <span class='m'>10 + 3 + 2</span> have the same value, because they both evaluate to <span class='m'>15</span>. Remember that single values by themselves are also considered expressions. The expression <span class='m'>15</span> evaluates to the value <span class='m'>15</span> (that was pretty easy to evaluate, wasn't it?)</p>
+
+<p>However, if you just type <span class='m'>5 +</span> into the interactive shell, you will get an error message.</p>
+
+<p class='centeredImageP'><img src='images/2_badexpression.png' class='centeredImage'></p>
+
+<p>This is because <span class='m'>5 +</span> is not an expression. Expressions have values connected by operators, but <span class='m'>5 +</span> has an operator that is not connecting two values. This is why the error message appeared. The error message means that the computer does not understand the instruction you gave it.</p>
+
+<p>This may not seem important, but a lot computer programming is about knowing how the computer will evaluate expressions. And remember, expressions are just values connected by operators, or one value by itself.</p>
+
+<h2>Variables</h2>
+
+<p>When we start programming, we will often want to save the values that our expressions evaluate to so we can use them later. We can store values in things called <span class='term'>variables</span>. Think of variables like a mailbox that you can put values inside of. You can store values inside variables with the = sign (which is called the <span class='term'>assignment operator</span>). Try typing <span class='m'>spam = 15</span> into the shell:</p>
+
+<!-- Note: We use the mailbox metaphor as opposed to a normal box or container because in the picture of the mailbox, the variable name on the mailbox will be to the left of the value. This is to help reinforce that it should be spam = 42, not 42 = spam. -->
+
+<p class='centeredImageP'><img src='images/2_var.png' class='centeredImage'></p>
+
+<p>This instruction (called an <span class='term'>assignment statement</span>) stores the value 15 in a variable named <span class='m'>spam</span>. Unlike expressions, <span class='term'>statements</span> are instructions that do not evaluate to any value, which is why there is no value that is displayed on the next line in the shell. Although, this statement does contain an expression. The value 15 by itself is an expression, which evaluates to the value 15.</p>
+
+<p>Variables store values, not expressions. If we had the statement, <span class='m'>spam = 10 + 5</span>, then the expression <span class='m'>10 + 5</span> would first be evaluated down to <span class='m'>15</span>. Then this <span class='m'>15</span> value would be the value stored in the variable, <span class='m'>spam</span>.</p>
+
+<p>You can think of the variable like a mailbox with the value 15 inside of it. The variable name "spam" is the label on the mailbox (so we can tell one mailbox from another) and the value stored in it is like a postcard inside the mailbox.</p>
+
+<p class='centeredImageP'><img src='images/2_spamvar.png' class='centeredImage'></p>
+
+<p>If we type <span class='m'>spam</span> into the shell by itself, it will show us what value is stored inside the variable.</p>
+
+<p class='centeredImageP'><img src='images/2_spamvalue.png' class='centeredImage'></p>
+
+<p>If we type <span class='m'>spam + 5</span> into the shell, this is the same as <span class='m'>15 + 5</span> because the value inside spam is 15.</p>
+
+<p class='centeredImageP'><img src='images/2_spamexpr.png' class='centeredImage'></p>
+
+<p><span class='m'>spam + 5</span> is also an expression, just like <span class='m'>15 + 5</span> would be an expression. When you see a variable inside an expression, the value that is stored inside the variable is used when the computer evaluate the expression. But we can change which value is stored in the variable by typing in another assignment statement:</p>
+
+<p class='centeredImageP'><img src='images/2_newspam.png' class='centeredImage'></p>
+
+<p>Notice that the first time we typed in <span class='m'>spam + 5</span>, the expression evaluated to <span class='m'>20</span>. This is because we had stored the value <span class='m'>15</span> inside the variable spam. But then we stored the value <span class='m'>3</span> inside of <span class='m'>spam</span>. The old value of <span class='m'>15</span> was erased to let the new value of <span class='m'>3</span> be stored inside the variable. In programming, we say that the value of <span class='m'>15</span> was <span class='term'>overwritten</span>. When we typed in <span class='m'>spam + 5</span> after that, then that expression evaluated to <span class='m'>8</span>. If the variable is like a mailbox and the value is like a postcard inside the mailbox, then the mailbox can only hold one postcard at a time.</p>
+
+<p>We can also have expressions on the right side of the = sign. Python will evaluate this expression to get the final value, and then store this value inside of the variable. If you ever want to know what the current value is inside of a variable is, just type the variable name into the shell.</p>
+
+<p class='centeredImageP'><img src='images/2_spam2.png' class='centeredImage'></p>
+
+<p>Remember, in expressions, the variable acts as a name for a value. We can use the variable as many times as we want. Look at this example:</p>
+
+<p class='centeredImageP'><img src='images/2_spamspam.png' class='centeredImage'></p>
+
+<p>When the variable spam has the integer value <span class='m'>15</span> stored in it, then <span class='m'>spam + spam</span> is the same as <span class='m'>15 + 15</span>. This is why <span class='m'>spam + spam</span> evaluates to <span class='m'>30</span>. And <span class='m'>spam - spam</span> is the same as <span class='m'>15 - 15</span>, which evaluates to <span class='m'>0</span>.
+
+<p>We can even use the value in the spam variable to assign spam with a new value:</p>
+
+<p class='centeredImageP'><img src='images/2_spamplusequal.png' class='centeredImage'></p>
+
+<p>The assignment statement <span class='m'>spam = spam + 5</span> is sort of like saying "the new value of the spam variable will be the current value of spam plus five". Remember that the variable on the left side of the = sign will be assigned the value that the expression on the right side evaluates to. We can also keep increasing the value in <span class='m'>spam</span> by <span class='m'>5</span> several times:</p>
+
+<p class='centeredImageP'><img src='images/2_spamplusplusplus.png' class='centeredImage'></p>
+
+<p>Let's assign a couple of values to another two variables named <span class='m'>eggs</span> and <span class='m'>fizz</span>. We can do this by typing in <span class='m'>fizz = 10</span>, then press Enter, then type <span class='m'>eggs = 15</span>, then press Enter.</p>
+
+<p class='centeredImageP'><img src='images/2_fizzeggs.png' class='centeredImage'></p>
+
+<p>These two variables are like two mailboxes, one named <span class='m'>fizz</span> and the other named <span class='m'>eggs</span>. The <span class='m'>fizz</span> variable has <span class='m'>10</span> inside it, and the <span class='m'>eggs</span> variable has <span class='m'>15</span> inside it.</p>
+
+<p class='centeredImageP'><img src='images/2_fizzeggsmbox.png' class='centeredImage'></p>
+
+<p>Now let's try assigning a new value to the spam variable. Type <span class='m'>spam = fizz + eggs</span> into the shell, then press Enter. Then type <span class='m'>spam</span> into the shell to see what the new value of spam is. Can you guess what it will be?</p>
+
+<p class='centeredImageP'><img src='images/2_spamfizzpluseggs.png' class='centeredImage'></p>
+
+<p>The value in <span class='m'>spam</span> becomes <span class='m'>25</span>. This is because when we add <span class='m'>fizz</span> and <span class='m'>eggs</span>, we are adding the values stored inside <span class='m'>fizz</span> and <span class='m'>eggs</span>.
+
+<h2>Strings</h2>
+
+<p>That's enough of integers and math for now. Now let's see what Python can do with text. In the Python programming language, we work with little chunks of text called <span class='term'>strings</span>. We can store string values inside variables just like we can store number values inside variables. When we type strings, we put them in between two single quotes. Try typing <span class='m'>spam = 'hello'</span> into the shell:</p>
+
+<p class='centeredImageP'><img src='images/2_hellostring.png' class='centeredImage'></p>
+
+<p>The single quotes are not part of the string, they just tell the computer where the string begins and ends. If you type <span class='m'>spam</span> into the shell to display the contents of spam, it will display the <span class='m'>'hello'</span> string.</p>
+
+<p class='centeredImageP'><img src='images/2_hellostring2.png' class='centeredImage'></p>
+
+<p>Strings can have any sort of character or sign in them. Strings can have spaces and numbers as well. These are all strings:</p>
+
+<blockquote class='sourceblurb'>
+'hello'<br/>
+'Hi there!'<br/>
+'Albert'<br/>
+'KITTENS'<br/>
+'7 apples, 14 oranges, 3 lemons'
+'A long time ago in a galaxy far, far away...'<br/>
+'O*&amp;#wY%*&amp;OCfsdYO*&amp;gfC%YO*&amp;%3yc8r2'<br/>
+</blockquote>
+
+<p>We can also put string values inside expressions, just like we can put number values inside expressions. The + operator can add one string to the end of another. In programming, we call this <span class='term'>string concatenation</span>. Try typing <span class='m'>'Hello' + 'World!'</span> into the shell:</p>
+
+<p class='centeredImageP'><img src='images/2_helloworld.png' class='centeredImage'></p>
+
+<p>The string it produces is <span class='m'>'HelloWorld!'</span>. We should put a space at the end of the <span class='m'>'Hello'</span> string if we don't want the words bunched together. Try typing <span class='m'>'Hello ' + 'World!'</span> into the shell:</p>
+
+<p class='centeredImageP'><img src='images/2_hellospaceworld.png' class='centeredImage'></p>
+
+<p>You can't add a string to an integer, or an integer number to a string. This is because a string and an integer are different <span class='term'>data types</span>. The data type of the value <span class='m'>'Hello'</span> is a string. The data type of the value <span class='m'>5</span> is an integer.</p>
+
+<p>Adding <span class='m'>5</span> and the string <span class='m'>'Hello'</span> doesn't really make any sense anyway. If we tried to do it, Python would think we were trying to concatenate a string and an integer, or maybe trying to add an integer and a string, and give us an error:</p>
+
+<p class='centeredImageP'><img src='images/2_concaterror.png' class='centeredImage'></p>
+
+<p>These error messages may look strange and confusing, but later we'll learn what they mean and how they can help us figure out what went wrong.</p>
+
+<p>However, there is a difference between using the integer <span class='m'>5</span> and the string <span class='m'>'5'</span>. You can tell that <span class='m'>'5'</span> is a string because it has quotes around it.</p>
+
+<p class='centeredImageP'><img src='images/2_concat.png' class='centeredImage'></p>
+
+<p>You may have noticed that the IDLE program makes strings appear in green text to help make them stand out while you type them. The value that the expression evaluates to, however, will show up in blue in the shell no matter what the data type.</p>
+
+<h2>Writing Programs</h2>
+
+<p>Let's write our first program! Until now we have been typing intructions one at a time into the interactive shell. When we write programs though, we type in several instructions and have them run all at once. Click on the File menu at the top of the Python Shell window, and select New Window. A new blank window will appear. We will type our programs into this window, which is called the <span class='term'>file editor</span>.</p>
+
+<p class='centeredImageP'><img src='images/2_3_newwindow.png' class='centeredImage'></p>
+
+<h2>Hello World!</h2>
+
+<p>A tradition for programmers learning a new language is to make their first program display the text "Hello world!" on the screen. We'll create our own Hello World program now.</p>
+
+<p>You don't have to type in the numbers or period on the left side of the source code. That's just there so we can refer to each line by number in our explanation. If you look at the bottom-right corner of the source code window, it will tell you which line the cursor is currently on.</p>
+
+<p class='centeredImageP'><img src='images/2_linenum.png' class='centeredImage'><br/>
+In the picture, the cursor is currently on line 12.</p>
+
+<p>Type the following text into this new window. We call this text the <span class='term'>source code</span> of the program. These are the instructions to the Python interpreter that explain exactly how the program should behave. (Do not type the numbers at the beginning of each line. Those numbers are for making this book more readable, and they are not part of the source code.)</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>hello.py</span><br/>
+<ol>
+<li># This program says hello and asks for my name.</li>
+<li>print 'Hello world!'</li>
+<li>print 'What is your name?'</li>
+<li>myName = raw_input()</li>
+<li>print 'It is good to meet you, ' + myName</li>
+</ol>
+</blockquote>
+
+<p>The IDLE program will give different types of instructions different colors. After you are done typing this code in, the window should look like this:</p>
+
+<p class='centeredImageP'><img src='images/2_4_helloworld.png' class='centeredImage'></p>
+
+<p>We will want to save this source code so we don't have to retype it each time we start IDLE. Click on the File menu at the top, and then click on Save As. A new window will open that asks us what name we want to give this file. Type in <span class='m'>hello.py</span>, so it looks like this:</p>
+
+<p class='centeredImageP'><img src='images/2_5_save.png' class='centeredImage'></p>
+
+<p>Then click on the Save button.</p>
+
+<p>You should save your program every once in a while as you type them. If the computer crashes or you accidentally exit from IDLE, any typing you have done since you last saved will be lost.</p>
+
+<p>To load this saved program later, click on the File menu at the top, and then click on Open. A new window will appear that asks you to choose which file to open. Click on hello.py and then click on the Open button.</p>
+
+<p>Now we want to run the program we have just typed in. Click on the Run menu at the top, and then click on Run Module. Or, instead of clicking on the menu, you can just push the F5 key on your keyboard. The program will run in the Python Shell window that appeared when we first ran the IDLE program. Our program asks us for our name. Go ahead and type it in, and then press the Enter key.</p>
+
+<p class='centeredImageP'><img src='images/2_6_run.png' class='centeredImage'></p>
+
+<p>When we push Enter, the program will greet the user by name. We call the person who will run and use the program the  <span class='term'>user</span>. We call the person who wrote the program the <span class='term'>programmer</span>. Congratulations! You've written your first program. You are now a computer programmer. You can run this program again if you like. Just click on the window with our source code again, and click on the Run menu, then Run Module. (Or press F5. This is what I like to do since it is quicker.)</p>
+
+<p>How does this program work? Well, each line that we typed in is performed one after the other. The program starts at the very top and then <span class='term'>executes</span> each line. After the program executes the first line, it moves on and executes the second line, then it executes the third line, and so on.</p>
+
+<p>Think of the program like a cake recipe. The recipe tells you the exact steps you need to take to bake a cake. Do the first step first, then the second, and keep going until you reach the end. The instructions in your program are executed one by one starting from the top and then going down. We call this the <span class='term'>flow of execution</span>, or just the execution for short.</p>
+
+<!--
+<p class='centeredImageP'><img src='images/2_jump.png' class='centeredImage'></p>
+-->
+
+<h2>Code Explanation</h2>
+
+<p>So what does all of that code we typed in mean? Let's look at each line we typed in, one line at a time.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=1>
+<li># This program says hello and asks for my name.</li>
+</ol>
+</blockquote>
+
+<p>This line is called a <span class='term'>comment</span>. Comments are ignored in the program. Comments are not for the computer, but for the programmer. They are there to remind the programmer of what the program does. Any text after the # sign (called the <span class='term'>pound sign</span>) is a comment. Programmers usually put comments at the top of their code to give their program a title. The IDLE program (the program that we are typing our code into) makes comments appear in red text to help make them stand out.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=2>
+<li>print 'Hello world!'</li>
+</ol>
+</blockquote>
+<p>This line is a <span class='term'>print statement</span>. A <span class='m'>print</span> statement is the <span class='m'>print</span> keyword followed by an expression. The statement will display the evaluated expression on the screen. Unlike typing strings into the shell, when we write a program, the value that an expression evaluates to is not displayed on the screen. To display the expression's value on the screen, we use a <span class='m'>print</span> statement. We want to display <span class='m'>Hello world!</span> on the screen, so we type the print keyword followed by the 'Hello world!' string.</p>
+
+<h2>The Difference Between Statements and Expressions</h2>
+
+<p>What is the difference between a statement and an expression? All expressions evaluate to a single value, and statements do not evaluate to anything. An expression is made up of values connected by operators, which evaluate to a single value (for example, <span class='m'>2 + 3</span> evaluates to <span class='m'>5</span>. But the <span class='m'>print</span> statement does not evaluate to a value.</p>
+
+<p>You could not assign the value that a <span class='m'>print</span> statement evaluates because statements do not evaluate to values. If you tried, you would get a syntax error. (Just for fun, try typing it into the interactive shell.) A <span class='term'>syntax error</span> happens when Python cannot understand what you're program is trying to do.</p>
+
+<p class='centeredImageP'><img src='images/2_statement.png' class='centeredImage'></p>
+
+<p>In fact, you can type a <span class='m'>print</span> statement into the shell:</p>
+
+<p class='centeredImageP'><img src='images/2_printhello.png' class='centeredImage'></p>
+
+<p>When the <span class='m'>print</span> statement runs, it shows the string itself without the quotes. But remember that in programs, nothing will appear on the screen unless you use a <span class='m'>print</span> statement.</p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class='sourcecode'>
+<ol start=3>
+<li>print 'What is your name?'</li>
+</ol>
+</blockquote>
+<p>This line is also a <span class='m'>print</span> statement. This time, the program will display <span class='m'>What is your name?</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=4>
+<li>myName = raw_input()</li>
+</ol>
+</blockquote>
+<p>This line has a variable and a <span class='term'>function call</span>. The variable is named <span class='m'>myName</span> and the function is named <span class='m'>raw_input()</span>. A <span class='term'>function</span> is a bit of code that does a particular action. When we call a function, the program does whatever the function is programmed to do. When <span class='m'>raw_input()</span> is called, the program waits for the user to type in text and press Enter. This text string is what the function call to the <span class='m'>raw_input()</span> evaluates to. The value that a function call will evaluate to is called the <span class='term'>return value</span>. The <span class='m'>raw_input()</span> function returns the string that the user typed in. Because function calls can be evaluated, they can also be part of an expression. Then this looks like a regular assignment where <span class='m'>myName</span> stores a string inside it.</p>
+
+<p>Notice that when I talk about the <span class='m'>raw_input()</span> function, I add parentheses to the end of it. This is how we type out function names, because if I just wrote <span class='m'>raw_input</span> you would not know if I meant a variable named raw_input or a function named raw_input. The parentheses at the end let us know we are talking about a function, much like the quotes in <span class='m'>'42'</span> let us know we are talking about the string <span class='m'>'42'</span> and not the integer <span class='m'>42</span>.
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=5>
+<li>print 'It is good to meet you, ' + myName</li>
+</ol>
+</blockquote>
+<p>On the last line we have a <span class='m'>print</span> statement again. This time, we use the plus operator (+) to concatenate the string 'It is good to meet you, ' and the string stored in the myName variable. This is how we get the program to greet us by name.</p>
+
+<p>After the program executes the last line, it stops. Programmers say the program has <span class='term'>terminated</span> or <span class='term'>exited</span>. All of the variables are forgotten by the computer, including the string we stored in myName. Try running the program again and enter a different name.</p>
+
+<p class='centeredImageP'><img src='images/2_7_run.png' class='centeredImage'></p>
+
+<p>Remember, the computer only does exactly what you program it to. In this program, it is programmed to ask you for your name, let you type in a string, and then it will say hello and display the string you typed. But you don't have to type in your name. You can type in anything you want and the computer will treat it the same:</p>
+
+<p class='centeredImageP'><img src='images/2_poop.png' class='centeredImage'></p>
+
+<h2>"My Favorite Stuff"</h2>
+
+<p>Let's make another program. Open a new window by clicking on the File menu at the top and then clicking on New Window. (And remember, do not type the numbers at the beginning of each line. Those are only to make the source code more readable here.)</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>favorites.py</span><br/>
+<ol>
+<li># Favorite stuff</li>
+<li>print 'Tell me what your favorite color is.'</li>
+<li>favoriteColor = raw_input()</li>
+<li></li>
+<li>print 'Tell me what your favorite animal is.'</li>
+<li>favoriteAnimal = raw_input()</li>
+<li></li>
+<li>print 'Tell me what your favorite food is.'</li>
+<li>favoriteFood = raw_input()</li>
+<li></li>
+<li># display our favorite stuff</li>
+<li>print 'You entered: ' + favoriteFood + ' ' + favoriteAnimal + ' ' + favoriteColor</li>
+<li># print 'Here is a list of your favorite things.'</li>
+<li>print 'Color: ' + favoriteColor</li>
+<li>print 'Animal: ' + favoriteAnimal</li>
+<li>print 'Food: ' + favoriteFood</li>
+</ol>
+</blockquote>
+
+<p>Save this program as <span class='m'>favorites.py</span> and then press F5 to run it.</p>
+
+<p class='centeredImageP'><img src='images/2_8_favoritesrun.png' class='centeredImage'></p>
+
+<h2>Code Explanation</h2>
+
+<p>This program looks similar to our Hello World program. Let's look at each line carefully.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=1>
+<li># Favorite stuff</li>
+</ol>
+</blockquote>
+<p>This is another comment. The program will ignore it. It's just there to remind us what this program does if we look at the source code later.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=2>
+<li>print 'Tell me what your favorite color is.'</li>
+</ol>
+</blockquote>
+<p>Here we display a bit of text asking the user to type in their favorite color by using the <span class='m'>print</span> keyword.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=3>
+<li>favoriteColor = raw_input()</li>
+</ol>
+</blockquote>
+<p>Now we are going to call the <span class='m'>raw_input()</span> function to let the user type in their favorite color. When they press enter, the string the user entered is stored in the <span class='m'>favoriteColor</span> variable.</p>
+
+<p class='centeredImageP'><img src='images/2_favcolor.png' class='centeredImage'></p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=5>
+<li>print 'Tell me what your favorite animal is.'</li>
+<li>favoriteAnimal = raw_input()</li>
+</ol>
+</blockquote>
+<p>These two lines are similar to the ones before. Notice that there is a blank line in between them. In the Python language, blank lines are just ignored. This is helpful because then we don't have to have all the lines bunched together.</p>
+
+<p>This time, the user will type what their favorite animal is, and the string will be stored in a variable named <span class='m'>favoriteAnimal</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=8>
+<li>print 'Tell me what your favorite food is.'</li>
+<li>favoriteFood = raw_input()</li>
+</ol>
+</blockquote>
+<p>Finally, we will let the user type in their favorite food. This string is stored in yet another variable called <span class='m'>favoriteFood</span>.</p>
+
+<p class='centeredImageP'><img src='images/2_allfavs.png' class='centeredImage'></p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=11>
+<li># display our favorite stuff</li>
+</ol>
+</blockquote>
+<p>Here's another comment. Comments don't always have to go at the top of the program. They can show up anywhere. All the text after the pound sign (#) will be ignored by the program and won't be shown to the user. It just reminds the programmer what the program does.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>print 'You entered: ' + favoriteFood + ' ' + favoriteAnimal + ' ' + favoriteColor</li>
+</ol>
+</blockquote>
+<p>This <span class='m'>print</span> statement will show us the favorite food, animal, and color we entered. The plus sign is used to combine the string <span class='m'>'You entered: '</span> with the strings we stored in our variables earlier. We don't want the strings in the variable to be bunched together, so we add a string with one space in between them. This will make the entire string look something like this:</p>
+<p class='indented'><span class='m'>'You entered: pasta cats blue'</span></p>
+<p>Instead of this:</p>
+<p class='indented'><span class='m'>'You entered: pastacatsblue'</span></p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=13>
+<li># print 'Here is a list of your favorite things.'</li>
+</ol>
+</blockquote>
+<p>This line looks like another <span class='m'>print</span> statement. But do you see the pound sign at the start of it? That means this line is really a comment and the program ignores this code. Sometimes the programmer may want to take something out of the source code, but also might want to add it back in later. Instead of deleting the code, you can just put a pound sign to have it ignored for now. If you delete the pound sign, then this code will no longer be a comment and would be executed with the rest of the program. In IDLE, you can easily see that this is a comment and not code because it is in red text.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=14>
+<li>print 'Color: ' + favoriteColor</li>
+<li>print 'Animal: ' + favoriteAnimal</li>
+<li>print 'Food: ' + favoriteFood</li>
+</ol>
+</blockquote>
+<p>These three lines will display our favorite things once again.</p>
+
+<p>When the last line of the program executes, the program terminates.</p>
+
+<h2>Crazy Answers and Crazy Names for our Favorite Stuff</h2>
+
+<p>The computer doesn't really care what you type in. It doesn't understand what food or animals or colors are. All it knows is that the user will type in some string. We don't have to type in our favorite things at all. Look at this run of the program where I type in some crazy answers:</p>
+
+<p class='centeredImageP'><img src='images/2_crazyanswers.png' class='centeredImage'></p>
+
+<p>All the program understands is that it should store the string the user enters into the variables and display the string in those variables later on.</p>
+
+<p class='centeredImageP'><img src='images/2_crazymailboxes.png' class='centeredImage'></p>
+
+<p>The program also does not care what name we give to our variables. Our program would work just the same if it looked like this:</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>favorites2.py</span><br/>
+<ol>
+<li># Favorite stuff 2</li>
+<li>print 'Tell me what your favorite color is.'</li>
+<li>q = raw_input()</li>
+<li></li>
+<li>print 'Tell me what your favorite animal is.'</li>
+<li>fizzy = raw_input()</li>
+<li></li>
+<li>print 'Tell me what your favorite food is.'</li>
+<li>AbrahamLincoln = raw_input()</li>
+<li></li>
+<li># display our favorite stuff</li>
+<li>print 'You entered: ' + q + ' ' + fizzy + ' ' + AbrahamLincoln</li>
+<li>#print 'Here is a list of your favorite things.'</li>
+<li>print 'Color: ' + q</li>
+<li>print 'Animal: ' + fizzy</li>
+<li>print 'Food: ' + AbrahamLincoln</li>
+</ol>                                                            
+</blockquote>                                                       
+
+<p>The names we give the variables are more for our benefit than the computer's benefit. One name looks the same as any other to the computer. The name <span class='m'>q</span> doesn't help us remember that this variable is suppose to store the string of the user's favorite color. And the name <span class='m'>fizzy</span> isn't any type of animal. And using the name <span class='m'>AbrahamLincoln</span> for the variable to store our favorite color is just silly. But since we use the variables in the same way as before, the program works the exact same.</p>
+
+<h2>Capitalizing our Variables</h2>
+
+<p>Have you noticed that variable names that are made up of more than one word have the other words capitalized? This is to make the variable names easier to read because variable names can't have spaces in them.</p>
+
+<p class='indented'><span class='m'>thisnameiskindofhardtoread</span></p>
+
+<p class='indented'><span class='m'>thisNameIsEasierToRead</span></p>
+
+
+<p>Leave the first word in lowercase, but start the other words in uppercase. We call something like this a <span class='term'>convention</span>: we don't have to do it this way, but doing it this way makes it a little easier. The convention for capitalizing variable names is to leave the first word in lowercase but start the other words in uppercase.</p>
+
+<p>Remember, the computer doesn't care how we name our variables. It only cares how we use them in the program. Look at this program:</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>favorites3.py</span><br/>
+<ol>
+<li># Favorite stuff 3</li>
+<li>print 'Tell me what your favorite color is.'</li>
+<li>q = raw_input()</li>
+<li></li>
+<li>print 'Tell me what your favorite animal is.'</li>
+<li>AbrahamLincoln = raw_input()</li>
+<li></li>
+<li>print 'Tell me what your favorite food is.'</li>
+<li>AbrahamLincoln = raw_input()</li>
+<li></li>
+<li># display our favorite stuff</li>
+<li>print 'You entered: ' + q + ' ' + AbrahamLincoln + ' ' + AbrahamLincoln</li>
+<li>#print 'Here is a list of your favorite things.'</li>
+<li>print 'Color: ' + q</li>
+<li>print 'Animal: ' + AbrahamLincoln</li>
+<li>print 'Food: ' + AbrahamLincoln</li>
+</ol>
+</blockquote>                                                       
+
+
+<p>When we run this program, it looks like this:</p>
+
+<p class='centeredImageP'><img src='images/2_8_favorites3run.png' class='centeredImage'></p>
+
+<p>What happened here? If you notice, we use the same variable named <span class='m'>AbrahamLincoln</span> to store a string of our favorite animal and our favorite food. When the user typed in their favorite animal, this string was stored in the <span class='m'>AbrahamLincoln</span> variable. But when the user typed in their favorite food, this string was also stored in the <span class='m'>AbrahamLincoln</span> variable and the favorite food string was forgotten. The favorite food value was overwritten. The computer can't tell the difference between them because they use the same name. So the computer thinks we mean to use the same variable.</p>
+
+<p class='centeredImageP'><img src='images/2_overwrite.png' class='centeredImage'><br/>
+A variable can only store one value at a time.</p>
+
+<p>The computer will do exactly what we tell it to do, even if we tell it to do the wrong thing. The computer can't read our minds and figure out what we want it to do. It is up to the programmer to make sure the program works just right.</p>
+
+<p>As a final note about variable and function names, I should tell you that the computer does pay attention to the capitalization of the name. The computer considers these names to be four separate variables:</p>
+<p class='indented'><span class='m'>fizzy</span></p>
+<p class='indented'><span class='m'>Fizzy</span></p>
+<p class='indented'><span class='m'>FIZZY</span></p>
+<p class='indented'><span class='m'>fIzZy</span></p>
+
+<p class='centeredImageP'><img src='images/2_differentcase.png' class='centeredImage'><br/>
+Four differently-cased names means four different variables.</p>
+
+<p>We call this <span class='term'>case-sensitivity</span>. In the Python language, variable and function names are case-sensitive. If you try to call the <span class='m'>RAW_INPUT()</span> function instead of the <span class='m'>raw_input()</span> function, you will get an error because the computer doesn't know of a function named <span class='m'>RAW_INPUT()</span>. It only knows a function named <span class='m'>raw_input()</span>.</p>
+
+<p>So remember that even though the computer doesn't care what you name your variables or how you capitalize them, be sure to always use the same capitalization. It is also a convention to never use two different variables with the same name but different capitalization. If you use the variable <span class='m'>favoriteFOOD</span> to store the string of your favorite breakfast food and the variable <span class='m'>FAVORITEfood</span> to store your favorite dinner food, it is easy to forget which is which.</p>
+
+<p>You don't always have to finish typing in a program before you run it. You can just have some of the code complete, and then run it just to see how the program behaves. Programmers will often type some code, run the program, type some more code, run the program again, and so on in order to make sure the code is coming along the way they like. You can also always use the interactive shell to type single lines of code in to see what it does.</p>
+
+<p>Now that we have some of the basics down, in the next chapter we will create our first game!</p>
+
+<blockquote class='inthischapter'><h3>Things Covered In This Chapter:</h3>
+<ul>
+<li>Downloading and installing the Python interpreter.</li>
+<li>Using IDLE's interactive shell to run instructions.</li>
+<li>Flow of execution</li>
+<li>Expressions, and evaluating expressions</li>
+<li>Integers</li>
+<li>Operators (such as + - *)</li>
+<li>Variables</li>
+<li>Assignment statements</li>
+<li>Overwriting values in variables.</li>
+<li>Strings</li>
+<li>String concatenation</li>
+<li>Data types (such as strings or integers)</li>
+<li>Using IDLE to write source code.</li>
+<li>Saving and running programs in IDLE.</li>
+<li>The <span class='m'>print</span> statement.</li>
+<li>The <span class='m'>raw_input()</span> function.</li>
+<li>Comments</li>
+<li>Case-sensitivity</li>
+<li>Conventions</li>
+</ul></blockquote>
+
+</body>
+</html>

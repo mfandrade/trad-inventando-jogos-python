@@ -1,0 +1,996 @@
+<html>
+<head>
+<title>IYOCGwP Book 1 - Chapter 2 - Guess the Number</title>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
+</head>
+<body>
+
+<h1>Chapter 2 - Guess the Number</h1>
+
+<p>We are going to make a "Guess the Number" game. In this game, the computer will think of a random number from 1 to 20, and ask you to guess the number. You only get six guesses, but the computer will tell you if your guess is too high or too low. If you guess the number within six tries, you win.</p>
+
+<p>Because this program is a game, we'll call the user the <span class='term'>player</span>.</p>
+
+<p>First, type this code in exactly as it appears here, and then save it by clicking on the File menu and then Save As. Give it a file name like, <span class='m'>guess.py</span>. Then run it by pressing the F5 key. Don't worry if you don't understand the code now, I'll explain it step by step.</p>
+
+<p>Be sure to type it exactly as it appears. Some of the lines don't begin at the leftmost edge of the line, but are indented by four or eight spaces. Be sure to put in the correct amount of spaces for the start of each line.</p>
+
+<p>Some of these lines are too long to fit on one line in the page, and it wraps around to the next line. When you type them into the file editor, type these lines of code all on the same line. You can tell if a new line starts or not in this book by the line numbers on the left side. For example, this has only two lines of code, even though the first line wraps around:</p>
+
+<table align='center' class='simplefulltable'>
+<tr><td><ol><li>print 'This is the first line! xxxxxxxxxx<br/>
+xxxxxxx'</li>
+<li>print 'This is the second line!'</li>
+</ol></td></tr></table>
+
+
+<h2>Sample Run</h2>
+
+<p>Here is the text from a sample run of this game. The text that the program prints out is in blue, and the text that the player types in is in black and in bold.</p>
+
+<blockquote class="samplerun">
+Hello! What is your name?<br/>
+<span class="sampleruninput">Albert</span><br/>
+Well, Albert, I am thinking of a number between 1 and 20.<br/>
+Take a guess.<br/>
+<span class="sampleruninput">10</span><br/>
+Your guess is too high.<br/>
+Take a guess.<br/>
+<span class="sampleruninput">2</span><br/>
+Your guess is too low.<br/>
+Take a guess.<br/>
+<span class="sampleruninput">4</span><br/>
+Good job, Albert! You guessed my number in 3 guesses!<br/>
+</blockquote>
+
+<h2>Source Code</h2>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>guess.py</span><br/>
+<ol start=1>
+<li># This is a guess the number game.</li>
+<li>import random</li>
+<li></li>
+<li>guessesTaken = 0</li>
+<li></li>
+<li>print 'Hello! What is your name?'</li>
+<li>myName = raw_input()</li>
+<li></li>
+<li>number = random.randint(1, 20)</li>
+<li>print 'Well, ' + myName + ', I am thinking of a number between 1 and 20.'</li>
+<li></li>
+<li>while guessesTaken < 6:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Take a guess.' # There are four spaces in front of print.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = raw_input()</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = int(guess)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = guessesTaken + 1</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess < number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Your guess is too low.' # There are eight spaces in front of print.</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess > number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Your guess is too high.'</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess == number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+<li></li>
+<li>if guess == number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = str(guessesTaken)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!'</li>
+<li></li>
+<li>if guess != number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;number = str(number)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Nope. The number I was thinking of was ' + number</li>
+</ol>
+</blockquote>
+
+<p>Even though we are typing in our source code into this file editor new window, we can still go back to the shell to type in individual instructions to see what they do. The interactive shell is very good for experimenting with different instructions when we are not running a program.</p>
+
+<h2>Code Explanation</h2>
+
+<p>Let's look at each line of code.</p>
+
+<blockquote class='sourcecode'>
+<ol start=1>
+<li># This is a guess the number game.</li>
+</ol>
+</blockquote>
+
+<p>This is a comment. Remember that Python will ignore everything after the # sign. This just reminds us what this program does.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=2>
+<li>import random</li>
+</ol>
+</blockquote>
+
+<p>This is an <span class='term'>import statement</span>. The <span class='m'>import</span> statement is not a function (it does not have parentheses after its name). The statement has a special Python keyword, like the <span class='m'>print</span> statement has, called the <span class='m'>import</span> keyword. Many functions like <span class='m'>raw_input()</span> are included with every Python program. But some functions exist in separate programs called modules. <span class='term'>Modules</span> are other Python programs that contain other functions that we can use. The <span class='m'>import</span> statement will add these modules their functions to our program.</p>
+
+<p>The <span class='m'>import</span> statement is made up of the <span class='m'>import</span> keyword followed by the module name.</p>
+
+<p>This line imports a module named <span class='m'>random</span>. The <span class='m'>random</span> module has several functions related to random numbers. We'll use one of these functions later to have the computer come up with a random number for us to guess.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=4>
+<li>guessesTaken = 0</li>
+</ol>
+</blockquote>
+
+<p>This creates a new variable named <span class='m'>guessesTaken</span>. We will store the number of guesses we've made in this variable. Since the player hasn't made any guesses so far, we will store the integer <span class='m'>0</span> here.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=6>
+<li>print 'Hello! What is your name?'</li>
+<li>myName = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>These two lines are identical to our Hello World program. Programmers will often reuse code from their other programs when they need the program to do something similar. When these two lines are done executing, the string of the player's name will be stored in the <span class='m'>myName</span> variable. (Remember, the string might not really be the player's name. It's just whatever string the player typed in.)</p>
+
+<!-- I've decided not to put this into the book.
+<h2>Copy and Paste</h2>
+
+<p>TODO: Explain copying and pasting, along with using it so we can copy and paste from our Hello World program.</p>
+
+
+<h2>Code Explanation continued...</h2>
+-->
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=9>
+<li>number = random.randint(1, 20)</li>
+</ol>
+</blockquote>
+
+<p>Here we are calling a new function named <span class='m'>randint()</span>, and then storing the return value in a variable named <span class='m'>number</span>. Because <span class='m'>randint()</span> is one of the functions that the <span class='m'>random</span> module provides, we put <span class='m'>random.</span> (that is, the word "random" followed by a period) in front of it to tell our program the function is in the <span class='m'>random</span> module. The <span class='m'>randint()</span> function will return a random integer between (and including) the two integers we give it. Here, we give it the integers 1 and 20 between the parentheses that follow the function name (separated by a comma). Whatever the random integer that <span class='m'>randint</span> has returned is, it is stored in a variable named <span class='m'>number</span>.</p>
+
+<p>Just for a moment, go back to the interactive shell and type <span class='m'>import random</span> to import the random module. Then type <span class='m'>random.randint(1, 20)</span> to see what the function call evaluates to. It will return an integer that between 1 and 20. Type it again, and the function call will probably evaluate to a different integer. This is because each time the <span class='m'>randint()</span> function is called, it will evaluate to some random number. This is like when you roll some dice, you will come up with a random number each time.</p>
+
+<p class='centeredImageP'><img src='images/3_random.png' class='centeredImage'></p>
+
+<p>Whenever we want to add randomness to our games, we can use the <span class='m'>randint()</span> function. And we use randomness in most games. (Think of how many board games use dice.)</p>
+
+<p>You can also try out different ranges of numbers by changing the arguments. Type <span class='m'>random.randint(1, 4)</span> to only get integers between 1 and 4 (including both 1 and 4). Or try <span class='m'>random.randint(1000, 2000)</span> to get integers between 1000 and 2000.</p>
+
+<p class='centeredImageP'><img src='images/3_morerandint.png' class='centeredImage'></p>
+
+<p>Be sure to type <span class='m'>random.randint(1, 20)</span> and not <span class='m'>randint(1, 20)</span>, otherwise the computer will not know to look inside the <span class='m'>random</span> module for the <span class='m'>randint()</span> function. Then it will show you an error like below:</p>
+
+<p class='centeredImageP'><img src='images/3_randinterror.png' class='centeredImage'></p>
+
+<p>Remember, your program needs to run <span class='m'>import random</span> before it can call the <span class='m'>random.randint()</span> function. This is why <span class='m'>import</span> statements usually go at the beginning of the program.</p>
+
+<h2>Arguments</h2>
+<p>The integers between the parentheses in the <span class='m'>random.randint(1, 20)</span> function call are called <span class='term'>arguments</span>. Some functions require that you pass them values when you call them. Look at these function calls:</p>
+
+<p class='indented'><span class='m'>raw_input()</span></p>
+
+<p class='indented'><span class='m'>random.randint(1, 20)</span></p>
+
+<p>The <span class='m'>raw_input()</span> function has no arguments. The <span class='m'>randint()</span> function has two arguments. When we have more than one argument, we separate them by putting commas in between the arguments. Programmers say that the arguments are <span class='term'>delimited</span> (that is, separated) by commas. This is how the computer knows when one value ends and another begins.</p>
+
+<p>If you pass too many or too few arguments in a function call, Python will display an error message. In the picture below, we first called <span class='m'>randint()</span> with only one argument (too few), and then we called <span class='m'>randint()</span> with three arguments (too many).</p>
+
+<p class='centeredImageP'><img src='images/3_wrongnumarg.png' class='centeredImage'></p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class='sourcecode'>
+<ol start=10>
+<li>print 'Well, ' + myName + ', I am thinking of a number between 1 and 20.'</li>
+</ol>
+</blockquote>
+
+<p>This <span class='m'>print</span> statement welcomes the player by name, and tells them that the computer is thinking of a random number. Remember how I said the <span class='m'>print</span> statement only takes one string? It does. Look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string, and that is the one string for the <span class='m'>print</span> statement. It might look like the commas are separating the strings, but if you look closely, you see that the commas are <i>inside</i> of the quotes and part of the strings themselves.</p>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>This is a <span class='term'>while statement</span>. Like <span class='m'>import</span>, it has a special keyword to Python. The <span class='m'>while</span> statement is made up of the <span class='m'>while</span> keyword, followed by an expression, followed by a colon (the : sign). The next line after the <span class='m'>while</span> statement is the beginning of a while-block. The while-block is made up of the lines of code that have at least 4 or more spaces in front of it (which are lines 13 through 26). The expression next to the while keyword is also called a <span class='term'>condition</span>. Before we understand what is going on with this code, let's learn about blocks and conditions.</p>
+
+<h2>Blocks</h2>
+<p>A <span class='term'>block</span> is made up of several lines of code grouped together. You can tell when the block begins and ends by looking at the line's <span class='term'>indentation</span> (that is, the number of spaces in front of the line). The block starts when the indentation of a line of code is <i>more than the previous line</i>. The block ends when the indentation <i>returns to what it was before the block started</i>. It is easier to see with a picture. This picture has each block highlighted with a different color:</p>
+
+<p class='centeredImageP'><img src='images/3_blockdiagram.png' class='centeredImage'></p>
+
+<p>The lines of code inside the yellow box are all in the same block. Because this block follows the <span class='m'>while</span> statement, we call it a while-block. Blocks can contain other blocks. Notice that the yellow block contains the blue and green blocks. The blue and green blocks are still blocks, even though they only have one line of code and are inside another block. The Python interpreter knows when a block is finished because a line of code will have the same indentation before the block started.</p>
+
+<p>It is important to get the indentation correct. Usually the indentation of a block is 4 spaces. The indentation of a block inside another block is 8 spaces. And the indentation of a block inside a block inside a block is 12 spaces. Notice that when we type code into IDLE, each letter is the same width. You can look at how many letters are on the line above or below to see how many spaces you have put in.</p>
+
+<p>The indentation doesn't have to be 4 spaces more than the last indentation, but that is the convention (that is, the usual way of doing things) in the Python language.</p>
+
+<p>Here is a picture of that same code, except now we have red boxes for each space to make it easier to count the spaces. The yellow block includes all the lines with at least 4 spaces in front. The blue block is the first line with 8 spaces of indentation. The green block is the second line with 8 spaces of indentation. Because there is a line with smaller indentation after the blue block, we know that the blue block has ended. This is why the blue and green blocks are separate blocks.</p>
+
+<p class='centeredImageP'><img src='images/3_indentation.png' class='centeredImage'></p>
+
+<p>We call the block after the <span class='m'>while</span> keyword a loop block because when the program reaches the bottom of the block, it will loop back to the top. Then it rechecks if the condition is still true. If it is, our program enters the loop block again. If the condition is false, then our program jumps down to the line after the loop block. The loop block is also called a while-block, because it starts with the while keyword. You can learn what it means for a condition to be true or false in the next section.</p>
+
+<h2>Conditions (a special kind of expression) and<br/>Booleans (a new data type)</h2>
+
+<p>Remember we were talking about this line of code, the while statement:</p>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>I called the expression that came after the <span class='m'>while</span> keyword the condition. How do we know it is an expression? Because it contains two values (the value in the variable <span class='m'>guessesTaken</span>, and the integer value <span class='m'>6</span>) connected by an operator (the <span class='m'>&lt;</span> sign, which is called the "less than" sign). This is a new type of operator called a <span class='term'>comparison operator</span>. Expressions with comparison operators won't evaluate to an integer or a string, but a new data type called a <span class='term'>boolean</span>.</p>
+
+<p>What's a boolean? Well, for the integer data type, there are many different integer values we can have:</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>4</span><br/>
+<span class='m'>99</span><br/>
+<span class='m'>0</span><br/>
+<span class='m'>1236892892</span><br/>
+</blockquote>
+
+<p>And for the string data type, there are also many different string values we can have:</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>'Hello world!'</span><br/>
+<span class='m'>'My name is Albert.'</span><br/>
+<span class='m'>'fhsu$$iwehiu^4tihggs@is34</span><br/>
+<span class='m'>'42'</span><br/>
+</blockquote>
+
+<p>But for the boolean data type, there are two and only two values:</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>True</span><br/>
+<span class='m'>False</span><br/>
+</blockquote>
+
+<p>When you type one of these values into your program, remember that they are case-sensitive. You must type <span class='m'>True</span> or <span class='m'>False</span>, not <span class='m'>true</span> or <span class='m'>TRUE</span> or <span class='m'>fAlSe</span>. Boolean values are not string values, so you do not put a ' quote character around them.</p>
+
+<p>A <span class='term'>condition</span> is an expressions that uses comparison operators (such as the <span class='m'>&lt;</span> "less than" sign). Conditions will always evaluate to a boolean value. This is like how expressions with math operators (like + or - or *) will evaluate to integers.</p>
+
+<p>Let's look at the condition in our code: <span class='m'>guessesTaken < 6</span></p>
+
+<p>What this translates to is "is the value stored in <span class='m'>guessesTaken</span> less than the value <span class='m'>6</span>?" If it is, then the condition evaluates to <span class='m'>True</span>. If it does not, then the condition evaluates to <span class='m'>False</span>. Remember in line 4, we stored the value <span class='m'>0</span> in <span class='m'>guessesTaken</span>. So this condition is asking, "is the value 0 less than the value 6". We know that this is true, so the condition evaluates to the boolean value of <span class='m'>True</span>.</p>
+
+<p>Let's go back to the interactive shell for a bit. Type in the following conditions (which are also expressions):</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>0 < 6</span><br/>
+<span class='m'>6 < 0</span><br/>
+<span class='m'>50&lt;10</span><br/>
+<span class='m'>10 < &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11</span><br/>
+<span class='m'>10 < 10</span><br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/3_sampleconds.png' class='centeredImage'></p>
+
+<p>The condition <span class='m'>0 &lt; 6</span> returns the boolean value <span class='m'>True</span> because the number 0 is less than the number 6. But because 6 is not less than 0, the condition <span class='m'>6 &lt; 0</span> evaluates to <span class='m'>False</span>. 50 is not less than 10, so <span class='m'>50&lt;10</span> is <span class='m'>False</span>. 10 is less than 11, so <span class='m'>10 &lt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11</span> is <span class='m'>True</span>.</p>
+
+<p>But what about <span class='m'>10 &lt; 10</span>? Why does it evaluate to <span class='m'>False</span>? Because the number 10 is not smaller than the number 10. They are exactly the same size. If Alice was the same height as Bob, if would be false to say that Alice was shorter than Bob. Likewise, <span class='m'>10 &lt; 10</span> evaluates to <span class='m'>False</span>.</p>
+
+<p>There are some other comparison operators besides <span class='m'>&lt;</span>. Here they are:</p>
+
+<table align='center' class='simplefulltable'>
+<tr><td><b>Operator Sign</b></td><td width='20'>&nbsp;</td><td><b>Operator Name</b></td></tr>
+<tr><td align='center'><span class='m'>&lt;</span></td><td></td><td align='center'>Less than</td></tr>
+<tr><td align='center'><span class='m'>&gt;</span></td><td></td><td align='center'>Greater than</td></tr>
+<tr><td align='center'><span class='m'>&lt;=</span></td><td></td><td align='center'>Less than or equal to</td></tr>
+<tr><td align='center'><span class='m'>&gt;=</span></td><td></td><td align='center'>Greater than or equal to</td></tr>
+<tr><td align='center'><span class='m'>==</span></td><td></td><td align='center'>Equal to</td></tr>
+<tr><td align='center'><span class='m'>!=</span></td><td></td><td align='center'>Not equal to</td></tr>
+</table>
+
+<p>Let's try typing some conditions into the shell to see how these operators work:</p>
+
+<!-- TODO: Need to add examples of <= and >= also. -->
+
+<blockquote class='sourceblurb'>
+0 > 6<br/>
+6 > 0<br/>
+10 > 10<br/>
+10 == 10<br/>
+10 == 11<br/>
+11 == 10<br/>
+10 != 10<br/>
+10 != 11<br/>
+'Hello' == 'Hello'<br/>
+'Hello' == 'Good bye'<br/>
+'Hello' == 'HELLO'<br/>
+'Good bye' != 'Hello'<br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/3_moreconds.png' class='centeredImage'></p>
+
+<p>Notice that there is a difference between the assignment operator (the <span class='m'>=</span> sign) and the "equal to" comparison operator (the <span class='m'>==</span> sign). The <span class='m'>=</span> sign is used to assign a value to a variable, and the <span class='m'>==</span> sign is used in expressions to see if two values are the same or not. It's easy to accidentally use one when you meant to use the other, so be careful of what you type in.</p>
+
+<p>Now that we have covered what conditions, comparison operators, and booleans are, let's talk about what <span class='m'>while</span> statements do.</p>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>The while statement marks the beginning of a <span class='term'>loop</span>. Sometimes in our programs, we want the program to do something over and over again. When the execution reaches a <span class='m'>while</span> statement, it evaluates the condition next to the <span class='m'>while</span> keyword. If the condition evaluates to <span class='m'>True</span>, the execution moves inside the while-block. (In our program, the while-block begins on line 13.) If the condition evaluates to <span class='m'>False</span>, the execution moves past the while-block. (In our program, the first line after the while-block is line 28.)</p>
+
+<p class='centeredImageP'><img src='images/3_whilecond.png' class='centeredImage'></p>
+
+<p>Let's say the condition evaluates to <span class='m'>True</span> (which it does the first time, because the value of <span class='m'>guessesTaken</span> is <span class='m'>0</span>.) Execution will enter the while-block at line 13 and keep going down. After the reaches the end of the while-block, instead of going down to the next line, it jumps back up to the <span class='m'>while</span> statement's line (line 12). It then re-evaluates the condition, and if it is <span class='m'>True</span> then we enter the while-block again.</p>
+
+<p>This is how the loop works. As long as the condition is <span class='m'>True</span>, we will keep executing the code inside the while-block over and over again until we reach the end of the while-block and the condition is <span class='m'>False</span>. So until <span class='m'>guessesTaken</span> is equal to or greater than <span class='m'>6</span>, we will keep looping. Think of the <span class='m'>while</span> statement as saying, "while this condition is true, keep looping through the code in this block".</p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class='sourcecode'>
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Take a guess.' # There are four spaces in front of print.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>The program will now ask us for a guess. We type in what we guess the number is, and then this is stored in a variable named <span class='m'>guess</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=15>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = int(guess)</li>
+</ol>
+</blockquote>
+
+<p>Here we call a new function called <span class='m'>int()</span>. The <span class='m'>int()</span> function takes one argument. The <span class='m'>raw_input()</span> function returned a string of text that player typed. But in our program, we will want an integer, not a string. Remember that Python considers the string '5' and the integer 5 to be different values. So the <span class='m'>int()</span> function will take the value we give it and return the integer form of it.</p>
+
+<p>Let's play around with the <span class='m'>int()</span> function in the interactive shell. Try typing the following:</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>int('42')</span><br/>
+<span class='m'>int(42)</span><br/>
+<span class='m'>int('hello')</span><br/>
+<span class='m'>int('forty-two')</span><br/>
+<span class='m'>int('&nbsp;&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;')</span><br/>
+<span class='m'>2 + int('2')</span><br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/3_intfunc.png' class='centeredImage'></p>
+
+<p>We can see that the <span class='m'>int('42')</span> call will return the integer value 42. The <span class='m'>int(42)</span> will also do this (though it is kind of pointless to convert an integer to an integer). However, even though you can pass a string to the <span class='m'>int()</span> function, you cannot just pass any string. Passing <span class='m'>'hello'</span> to <span class='m'>int()</span> (like we do in the <span class='m'>int('hello')</span> call) will result in an error. The string we pass to <span class='m'>int()</span> must be made up of numbers.</p>
+
+<p>And the integer we pass to <span class='m'>int()</span> must be in numbers, it cannot be written out. This is why <span class='m'>int('forty-two')</span> also fails and produces an error. The <span class='m'>int()</span> function is slightly forgiving, because if our string has spaces on either side, it will still run without error. (This is why the <span class='m'>int('&nbsp;&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;')</span> call works.)</p>
+
+<p>The <span class='m'>2 + int('2')</span> line shows an expression that adds an integer 2 to the return value of <span class='m'>int('2')</span> (which evaluates to 2 as well). The expression evaluates to 2 + 2, which then evaluates to 4. So even though we cannot add an integer and a string (<span class='m'>2 + '2'</span> would show us an error), we can add an integer to a string that has been converted to an integer.</p>
+
+<p>The <span class='m'>guess</span> variable originally held the string of what the player typed. We will overwrite the string value stored in guess with the integer value returned by the <span class='m'>int</span> function.</p>
+
+<p>In our Guess the Number game, if the player typed in something that was not a number, then the function call <span class='m'>int</span> would result in an error and the program would crash. In the other games in this book, we will add some more code to check for error conditions like this and give the player another chance to enter a correct response.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=17>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = guessesTaken + 1</li>
+</ol>
+</blockquote>
+
+<p>Now that the player has taken a guess, we want to increase the number of guesses that we remember the player taking. The first time we enter the loop block, <span class='m'>guessesTaken</span> has the value of 0. Python will take this value and add 1 to it. 0 + 1 is 1. Then Python will store the new value of 1 to <span class='m'>guessesTaken</span>. After this line, the value of <span class='m'>guessesTaken</span> will be 1 more than it was previously.</p>
+
+<p>It is easy to think of this line as meaning, "the <span class='m'>guessesTaken</span> variable should be one more than what it already is". When we add one to a value, programmers say they are <span class='term'>incrementing</span> the value (because it is increasing by one). When we subtract one from a value, programmers say they are <span class='term'>decrementing</span> the value (because it is decreasing by one).</p>
+
+<h2><span class='m'>if</span> Statements</h2>
+
+<blockquote class='sourcecode'>
+<ol start=19>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess < number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Your guess is too low.' # There are eight spaces in front of print.</li>
+</ol>
+</blockquote>
+
+<p>This is called an <span class='m'>if</span> statement. It has a new keyword, <span class='m'>if</span>. Next to the <span class='m'>if</span> keyword is the condition. The block that follows the <span class='m'>if</span> keyword is called an if-block. The <span class='m'>if</span> statement is very similar to the <span class='m'>while</span> statement. They both have a keyword, followed by a condition, and then a block of code.</p>
+
+<p class='centeredImageP'><img src='images/3_ifwhile.png' class='centeredImage'></p>
+
+<p>The <span class='m'>if</span> statement works almost the same way as a <span class='m'>while</span> statement, too. If the condition is <span class='m'>True</span>, then execution enters the if-block. If the condition is <span class='m'>False</span>, then the execution skips past the if-block. Unlike the while-block, execution does not jump back to the <span class='m'>if</span> statement at the end of the if-block. It just continues on down to the next line.</p>
+
+<p>This <span class='m'>print</span> statement is the only line inside the if-block. If the integer the player typed is less than the random integer the computer thought up, then we will display to the player <span class='m'>"Your guess is too low."</span> If the integer the player entered is equal to or larger than the random integer (in which case, the condition next to the <span class='m'>if</span> keyword would have been <span class='m'>False</span>), then this block would have been skipped over.</p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class='sourcecode'>
+<ol start=22>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess > number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Your guess is too high.'</li>
+</ol>
+</blockquote>
+
+<p>Here is another <span class='m'>if</span> statement. This time, we check if the player's guess is larger than the random integer. If so, we will enter the if-block that follows it. The <span class='m'>print</span> line tells the player that their guess is too big.</p>
+
+<p>In case you haven't thought of it, these two conditions cannot both be <span class='m'>True</span>. The player's guess (which is stored in the <span class='m'>guess</span> variable) can either be higher OR lower than the computer's guess, but it can not be higher AND lower. This means we will never see both messages at the same time. There is one more case to consider, and that is if the guess is equal to the random integer. We will cover this in the next line.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=25>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess == number:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+</ol>
+</blockquote>
+
+<p>This <span class='m'>if</span> statement's condition checks to see if the guess is equal to the random integer. If it is, we will enter the if-block that follows it.</p>
+
+<p>The line inside the if-block is just a <span class='term'>break</span> statement. The <span class='m'>break</span> statement tells the program to immediately jump to the out of the while-block that it is inside of, and to the first line after the end of the while-block. The <span class='m'>while</span> statement's condition is not rechecked.</p>
+
+<p>The <span class='m'>break</span> statement is just the <span class='m'>break</span> keyword by itself, with no condition or colon (the : sign).</p>
+
+<p>If the player's guess is not equal to the random integer, we do not break out of the while-block, we will reach the bottom of the while-block anyway. Once we reach the bottom of the while-block, the program will loop back to the top and recheck the condition (<span class='m'>guessesTaken < 6</span>). Remember after the <span class='m'>guessesTaken = guessesTaken + 1</span> line of code executed, the new value of <span class='m'>guessesTaken</span> is <span class='m'>1</span>. Because <span class='m'>1</span> is less than <span class='m'>6</span>, we enter the loop again.</p>
+
+<p>If the player keeps guessing too low or too high, the value of <span class='m'>guessesTaken</span> will change to <span class='m'>2</span>, then <span class='m'>3</span>, then <span class='m'>4</span>, then <span class='m'>5</span>, then <span class='m'>6</span>. If the player guessed the number correctly, the condition in the <span class='m'>if guess == number</span> statement would be <span class='m'>True</span>, and we would have executed the <span class='m'>break</span> statement. Otherwise, we keep looping. But when guessesTaken has the number <span class='m'>6</span> stored, the <span class='m'>while</span> statement's condition is <span class='m'>False</span>. (<span class='m'>6</span> is not less than <span class='m'>6</span>, rather <span class='m'>6</span> is equal to <span class='m'>6</span>) Because the <span class='m'>while</span> statement's condition is <span class='m'>False</span>, we will not enter the loop and instead jump to the end of the while-block.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=28>
+<li>if guess == number:</li>
+</ol>
+</blockquote>
+
+<p>This line of code isn't the same line in line 25. This line has no indentation, and is outside the while-block. When we got out of the <span class='m'>while</span> block, it was either because the <span class='m'>while</span> statement's condition was <span class='m'>False</span> (which happens if the player ran out of guesses) or if we executed the <span class='m'>break</span> statement (which happens if the player guessed the number right). On this line we recheck if the player guess correctly, and if so, we enter the if-block that follows.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=29>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = str(guessesTaken)</li>
+</ol>
+</blockquote>
+
+<p>This line is inside the if-block, and only executes if the condition was <span class='m'>True</span>.</p>
+
+<p>This line is like the <span class='m'>guess = int(guess)</span> line of code. Here we call the new function <span class='m'>str()</span>, which returns the string form of the argument we give it. We want to change the value in <span class='m'>guessesTaken</span> (which is an integer) into the string version of itself.</p>
+
+<p>The <span class='m'>str()</span> and <span class='m'>int()</span> functions are very important, because it is important to know that integers and strings are different data types with different values. The integer <span class='m'>42</span> and the string <span class='m'>'42'</span> are entirely different. But if we ever need to get the value of one data type as a value of another data type, <span class='m'>str()</span> and <span class='m'>int()</span> can be very handy.</p>
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=30>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Good job, ' + name + '! You guessed my number in ' + guessesTaken + ' guesses!'</li>
+</ol>
+</blockquote>
+
+<p>This line is also inside the if-block, and only executes if the condition was <span class='m'>True</span>.</p>
+
+<p>This line will tell the player that they have won, and how many guesses it took them. The reason why we had to change the guessesTaken value into a string is because we can only add strings to other strings. If we tried to add a string to an integer, the Python interpreter would get confused and display an error.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=32>
+<li>if guess != number:</li>
+</ol>
+</blockquote>
+
+<p>This <span class='m'>if</span> statement's condition has a new sign. Just like the <span class='m'>==</span> sign means "is equal to", the <span class='m'>!=</span> sign means "is not equal to". If the value of guess is lower than or higher than (and therefore, not equal to) the random number, then this condition evaluates to <span class='m'>True</span>, and we would then enter the block that follows this <span class='m'>if</span> statement.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=33>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;number = str(number)</li>
+</ol>
+</blockquote>
+
+<p>This line is inside the if-block, and only executes if the condition was <span class='m'>True</span>.</p>
+
+<p>In this block, because the player did not guess the random number we will tell them what it is. But first we will have to store the string version of <span class='m'>number</span> as the new value of <span class='m'>number</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=34>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Nope. The number I was thinking of was ' + number</li>
+</ol>
+</blockquote>
+
+<p>This line is also inside the if-block, and only executes if the condition was <span class='m'>True</span>.</p>
+
+<p>Now we tell the player what the random number was.</p>
+
+<br/>
+
+<p>At this point, we have reached the end of the source code, so the program terminates.</p>
+
+<p>We've just programmed our first real game! In the last chapter we learned about values and expressions and variables. In this chapter we learned how we can use those along with <span class='m'>if</span>, <span class='m'>while</span>, and <span class='m'>break</span> statements to make the program do different things based on the value of variables or expressions.</p>
+
+<h2>Step by Step, One More Time</h2>
+<p>Let's go over the code one more time. To help you understand everything, I will briefly go through the program just like the computer would, starting from the top. We will remember what the values of variables are ourselves (you can write them down on a piece of paper as we go). This is called <span class='term'>tracing</span> through the program. It's what programmers do to figure out exactly how the program will behave. Some lines of code are executed more than once (because they are inside loops), so we will go over those lines of code more than once.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=1>
+<li># This is a guess the number game.</li>
+</ol>
+</blockquote>
+
+<p>This line is a comment. The computer will ignore this line, and move down to line 2.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=2>
+<li>import random</li>
+</ol>
+</blockquote>
+
+<p>This line will <span class='m'>import</span> the <span class='m'>random</span> module so that we can use the <span class='m'>randint()</span> function in our program. Line 3 is blank, so the computer will skip ahead to line 4.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=4>
+<li>guessesTaken = 0</li>
+</ol>
+</blockquote>
+
+<p>The computer will create a new variable called <span class='m'>guessesTaken</span>, and the integer <span class='m'>0</span> will be stored inside this variable.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=6>
+<li>print 'Hello! What is your name?'</li>
+</ol>
+</blockquote>
+
+<p>A greeting is displayed to the player.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=7>
+<li>myName = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>The <span class='m'>raw_input()</span> function is called, and will let the user type in a string. This string is then stored in a variable called <span class='m'>myName</span>. Let's pretend that when the program runs, the player types in Bob. The value of the <span class='m'>myName</span> variable is the string, <span class='m'>'Bob'</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=9>
+<li>number = random.randint(1, 20)</li>
+</ol>
+</blockquote>
+
+<p>On line 9 we call the <span class='m'>randint()</span> function, which is inside the <span class='m'>random</span> module. Because this function is inside a module we imported, we have to put the module name and a period in front of the function name. The two arguments we pass are the integers <span class='m'>1</span> and <span class='m'>20</span>. This tells the <span class='m'>randint()</span> function to return a random integer between 1 and 20 (including 1 and 20). Let's pretend that it returns the integer <span class='m'>8</span>. The value of <span class='m'>number</span> will be <span class='m'>8</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=10>
+<li>print 'Well, ' + myName + ', I am thinking of a number between 1 and 20.'</li>
+</ol>
+</blockquote>
+
+<p>Because the value inside <span class='m'>myName</span> is the string <span class='m'>'Bob'</span>, this will print out <span class='m'>Well, Bob, I am thinking of a number between 1 and 20.</span></p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>This is the start of a while-block. If the condition is <span class='m'>True</span>, then the program execution will enter the while-block. If the condition is <span class='m'>False</span>, we will skip past the while-block to line 28. The variable <span class='m'>guessesTaken</span> has <span class='m'>0</span> stored inside of it, and <span class='m'>0</span> is less than <span class='m'>6</span>, which makes the condition <span class='m'>True</span>. So the next line to run is line 13.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Take a guess.' # There are four spaces in front of print.</li>
+</ol>
+</blockquote>
+
+<p>We print a message that asks the player to type in a value. There is a comment on this line that the computer ignores. The comment reminds the programmer that we should put four spaces at the beginning of the line because we are now inside a block.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=14>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>The player now types in a string, and this string will be stored in the <span class='m'>guess</span> variable. Let's pretend that the player typed in the string <span class='m'>'12'</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=15>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = int(guess)</li>
+</ol>
+</blockquote>
+
+<!-- Technically, the comparison operators can compare strings. But they mess up when comparing integers and strings because integers are always "less than" any string. 16 > '5' evaluates to True.
+Also, we could go into how comparison operators on strings judge by alphabetical order, but that capital letters come before all lower case letters. Best to skip it for now. -->
+
+<p>We want to store the integer value of what the player typed in, not the string value. <span class='m'>int()</span> function will return the integer value of the argument we give it. (The argument is the value in between the parentheses next to the function name "int".) The guess variable holds the string <span class='m'>'12'</span>, so <span class='m'>'12'</span> is the argument we pass to the <span class='m'>int()</span> function, and the integer value <span class='m'>12</span> is what the <span class='m'>int()</span> function returns. This value is then stored as the new value in the <span class='m'>guess</span> variable. After this line runs, guess stores the integer <span class='m'>12</span> instead of the string <span class='m'>'12'</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=17>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = guessesTaken + 1</li>
+</ol>
+</blockquote>
+
+<p>The value stored in <span class='m'>guessesTaken</span> is <span class='m'>0</span> (this was set on line 4). We want to keep track of how many guesses the player has taken, so we make the new value of <span class='m'>guessesTaken</span> to be the current value of <span class='m'>guessesTaken</span> plus one. After this line executes, <span class='m'>guessesTaken</span> will now hold the integer <span class='m'>1</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=19>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess < number:</li>
+</ol>
+</blockquote>
+
+<p>Now we check if the if-statement's condition is <span class='m'>True</span>. The value of <span class='m'>guess</span> is the integer <span class='m'>12</span> (set on line 15), and the value of <span class='m'>number</span> is <span class='m'>8</span> (set on line 9). <span class='m'>12</span> is not less than <span class='m'>8</span>, so this condition is <span class='m'>False</span>. That means we will skip the if-block that follows and go directly to line 22.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=22>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess > number:</li>
+</ol>
+</blockquote>
+
+<p>This if-statement's condition is <span class='m'>True</span>, because <span class='m'>12</span> is larger than <span class='m'>8</span>, so the program execution enters the if-block at line 23.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=23>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Your guess is too high.'</li>
+</ol>
+</blockquote>
+
+<p>We display a message that tells the player their guess was too high.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=25>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess == number:</li>
+</ol>
+</blockquote>
+
+<p>The condition in this if-statement is <span class='m'>False</span>, because <span class='m'>12</span> is not equal to <span class='m'>8</span>. We skip the if-block that follows. But line 28 has fewer spaces than the four spaces we have been indenting our code inside the while-block. That means we have reached the end of the while-block too, and execution will loop back to the while-statement on line 12.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>The condition for the while-statement is <span class='m'>True</span>, because <span class='m'>guessesTaken</span> is <span class='m'>1</span>, but <span class='m'>1</span> is still less than <span class='m'>6</span>. So the program execution enters the while-block at line 13.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Take a guess.' # There are four spaces in front of print.</li>
+</ol>
+</blockquote>
+
+<p>We display this message to the player again.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=14>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>We get a string typed by the player, and store it in the variable <span class='m'>guess</span>. Let's pretend that the user typed in the string <span class='m'>'6'</span>. The string <span class='m'>'6'</span> is stored in the variable guess, and the old value of <span class='m'>12</span> is forgotten.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=15>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = int(guess)</li>
+</ol>
+</blockquote>
+
+<p>We want to get the integer value of the string inside <span class='m'>guess</span>. We pass the <span class='m'>int()</span> function an argument of <span class='m'>'6'</span>, and it will return <span class='m'>6</span>. The new value of <span class='m'>guess</span> is the integer <span class='m'>6</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=17>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = guessesTaken + 1</li>
+</ol>
+</blockquote>
+
+<p>We want to increase the number of guesses taken by one, so the new value of <span class='m'>guessesTaken</span> is the current value (the integer <span class='m'>1</span>) plus one. The new value of <span class='m'>guessesTaken</span> is <span class='m'>2</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=19>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess < number:</li>
+</ol>
+</blockquote>
+
+<p>We check to see if this if-statement's condition is <span class='m'>True</span>. It is, because <span class='m'>6</span> is less than <span class='m'>8</span>. That means our program's execution will enter the if-block at line 20.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=20>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Your guess is too low.' # There are eight spaces in front of print.</li>
+</ol>
+</blockquote>
+
+<p>We display a message to the player tell them that their guess was too low. The stuff after the # pound sign is a comment and is ignored.</p>
+
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=22>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess > number:</li>
+</ol>
+</blockquote>
+
+<p>We check if <span class='m'>guess</span> (the integer <span class='m'>6</span>) is greater than <span class='m'>number</span> (the integer <span class='m'>8</span>). It is not, so this condition is <span class='m'>False</span> and we skip the if-block.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=25>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess == number:</li>
+</ol>
+</blockquote>
+
+<p>We check if <span class='m'>guess</span> (the integer <span class='m'>6</span>) is equal to <span class='m'>number</span> (the integer <span class='m'>8</span>). It is not, so this condition is <span class='m'>False</span> and we skip the if-block. We have reached the end of the while-block, so we jump back to line 12.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>This time when we check the condition, <span class='m'>guessesTaken</span> has the value <span class='m'>3</span>. But <span class='m'>3</span> is still less than <span class='m'>6</span>, so the condition is <span class='m'>True</span> and we enter the while-block again.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Take a guess.' # There are four spaces in front of print.</li>
+</ol>
+</blockquote>
+
+<p>We ask the player to type in a number again.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=14>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>The function call to the <span class='m'>raw_input()</span> function lets the player type in a string. Let's pretend that the player types in the string <span class='m'>'8'</span>. Then the new value of <span class='m'>guess</span> is <span class='m'>'8'</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=15>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guess = int(guess)</li>
+</ol>
+</blockquote>
+
+<p>We want to get the integer value of the string inside <span class='m'>guess</span>. We pass the <span class='m'>int()</span> function an argument of <span class='m'>'8'</span>, and it will return <span class='m'>8</span>. The new value of <span class='m'>guess</span> is the integer <span class='m'>8</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=17>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = guessesTaken + 1</li>
+</ol>
+</blockquote>
+
+<p>We want to increase the number of guesses taken by one, so the new value of <span class='m'>guessesTaken</span> is the current value (the integer <span class='m'>2</span>) plus one. The new value of <span class='m'>guessesTaken</span> is <span class='m'>3</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=19>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess < number:</li>
+</ol>
+</blockquote>
+
+<p>We check if <span class='m'>guess</span> (the integer <span class='m'>8</span>) is less than <span class='m'>number</span> (the integer <span class='m'>8</span>). It is not. (If I had 8 apples and you had 8 apples, you would not say I had less apples than you because we have an equal number of apples.) This condition is <span class='m'>False</span> and we skip the if-block. Next we execute line 22.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=22>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess > number:</li>
+</ol>
+</blockquote>
+
+<p>We check if <span class='m'>guess</span> (the integer <span class='m'>8</span>) is greater than <span class='m'>number</span> (the integer <span class='m'>8</span>). It is not, so this condition is <span class='m'>False</span> and we skip the if-block. Next we execute line 25.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=25>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if guess == number:</li>
+</ol>
+</blockquote>
+
+<p>We check if <span class='m'>guess</span> (the integer <span class='m'>8</span>) is equal than <span class='m'>number</span> (the integer <span class='m'>8</span>). It is, so we enter the if-block at line 26.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=26>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+</ol>
+</blockquote>
+
+<p>The <span class='m'>break</span> statement tells us to break out of the while-block that we are inside, and go to the first line after the while-block. This will be line 28.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=28>
+<li>if guess == number:</li>
+</ol>
+</blockquote>
+
+<p>We check if <span class='m'>guess</span> (the integer <span class='m'>8</span>) is equal than <span class='m'>number</span> (the integer <span class='m'>8</span>). It is, so we enter the if-block at line 29.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=29>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;guessesTaken = str(guessesTaken)</li>
+</ol>
+</blockquote>
+
+<p>On this line we convert <span class='m'>guessesTaken</span> to the string <span class='m'>'3'</span>.</p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=30>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!'</li>
+</ol>
+</blockquote>
+
+<p>Now we display the winning message to the player. The variable <span class='m'>myName</span> holds the string value <span class='m'>'Bob'</span> and <span class='m'>guesses</span> holds the string value <span class='m'>'3'</span>, so the final string printed is <span class='m'>'Good job, Bob! You guessed my number in 3 guesses!'</span></p>
+
+<br/>
+
+<blockquote class='sourcecode'>
+<ol start=32>
+<li>if guess != number:</li>
+</ol>
+</blockquote>
+
+<p>This condition will evaluate to <span class='m'>False</span>, so we skip past the if-block that follows it. But there is no more code after it, so the program terminates.</p>
+
+
+
+
+
+<h2>Some Changes We Could Make</h2>
+
+<p>This has been our first game! It was kind of long to go through everything and a lot to learn, but now you are a real game programmer. Just for fun, try changing this program to change the way the game behaves.</p>
+
+<p>For example, you can change these lines:</p>
+
+<blockquote class='sourcecode'>
+<ol start=9>
+<li>number = random.randint(1, 20)</li>
+<li>print 'Well, ' + name + ', I am thinking of a number between 1 and 20.'</li>
+</ol>
+</blockquote>
+
+<p>into these lines:</p>
+
+<blockquote class='sourcecode'>
+<ol start=9>
+<li>number = random.randint(1, <b>100</b>)</li>
+<li>print 'Well, ' + name + ', I am thinking of a number between 1 and <b>100</b>.'</li>
+</ol>
+</blockquote>
+
+<p>and now the computer will think of an integer between <span class='m'>1</span> and <span class='m'>100</span>.</p>
+
+<p>Or you can change this line:</p>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < 6:</li>
+</ol>
+</blockquote>
+
+<p>into this line:</p>
+
+<blockquote class='sourcecode'>
+<ol start=12>
+<li>while guessesTaken < <b>4</b>:</li>
+</ol>
+</blockquote>
+
+<p>and now the player only gets four guesses instead of six guesses.</p>
+
+<h2>What Exactly is Programming?</h2>
+
+<p>If someone asked you, "What exactly is programming anyway?" what could you say back to them? Programming is just the action of writing the code for programs, that is, creating programs that can be executed by a computer.</p>
+
+<p>"But what exactly is a program?" When you see someone using a computer program (for example, playing our Guess The Number game), all you see is some text appearing on the screen. The program decides what exact text to show on the screen (which is called the <span class='term'>output</span>), based on its instructions and on the text that the player typed on the keyboard (which is called the <span class='term'>input</span>). The program has very specific instructions on what text to show the user. A program is a collection of instructions.</p>
+
+<p>"What kind of instructions?" There are only a few different kinds of instructions, really.</p>
+<ul>
+<li>Expressions, which are made up of values connected by operators. Expressions are all evaluated down to a single value, like <span class='m'>2 + 2</span> evaluates to <span class='m'>4</span> or <span class='m'>'Hello' + ' ' + 'World'</span> evaluates to <span class='m'>'Hello World'</span>. Function calls are also part of expressions because they evaluate to a single value themselves, and this value can be connected by operators to other values. When expressions are next to the <span class='m'>if</span> and <span class='m'>while</span> keywords, we also call them conditions.</li>
+<li>Assignment statements, which simply store values in variables so we can remember the values later in our program.</li>
+<li><span class='m'>if</span>, <span class='m'>while</span> and <span class='m'>break</span> are <span class='term'>flow control statements</span> because they decide which instructions are executed. The normal flow of execution for a program is to start at the top and execute each instruction going down one by one. But these flow control statements can cause the flow to skip instructions, loop over instructions, or break out of loops. Function calls also change the flow of execution by jumping to the start of a function.</li>
+<li>The <span class='m'>print</span> statement, which displays text on the screen. Also, the <span class='m'>raw_input()</span> function can get text from the user through the keyboard. This is called <span class='term'>I/O</span> (pronounced like the letters, "eye-oh"), because it deals with the <u>i</u>nput and <u>o</u>utput of the program.</li>
+</ul>
+
+<p>And that's it, just those four things. Of course, there are many details about those four types of instructions. In this book you will learn about new data types and operators, new flow control statements besides <span class='m'>if</span>, <span class='m'>while</span> and <span class='m'>break</span>, and several new functions. There are also different types of I/O (input from the mouse or files on the hard drive, and outputting sound and graphics and pictures instead of just text.)</p>
+
+<p>For the person using your programs, they really only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to figure out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions that you, the programmer, have written.</p>
+
+<h2>A Web Page for Program Tracing</h2>
+
+<p>If you have access to the Internet and a web browser, you can go to these web sites and see a "visual tracing" web page that will show each step of the program. This might make it more clear what the Guess the Number program does.</p>
+
+<p class='centeredImageP'><img src='images/3_trace.png' class='centeredImage'></p>
+
+<p>The left side of the web page shows the source code, and the highlighted line is the line of code that is about to be executed. You execute this line and move to the next line by clicking the "Next" button. You can also go back a step by clicking the "Previous" button, or jump directly to a step by typing it in the white box and clicking the "Jump" button.</p>
+
+<p>On the right side of the web page, there are three sections. The "Current variable values" section show you each variable that has been assigned a value, along with the value itself. The "Notes" section will give you a hint about what is happening on the highlighted line. The "Program output" section shows the output from the program, and the input that is sent to the program. (This web page automatically enters text to the program when the program asks.)</p>
+
+<p>So go to each of these web pages and click the "Next" and "Previous" buttons to trace through the program like we did above.</p>
+
+<ul>
+<li>Guess the Number, trace 1 - <a href="http://pythonbook.coffeeghost.net/book1/traces/trace1GuessTheNumber.html">http://pythonbook.coffeeghost.net/book1/traces/trace1GuessTheNumber.html</a></li>
+<li>Guess the Number, trace 2 - <a href="http://pythonbook.coffeeghost.net/book1/traces/trace2GuessTheNumber.html">http://pythonbook.coffeeghost.net/book1/traces/trace2GuessTheNumber.html</a></li>
+</ul>
+
+<blockquote class='inthischapter'><h3>Things Covered In This Chapter:</h3>
+<ul>
+<li><span class='m'>import</span> statements</li>
+<li>Modules</li>
+<li>Arguments</li>
+<li><span class='m'>while</span> statements</li>
+<li>Conditions</li>
+<li>Blocks</li>
+<li>Comparison operators</li>
+<li>The difference between <span class='m'>=</span> and <span class='m'>==</span>.</li>
+<li><span class='m'>if</span> statements</li>
+<li>The <span class='m'>break</span> keyword.</li>
+<li>The <span class='m'>str()</span> function.</li>
+<li>The <span class='m'>random.randint()</span> function.</li>
+</ul>
+</blockquote>
+
+</body>
+</html>

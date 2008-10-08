@@ -1,0 +1,122 @@
+body {
+	font-family: serif;
+}
+
+h1 {
+	font-family: sans-serif;
+}
+
+h2 {
+	font-family: sans-serif;
+}
+
+h3 {
+	font-family: sans-serif;
+}
+
+p {
+text-indent: 1em;
+}
+
+blockquote {
+	padding: 0.1cm;
+}
+
+
+table {
+	border-spacing: 0px;
+	padding: 0px;
+}
+
+.simplefulltable {
+    border-color: #000000;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+	padding: 4px;
+}
+
+.simpletable {
+    border-color: #000000;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+}
+
+.simpletd {
+	border-color: #000000;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    margin: 0;
+    padding: 4px;
+    background-color: #FFFFFF;
+}
+
+.samplerun {
+	font-family: courier;
+	color: #0000BB;
+	font-size: small;
+}
+
+.sampleruninput {
+	color: #000000;
+	font-weight: bold;
+}
+
+.centeredImage {
+	vertical-align: center;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	font-size: 75%;
+}
+
+.centeredImageP {
+	text-align: center;
+}
+
+.sourcecodeHeader {
+	font-family: sans-serif;
+	font-size: 130%;
+}
+
+.sourcecode {
+	border-style: double;
+	padding: 10px;
+	background-color: #F4FFF7;
+	font-family: courier;
+}
+
+.sourcecodeTable {
+	border-spacing: 5px 0px;
+	padding-left: 5px;
+}
+
+.sourceblurb {
+	background-color: #FFFFFF;
+	font-family: courier;
+	border-style: dashed;
+	border-width: 1px;
+}
+
+.term {
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+.m {
+	font-family: courier;
+}
+
+.indented {
+	text-indent: 3em;
+}
+
+.lineCodeSeparator {
+	background-color: #000000;
+	width: 1px;
+}
+
+.inthischapter {
+	background-color: #E0FFE7;
+	padding: 0.2cm;
+}
+
