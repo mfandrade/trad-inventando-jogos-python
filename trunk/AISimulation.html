@@ -1,0 +1,504 @@
+<html>
+<head>
+<title>IYOCGwP Book 1 - Chapter 12 - AI Simulation</title>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
+</head>
+<body>
+
+<h1>Chapter 12 - AI Simulation</h1>
+
+<h2>"Computer vs. Computer" Games</h2>
+
+<!--<p>TODO: note to the reader how the percentages always add up to 100. Add more pie charts.</p>-->
+
+<p>The Reversi AI algorithm was very simple, but it beats me almost every time I play it. This is because the computer can process instructions very fast, so checking each possible position on the board and selecting the highest scoring move is easy. If I took the time to look at every space on the board and write down the score of each possible move, it would take a long time for me to find the best move.</p>
+
+<p>Did you notice that our Reversi program in Chapter 11 had two functions, <span class='m'>getPlayerMove()</span> and <span class='m'>getComputerMove()</span>, which both returned the move selected as a two-item list like <span class='m'>[x, y]</span>? The both also had the same parameters, the game board data structure and which tile they were. <span class='m'>getPlayerMove()</span> decided which <span class='m'>[x, y]</span> move to return by letting the player type in the coordinates. <span class='m'>getComputerMove()</span> decided which <span class='m'>[x, y]</span> move to return by running the Reversi AI algorithm.</p>
+
+<p>What happens when we replace the call to <span class='m'>getPlayerMove()</span> with a call to <span class='m'>getComputerMove()</span>? Then the player never types in a move, it is decided for them! The computer is playing against itself!</p>
+
+<p>Save the old reversi.py file as AISim1.py by clicking on File and then Save As, and then entering AISim1.py for the file name and clicking Ok. This will create a copy of our Reversi source code as a new file that we can make changes to, while leaving the original Reversi game the same (we may want to play it again). Change the following code in AISim1.py:</p>
+
+<blockquote class="sourcecode">
+<ol start=266>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move = getPlayerMove(mainBoard, playerTile)</li>
+</ol>
+</blockquote>
+
+<p>To this (the change is in bold):</p>
+
+<blockquote class="sourcecode">
+<ol start=266>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move = <b>getComputerMove</b>(mainBoard, playerTile)</li>
+</ol>
+</blockquote>
+
+<p>And run the program. Notice that the game still asks you if you want to be X or O, but it will not ask you to enter in any moves. When we replaced <span class='m'>getPlayerMove()</span>, we no longer call any code that takes this input from the player. We still press Enter after the original computer's moves (because of the <span class='m'>raw_input('Press Enter to see the computer\'s move.')</span> on line 285), but the game plays itself!</p>
+
+<p>Let's make some other changes. All of the functions we defined for Reversi can stay the same. But change the entire main section of the program (line 246 and on) to look like the following:</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>AISim1.py</span><br/>
+<ol start=246>
+<li>print 'Welcome to Reversi!'</li>
+<li></li>
+<li>while True:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Reset the board and game.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;mainBoard = getNewBoard()</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;resetBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if whoGoesFirst() == 'player':</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'X'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'O'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'The ' + turn + ' will go first.'</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while True:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scores = getScoreOfBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'X has %s points. O has %s points' % (scores['X'], scores['O'])</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raw_input('Press Enter to continue.')</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if turn == 'X':</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# X's turn.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherTile = 'O'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x, y = getComputerMove(mainBoard, 'X')</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makeMove(mainBoard, 'X', x, y)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# O's turn.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherTile = 'X'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x, y = getComputerMove(mainBoard, 'O')</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makeMove(mainBoard, 'O', x, y)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if getValidMoves(mainBoard, otherTile) == []:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = otherTile</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Display the final score.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;drawBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;scores = getScoreOfBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'X scored %s points. O scored %s points.' % (scores['X'], scores['O'])</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if not playAgain():</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.exit()</li>
+</ol>
+</blockquote>
+
+<h2>Code Explanation</h2>
+
+<p>When you run the AISim1.py program, all you can do is press Enter for each turn until the game ends. Run through a few games and watch the computer play itself. Since both the X and O players are using the same algorithm, it really is just a matter of luck to see who wins. The X player will win half the time, and the O player will win half the time.</p>
+
+<p>But what if we created a new algorithm? Then we could set this new AI against the one implemented in <span class='m'>getComputerMove()</span>, and see which one is better. Let's make some changes to our program. Click on File and then Save As, and save this file as AISim2.py so that we can make changes without affecting AISim1.py.</p>
+
+<p>Add the following code. The additions are in bold, and some lines have been removed:</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>AISim2.py</span><br/>
+<ol start=246>
+<li>print 'Welcome to Reversi!'</li>
+<li></li>
+<li><b>xwins = 0</b></li>
+<li><b>owins = 0</b></li>
+<li><b>ties = 0</b></li>
+<li><b>numGames = int(raw_input('Enter number of games to run: '))</b></li>
+<li></li>
+<li><b>for game in range(numGames):</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<b>print 'Game #%s:' % (game),</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Reset the board and game.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;mainBoard = getNewBoard()</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;resetBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if whoGoesFirst() == 'player':</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'X'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'O'</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while True:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if turn == 'X':</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# X's turn.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherTile = 'O'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x, y = getComputerMove(mainBoard, 'X')</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makeMove(mainBoard, 'X', x, y)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# O's turn.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherTile = 'X'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x, y = getComputerMove(mainBoard, 'O')</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makeMove(mainBoard, 'O', x, y)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if getValidMoves(mainBoard, otherTile) == []:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = otherTile</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Display the final score.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;scores = getScoreOfBoard(mainBoard)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'X scored %s points. O scored %s points.' % (scores['X'], scores['O'])</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<b>if scores['X'] > scores['O']:</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>xwins += 1</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<b>elif scores['X'] < scores['O']:</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>owins += 1</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;<b>else:</b></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ties += 1</b></li>
+<li></li>
+<li><b>numGames = float(numGames)</b></li>
+<li><b>xpercent = round(((xwins / numGames) * 100), 2)</b></li>
+<li><b>opercent = round(((owins / numGames) * 100), 2)</b></li>
+<li><b>tiepercent = round(((ties / numGames) * 100), 2)</b></li>
+<li><b>print 'X wins %s games (%s%%), O wins %s games (%s%%), ties for %s games (%s%%) of %s games total.' % (xwins, xpercent, owins, opercent, ties, tiepercent, numGames)</b></li>
+</ol>
+</blockquote>
+
+<h2>Code Explanation</h2>
+
+<p>We have added the variables <span class='m'>xwins</span>, <span class='m'>owins</span>, and <span class='m'>ties</span> to keep track of how many times X wins, O wins, and when they tie. Lines 284 to 289 increment these variables at the end of each game, before it loops back to start a brand new game.</p>
+
+<p>We have removed most of the <span class='m'>print</span> statements from the program, and the calls to <span class='m'>drawBoard()</span>. When you run AISim2.py, it asks you how many games you wish to run. Now that we've taken out the call to <span class='m'>drawBoard()</span> and replace the <span class='m'>while True:</span> loop with a <span class='m'>for game in range(numGames):</span> loop, we can run a number of games without stopping for the user to type anything. Here is a sample run where we run ten games of computer vs. computer Reversi:</p>
+
+<h2>Sample Run</h2>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">10</span><br/>
+Game #0: X scored 40 points. O scored 23 points.<br/>
+Game #1: X scored 24 points. O scored 39 points.<br/>
+Game #2: X scored 31 points. O scored 30 points.<br/>
+Game #3: X scored 41 points. O scored 23 points.<br/>
+Game #4: X scored 30 points. O scored 34 points.<br/>
+Game #5: X scored 37 points. O scored 27 points.<br/>
+Game #6: X scored 29 points. O scored 33 points.<br/>
+Game #7: X scored 31 points. O scored 33 points.<br/>
+Game #8: X scored 32 points. O scored 32 points.<br/>
+Game #9: X scored 41 points. O scored 22 points.<br/>
+X wins 5 games (50.0%), O wins 4 games (40.0%), ties for 1 games (10.0%) of 10.0 games total.<br/>
+</blockquote>
+
+<p>Because the algorithm does have a random part, your run might not have the exact same numbers as above.</p>
+
+<p>Printing things out to the screen slows the computer down, but now that we have removed that code, the computer can run an entire game of Reversi in about a second or two. Think about it. Each time our program printed out one of those lines, it ran through an entire game (which is about fifty or sixty moves, each move carefully checked to be the one that gets the most points).</p>
+
+<h2>Percentages</h2>
+
+<p>Percentages are a portion of a total amount, and range from 0% to 100%. If you had 100% of a pie, you would have the entire pie. If you had 0% of a pie, you wouldn't have any pie at all. 50% of the pie would be half of the pie. A pie is a common image to use for percentages. In fact, there is a kind of chart called a <span class='term'>pie chart</span> which shows how much of the full total a certain portion is. Here is a pie chart with 10%, 15%, 25%, and 50% portions:</p>
+
+<p class='centeredImageP'><img src='images/13_pie.png' class='centeredImage'></p>
+
+<p>We can calculate the percentage with division. To get a percentage, divide the part you have by the total, and then multiply by one hundred. For example, if X won 50 out of 100 games, you would calculate the expression <span class='m'>50 / 100.0</span>, which would evaluate to <span class='m'>0.5</span>. We multiple this by <span class='m'>100</span> to get a percentage (in this case, 50%).</p>
+
+<h2>Integer Division</h2>
+
+<p>Did you notice that we divided <span class='m'>50 / 100.0</span>, not <span class='m'>50 / 100</span>? The reason behind this is that there are two types of division in the Python language. Regular division is done when at least one of the numbers in the division expression is a float data type, that is, a number that has a decimal point and then a certain fraction after it. Regular division will evaluate to another float value. (For example, <span class='m'>50 / 100.0</span> evaluates to <span class='m'>0.5</span>.)</p>
+
+<p>However, if both numbers in the division expression are integers (that is, whole numbers without a decimal point), then Python will do integer division. <span class='term'>Integer division</span> is division of two integer numbers that evaluate to a rounded-down integer.</p>
+
+<p>For example, the expression <span class='m'>20 / 3.0</span> or the expression <span class='m'>20.0 / 3</span> will evaluate to <span class='m'>6.666666666666667</span>. However, the expression <span class='m'>20 / 3</span> evaluates to the integer <span class='m'>6</span>. This is because twenty divided by three is six, with a remainder of two. In integer division, the remainder part is dropped.</p>
+
+<p>We want to use regular division when we calculate our percentages, because otherwise instead of a float value like <span class='m'>0.5</span>, integer division for percentages will always evaluate to <span class='m'>0</span>.</p>
+
+<h2>The <span class='m'>round()</span> Function</h2>
+
+<p>The <span class='m'>round()</span> function will round a float number to the nearest whole float number. Try typing the following into the interactive shell:</p>
+
+<blockquote class='sourceblurb'>
+round(10.0)<br/>
+round(10.2)<br/>
+round(8.7)<br/>
+round(4.5)<br/>
+round(3.5)<br/>
+round(3.4999)<br/>
+round(2.5422, 2)<br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/13_round.png' class='centeredImage'></p>
+
+<p>As you can see, whenever the fraction part of a number is <span class='m'>.5</span> or greater, the number is rounded up. Otherwise, the number is rounded down. The <span class='m'>round()</span> function also has an optional parameter, where you can specify to what place you wish to round the number to. For example, the expression <span class='m'>round(2.5422, 2)</span> evaluates to <span class='m'>2.54</span>.</p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class='sourcecode'>
+<ol start=291>
+<li>numGames = float(numGames)</li>
+<li>xpercent = round(((xwins / numGames) * 100), 2)</li>
+<li>opercent = round(((owins / numGames) * 100), 2)</li>
+<li>tiepercent = round(((ties / numGames) * 100), 2)</li>
+<li>print 'X wins %s games (%s%%), O wins %s games (%s%%), ties for %s games (%s%%) of %s games total.' % (xwins, xpercent, owins, opercent, ties, tiepercent, numGames)</li>
+</ol>
+</blockquote>
+
+<p>The code at the bottom of our program will show the user how many wins X and O had, how many ties there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be. If you only ran ten games, and X won three of them, then it would seem that X's algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X's algorithm wins closer to 50% (that is, half) of the games.</p>
+
+<p>To find the percentages, we divide the number of wins or ties by the total number of games. We convert <span class='m'>numGames</span> to a float to ensure we do not use integer division in our calculation. Then we multiple the result by <span class='m'>100</span>. However, we may end up with a number like <span class='m'>66.66666666666667</span>. So we pass this number to the <span class='m'>round()</span> function with the second parameter of <span class='m'>2)</span>, so it will return a float like <span class='m'>66.67</span> instead (which is much more readable).</p>
+
+<p>Let's try another experiment. Run AISim2.py again, but this time have it run a hundred games:</p>
+
+<h2>Sample Run</h2>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 42 points. O scored 18 points.<br/>
+Game #1: X scored 26 points. O scored 37 points.<br/>
+Game #2: X scored 34 points. O scored 29 points.<br/>
+Game #3: X scored 40 points. O scored 24 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #96: X scored 22 points. O scored 39 points.<br/>
+Game #97: X scored 38 points. O scored 26 points.<br/>
+Game #98: X scored 35 points. O scored 28 points.<br/>
+Game #99: X scored 24 points. O scored 40 points.<br/>
+X wins 46 games (46.0%), O wins 52 games (52.0%), ties for 2 games (2.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>Depending on how fast your computer is, this run might have taken a about a couple minutes. We can see that the results of all one hundred games still evens out to about fifty-fifty, because both X and O are using the same algorithm to win.</p>
+
+<p>Let's add some new functions with new algorithms. But first click on File, then Save As, and save this file as AISim3.py. Before the <span class='m'>print 'Welcome to Reversi!'</span> line, add these functions:</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>AISim3.py</span><br/>
+<ol start=245>
+<li>def getRandomMove(board, tile):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Return a random move.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return random.choice( getValidMoves(board, tile) )</li>
+<li></li>
+<li></li>
+<li>def isOnSide(x, y):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return x == 0 or x == 7 or y == 0 or y ==7</li>
+<li></li>
+<li></li>
+<li>def getCornerSideBestMove(board, tile):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Return a corner move, or a side move, or the best move.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;possibleMoves = getValidMoves(board, tile)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# randomize the order of the possible moves</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;random.shuffle(possibleMoves)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# always go for a corner if available.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;for x, y in possibleMoves:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isOnCorner(x, y):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return [x, y]</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# if there is no corner, return a side move.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;for x, y in possibleMoves:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isOnSide(x, y):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return [x, y]</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return getComputerMove(board, tile)</li>
+<li></li>
+<li></li>
+<li>def getSideBestMove(board, tile):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Return a corner move, or a side move, or the best move.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;possibleMoves = getValidMoves(board, tile)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# randomize the order of the possible moves</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;random.shuffle(possibleMoves)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# return a side move, if available</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;for x, y in possibleMoves:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isOnSide(x, y):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return [x, y]</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return getComputerMove(board, tile)</li>
+<li></li>
+<li></li>
+<li>def getWorstMove(board, tile):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Return the move that flips the least number of tiles.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;possibleMoves = getValidMoves(board, tile)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# randomize the order of the possible moves</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;random.shuffle(possibleMoves)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Go through all the possible moves and remember the best scoring move</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;worstScore = 64</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;for x, y in possibleMoves:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dupeBoard = getBoardCopy(board)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makeMove(dupeBoard, tile, x, y)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;score = getScoreOfBoard(dupeBoard)[tile]</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if score < worstScore:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;worstMove = [x, y]</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;worstScore = score</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return worstMove</li>
+<li></li>
+<li></li>
+<li>def getCornerWorstMove(board, tile):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# Return a corner, a space, or the move that flips the least number of tiles.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;possibleMoves = getValidMoves(board, tile)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# randomize the order of the possible moves</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;random.shuffle(possibleMoves)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;# always go for a corner if available.</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;for x, y in possibleMoves:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isOnCorner(x, y):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return [x, y]</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return getWorstMove(board, tile)</li>
+<li></li>
+<li></li>
+<li></li>
+<li>print 'Welcome to Reversi!'</li>
+</ol>
+</blockquote>
+
+<h2>Code Explanation</h2>
+
+<p>A lot of these functions are very similar to one another, and some of them use the new <span class='m'>isOnSide()</span> function. Here's a review of the new algorithms we've made:</p>
+
+<table class='simplefulltable' align='center'>
+<tr><td><span class='m'>getRandomMove()</span></td><td>Randomly choose a valid move to make.</td></tr>
+<tr><td><span class='m'>getCornerSideBestMove()</span></td><td>Take a corner move if available. If there is no corner, take a space on the side. If no sides are available, use the regular <span class='m'>getComputerMove()</span> algorithm.</td></tr>
+<tr><td><span class='m'>getSideBestMove()</span></td><td>Take a side space if there is one available. If not, then use  the regular <span class='m'>getComputerMove()</span> algorithm (side spaces are chosen before corner spaces).</td></tr>
+<tr><td><span class='m'>getWorstMove()</span></td><td>Take the space that will result in the <i>fewest</i> tiles being flipped.</td></tr>
+<tr><td><span class='m'>getCornerWorstMove()</span></td><td>Take a corner space, if available. If not, use the <span class='m'>getWorstMove()</span> algorithm.</td></tr>
+</table>
+
+<p>Now the only thing to do is replace one of the <span class='m'>getComputerMove()</span> calls in the main part of the program with one of the new functions. Then we can run several games and see how often one algorithm wins over the other. First, let's replace O's algorithm with the one in <span class='m'>getComputerMove()</span> with <span class='m'>getRandomMove()</span> on line 386:</p>
+
+<blockquote class="sourcecode">
+<ol start=386>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x, y = <b>getRandomMove</b>(mainBoard, 'O')</li>
+</ol>
+</blockquote>
+
+<p>When we run the program with a hundred games now, it may look something like this:</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 25 points. O scored 38 points.<br/>
+Game #1: X scored 32 points. O scored 32 points.<br/>
+Game #2: X scored 15 points. O scored 0 points.<br/>
+Game #3: X scored 50 points. O scored 14 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #96: X scored 31 points. O scored 33 points.<br/>
+Game #97: X scored 41 points. O scored 23 points.<br/>
+Game #98: X scored 33 points. O scored 31 points.<br/>
+Game #99: X scored 45 points. O scored 19 points.<br/>
+X wins 84 games (84.0%), O wins 15 games (15.0%), ties for 1 games (1.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>Wow! X win far more often than O did. That means that the algorithm in <span class='m'>getComputerMove()</span> (take any available corners, otherwise take the space that flips the most tiles) wins more games than the algorithm in <span class='m'>getRandomMove()</span> (which just makes moves randomly). This makes sense, because making intelligent choices is usually going to be better than just choosing things at random.</p>
+
+<p>What if we changed X's algorithm to also use the algorithm in <span class='m'>getRandomMove()</span>? Let's find out by changing X's function call from <span class='m'>getComputerMove()</span> to <span class='m'>getRandomMove()</span> and running the program again.</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 37 points. O scored 24 points.<br/>
+Game #1: X scored 19 points. O scored 45 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #98: X scored 27 points. O scored 37 points.<br/>
+Game #99: X scored 38 points. O scored 22 points.<br/>
+X wins 42 games (42.0%), O wins 54 games (54.0%), ties for 4 games (4.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>As you can see, when both players are making random moves, they each win about 50% of the time. (In the above case, O just happen to get lucky and won a little bit more than half of the time.)</p>
+
+<p>Just like moving on the corner spaces is a good idea because they cannot be flipped, moving on the side pieces may also be a good idea. On the side, the tile has the edge of the board and is not as out in the open as the other pieces. The corners are still preferable to the side spaces, but moving on the sides (even when there is a move that can flip more pieces) may be a good strategy.</p>
+
+<p>Change X's algorithm to use <span class='m'>getComputerMove()</span> (our original algorithm) and O's algorithm to use <span class='m'>getCornerSideBestMove()</span>, and let's run a hundred games to see which is better. Try changing the function calls and running the program again.</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 52 points. O scored 12 points.<br/>
+Game #1: X scored 10 points. O scored 54 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #98: X scored 41 points. O scored 23 points.<br/>
+Game #99: X scored 46 points. O scored 13 points.<br/>
+X wins 65 games (65.0%), O wins 31 games (31.0%), ties for 4 games (4.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>Wow! That's unexpected. It seems that choosing the side spaces over a space that flips more tiles is a bad strategy to use. The benefit of the side space is not greater than the cost of choosing a space that flips fewer of the opponent's tiles. Can we be sure of these results? Let's run the program again, but this time let's have the program play one thousand games. This may take a few minutes for your computer to run (but it would take days for you to do this by hand!) Try changing the function calls and running the program again.</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">1000</span><br/>
+Game #0: X scored 20 points. O scored 44 points.<br/>
+Game #1: X scored 54 points. O scored 9 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #998: X scored 38 points. O scored 23 points.<br/>
+Game #999: X scored 38 points. O scored 26 points.<br/>
+X wins 611 games (61.1%), O wins 363 games (36.3%), ties for 26 games (2.6%) of 1000.0 games total.<br/>
+</blockquote>
+
+<p>The more accurate statistics from the thousand-games run are about the same as the statistics from the hundred-games run. It seems that choosing the move that flips the most tiles is a better idea than choosing a side move.</p>
+
+<p>Now set the X player's algorithm to use <span class='m'>getComputerMove()</span> and the O player's algorithm to <span class='m'>getWorstMove()</span>, and run a hundred games. Try changing the function calls and running the program again.</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 50 points. O scored 14 points.<br/>
+Game #1: X scored 38 points. O scored 8 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #98: X scored 36 points. O scored 16 points.<br/>
+Game #99: X scored 19 points. O scored 0 points.<br/>
+X wins 98 games (98.0%), O wins 2 games (2.0%), ties for 0 games (0.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>Whoa! The algorithm in <span class='m'>getWorstMove()</span>, which always choose the move that flips the <i>fewest</i> tiles, will almost always lose to our regular algorithm. This isn't really surprising at all. How about when we replace <span class='m'>getWorstMove()</span> with <span class='m'>getCornerWorstMove()</span>, which is the same algorithm except it takes any available corner pieces. Try changing the function calls and running the program again.</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 36 points. O scored 7 points.<br/>
+Game #1: X scored 44 points. O scored 19 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #98: X scored 47 points. O scored 17 points.<br/>
+Game #99: X scored 36 points. O scored 18 points.<br/>
+X wins 94 games (94.0%), O wins 6 games (6.0%), ties for 0 games (0.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>The <span class='m'>getCornerWorstMove()</span> still loses most of the games, but it seems to win a few more games than <span class='m'>getWorstMove()</span> (6% compared to 2%). Does taking the corner spaces when they are available really make a difference? We can check by setting X's algorithm to <span class='m'>getWorstMove()</span> and O's algorithm to <span class='m'>getCornerWorstMove()</span>, and then running the program. Try changing the function calls and running the program again.</p>
+
+<blockquote class='samplerun'>
+Welcome to Reversi!<br/>
+Enter number of games to run: <span class="sampleruninput">100</span><br/>
+Game #0: X scored 25 points. O scored 39 points.<br/>
+Game #1: X scored 26 points. O scored 33 points.<br/>
+<br/>
+...skipped for brevity...<br/>
+<br/>
+Game #98: X scored 36 points. O scored 25 points.<br/>
+Game #99: X scored 29 points. O scored 35 points.<br/>
+X wins 32 games (32.0%), O wins 67 games (67.0%), ties for 1 games (1.0%) of 100.0 games total.<br/>
+</blockquote>
+
+<p>Yes, it does seem like taking the algorithm that takes the corners when it can does translate into more wins. While we have found out that going for the sides makes you lose more often, going for the corners is always a good idea.</p>
+
+<h2>Learning New Things by Running Simulation Experiments</h2>
+
+<p>This chapter didn't really cover a game, but it modeled various strategies for Reversi. If we thought that taking side moves in Reversi was a good idea, we would have to spend days, even weeks, carefully playing games of Reversi by hand and writing down the results. But if we know how to program a computer to play Reversi, then we can have the computer play Reversi using these strategies for us. If you think about it, you will realize that the computer is executing millions of lines of our Python program in seconds! Your experiments with the simulation of Reversi can help you learn more about playing Reversi in real life.</p>
+
+<p>And it is all because you know exactly how to instruct the computer to do it, step by step, line by line. You can speak the computer's language, and get it to do large amounts of data processing and number crunching for you. This is a very useful skill, and I hope you will continue to learn more about Python programming. (And there is still more to learn!)</p>
+
+<p>The next step you can take is looking at the help file that comes with Python. You can access this by clicking on the Start button in Windows' lower left corner, then going to Programs (or All Programs), then the Python 2.5 folder, and then clicking the "Python Manuals" link.</p>
+
+<p class='centeredImageP'><img src='images/13_pythonhelp.png' class='centeredImage'></p>
+
+<p>Another way you can find out more about Python is searching the Internet. Go to the website http://google.com and search for "Python programming" or "Python tutorials" to find web sites that can teach you more about Python programming.</p>
+
+<p>Now get going and invent your own games. And good luck!</p>
+
+<blockquote class='inthischapter'><h3>Things Covered In This Chapter:</h3>
+<ul>
+<li>Simulations</li>
+<li>Percentages</li>
+<li>Pie Charts</li>
+<li>Integer Division</li>
+<li>The <span class='m'>round()</span> Function</li>
+</ul>
+</blockquote>
+
+</body>
+</html>

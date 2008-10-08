@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>IYOCGwP Book 1 - Chapter 5 - Using the Debugger</title>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
+</head>
+<body>
+
+<h1>Chapter 5 - Using the Debugger</h1>
+
+<h2>Bugs!</h2>
+
+* Descrition of what bugs are, and what the debugger does.
+
+<p>A "bug" is another name for an error or defect in a computer program. Even if your program runs correctly, it may not run the way you intended it because of bugs in your code. Remember that the computer is not smart at all, it can only do exactly what you tell it to do. If you accidentally put bugs into your programs, then the computer will execute those bugs perfectly.</p>
+
+<p>Finding bugs in our program can be hard, if you even find them at all! When running your program, you may discover that sometimes functions are not called when they are suppose to be, or maybe they are called too many times. You may code the condition for a <span class='m'>while</span> loop wrong, so that the condition always evaluates to <span class='m'>True</span> no matter what. Without any <span class='m'>break</span> statements in the loop, it would loop forever. This kind of bug is called an <span class='term'>infinite loop</span>.</p>
+
+<p>The best way to find bugs is with a program called a debugger. It can be hard to figure out how your code could be producing a bug because all the lines of code get executed very quickly. A program called a <span class='m'>debugger</span> lets you step through your code one line at a time. A debugger lets you look at how each line of code affects your program. This can be very helpful to figure out what exactly the program is doing.</p>
+
+<h2>Starting the Debugger</h2>
+
+<p>In IDLE, go ahead and open the Dragon Realm game that you made in the last chapter. In the interactive shell, click on File and then Open, and then select dragon.py (or whatever you named the file when you saved it).</p>
+
+<p>After opening the dragon.py file, click on the Debug menu item at the top of the interactive shell, and then click Debugger. This will make the Debug Control window appear. Now when you run the Dragon Realm game (by pressing F5 or clicking Run, then Run Module in the file editor window), the debugger program will be activated. Go ahead and run the program. It will look like this:</p>
+
+*pic
+
+<p>In the Debug Control window, check the Source and Globals checkboxes. Then run the program by pressing F5 in the file editor window.</p>
+
+<p>When you run Python programs with the debugger activated, the program will stop before it executes the first line of code. If you click on the file editor window (and you have checked the Source checkbox in the Debug Control window), the first line of code is highlighted in blue. Also, the Debug Control window shows that you are on line 1, which is the <span class='m'>import random</span> line.</p>
+
+*pic
+
+<p>The debugger lets you execute one line or code at a time (called "stepping"). To execute a single instruction, click the Step button in the Debug Window. Go ahead and click the Step button once. This will cause the Python interpretter to execute the <span class='m'>import random</span> instruction, and then stop before it executes the next instruction. The Debug Control window will change to show that you are now on line 2, the <span class='m'>import time</span> line.</p>
+
+<h2>Stepping</h2>
+
+<p><span class='term'>Stepping</span> is the process of executing one instruction of the program at a time. Doing this lets you see what happens after running a single line of code, which can help you figure out where a bug first appears in your programs.</p>
+
+<p>The Debug Control window will show you what line is <i>about</i> to be executed when you click the Step button in the Debug Control window. This window will also tell you what line number it is on and show you the instruction itself.</p>
+
+<p>Click the Step button again to run the <span class='m'>import time</span> instruction. The debugger will execute this <span class='m'>import</span> statment and then move to line 4. The debugger skipped line 3 because it is a blank line.</p>
+
+<p>Click the Step button three more times. This will execute the <span class='m'>def</span> statements to define the functions. The debugger skips over the def-blocks of these functions because we are only defining the functions, not calling them. As you define these functions, they will appear in the Globals area of the Debug Control window.</p>
+
+<p>The text next to the function names in the Global area will look something like "&lt;function checkCave at 0x012859B0&gt;". The module names also have confusing looking text next to them, such as "&lt;module 'random' from 'C:\\Python25\\lib\\random.pyc'&gt;". This is only useful to advanced Python programmers, and you don't need to know what this means to debug your programs. Just seeing that the functions and modules are there in the Global area will tell you if the function has been defined or the module has been imported. You can also ignore the __builtins__, __doc__, and __name__ lines in the Global area.</p>
+
+<p>The debugger will now be at line 35, the <span class='m'>playAgain = 'yes'</span> line. When you click Step to execute this line, the <span class='m'>import</span> variable will be created and will show up in the Global area. Next to it will be the value stored in this variable, which is the string <span class='m'>'yes'</span>. The debugger lets you see the values of all the variables in the program as the run program runs. This can be very useful if you need to fix your programs!</p>
+
+<p>The Global area is where all the global variables are stored. Global variables are the variables that are created outside of any functions. There is also a Local area, which shows you the local variables and their values. The local area will only have variables in it when the program execution is inside of a function. Since we are still in the global scope, this area is blank.</p>
+
+<p>The Python debugger (and almost all debuggers) only lets you step forward in your program. Once you have executed an instruction, you cannot step backwards and undo the instruction.</p>
+
+<h2>The Go and Quit Buttons</h2>
+
+<p>If you get tired of clicking the step button over and over again, and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run as if you didn't have the debugger turned on.</p>
+
+<p>If you ever want to terminate the program while it is running, just click the Quit button at the top of the Debug Control window. The program will immediately exit. This can be handy if you want to stop the program and start debugging it from the beginning again.</p>
+
+<h2>Stepping Over and Stepping Out</h2>
+
+<p>Start the Dragon Realm program with the debugger, and keep stepping (by clicking the Step button in the Debug Control window) until the debugger is at line 38 (the <span class='m'>displayIntro()</span> line). When you click Step again, the debugger will jump into this function call and appear on line 5 (the first line in the def-block of the <span class='m'>displayIntro()</span> function. The kind of stepping we have been doing is called <span class='term'>stepping into</span>, because it will step into function calls.</p>
+
+* pic
+
+<p>If you click Step a few more times, you will see the output of the <span class='m'>print</span> statements appear in the interactive shell window one at a time. When you step over the last <span class='m'>print</span> statement in the <span class='m'>displayIntro()</span> function, the debugger will jump back to the first line (line 40) after function call.</p>
+
+* pic
+
+ <p>Click Step one more time to step into the choosecave function. Keep stepping through the code until you execute the function call <span class='m'>raw_input()</span> call. The program will wait until you type a response into the shell, just like when you run the program normally. If you try clicking the Step button now, nothing will happen because the program will wait for a response.</p>
+
+ <p>Enter a response by clicking back on the interactive shell window and type which cave you want to enter. You have to click on the bottom line in the shell before typing. If you are typing but nothing appears on the screen (and the blinking cursor is not below the <span class='m'>Which cave will you go into? (1 or 2)</span> text), then you have not clicked on the last line of the shell window.</p>
+
+ * pic
+
+ <p>Once you press the Enter key to enter your response, the debugger will continue to step lines of code again. Instead of clicking Step, try clicking the Out button on the Debug Control window. This is called <span class='term'>stepping out</span>, because it will cause the debugger to step over as many lines as it needs to until it jumps out of the function that it was in. For example, if you were inside the <span class='m'>displayIntro()</span> function on line 6, clicking Out would have the debugger keep stepping until the function was over and returned to the line after the call to <span class='m'>displayIntro()</span>. Stepping out can save you from having to click Step over and over again to jump out of the function.</p>
+
+ <p>If you are not inside a function (that is, you are in the global scope) and you click Out, the debugger will execute all the remaining lines in the program. This makes sense if you think of the entire global scope as a function itself.</p>
+
+<p>The third type of stepping is done by the Over button in the Debug Control window, and it is for stepping over function calls. <span class='m'>Stepping over</span> means that the debugger will not step into function calls. Instead, the debugger executes all the code inside the function at once and only stop at the line after the function call. This is useful if you do not want to step through every single line inside the function.</p>
+
+<p>You now know what the five buttons at the top of the Debug Control window do. Here's a recap:</p>
+
+<ul>
+<li><b>Go</b> - Executes the rest of the code as normal, or until it reaches a break point. (Break points are described later.)</li>
+<li><b>Step</b> - Step one line of code. If the line is a function call, the debugger will <i>step into</i> the function.</li>
+<li><b>Over</b> - Step one line of code. If the line is a function call, the debugger will not step into the function, but instead <i>step over</i> the call.</li>
+<li><b>Out</b> - Keeps stepping over lines of code until the debugger leaves the function it was in when Out was clicked. This <i>steps out</i> of the function.</li>
+<li><b>Quit</b> - Immediately terminates the program.</li>
+</ul>
+
+
+<h2>Find the Bug</h2>
+
+<p>Using the debugger is a good way to figure out what is causing bugs in your program. As an example, here is a small program that has a bug in it. In the interactive shell window, click on File, then New Window to open a new file editor window. Type this program into that window, and save the program as bugs.py.</p>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>bugs.py</span><br/>
+<ol start=1>
+<li>import random</li>
+<li>number1 = random.randint(1, 10)</li>
+<li>number2 = random.randint(1, 10)</li>
+<li>print 'What is ' + str(number1) + ' + ' + str(number2) + '?'</li>
+<li>answer = raw_input()</li>
+<li>if answer == number1 + number2:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Correct!'</li>
+<li>else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Nope! The answer is ' + str(number1 + number2)</li>
+</ol>
+</blockquote>
+
+<p>Type the program in exactly as it is above, even if you can already tell what the bug is. Then trying running the program by pressing F5. This is a simple arithmetic game that comes up with two random numbers and asks you to add them. Here's what it might look like when you run the program:</p>
+
+* pic of the program output
+
+<p>That's not right! This program has a bug in it. The bug is that even if the user types in the correct answer, the program says they were wrong. The program will even show the answer at the end, so you know that you typed it in correctly.</p>
+
+<p>You could look at the code and think hard about where it went wrong. That works sometimes. But you might figure out the cause of the bug quicker if you run the program under the debugger. At the top of the interactive shell window, click on Debug, then Debugger (if there is no check already by Debugger) to display the Debug Control window. In the Debug Control window, make sure the Source and Globals checkboxes are checked. Then press F5 in the file editor window to run the program under the debugger.</p>
+
+<p>The debugger starts at the <span class='m'>import random</span> line. Nothing special happens here, so just click Step to execute it. You should see the <span class='m'>random</span> module at the bottom of the Debug Control window in the Globals area.</p>
+
+<p>Click Step again to run line 2. A new file editor window will pop open. Remember that the <span class='m'>randint()</span> function is inside the <span class='m'>random</span> module. When you stepped into the function, you stepped into the <span class='m'>random</span> module because that is where the <span class='m'>randint</span> function is. The functions that come with Python's modules almost never have bugs in their code, so you can just click Out to step out of the <span class='m'>randint()</span> function and back to your program. After you have stepped out, you can close the <span class='m'>random</span> module's window.</p>
+
+<p>Line 3 is also a call to the <span class='m'>random</span> function. We don't need to step through this code, so just click Over to step over this function call. The <span class='m'>randint()</span> function's code is still executed, it is just executed all at once so that we don't have to step through it.</p>
+
+<p>Line 4 is a <span class='m'>print</span> statement to show the player the random numbers. But since we are using the debugger, we know what numbers the program will print even before it prints them! Just look at the Globals area of the Debug Control window. You can see the <span class='m'>number1</span> and <span class='m'>number2</span> variables, and next to them are the integer values stored in those variables. When I ran the debugger, it looked like this:</p>
+
+* pic
+
+<p>The <span class='m'>number1</span> variable has the value <span class='m'>9</span> and the <span class='m'>number2</span> variable has the value <span class='m'>10</span>. When you click Step, the program will display the string in the <span class='m'>print</span> statement with these values. (Of course, we use the <span class='m'>str()</span> function so that we can concatenate the string version of these integers.)</p>
+
+<p>Clicking on Step on line 5 will cause the debugger to wait until the player enters a response. Go ahead and type in the correct answer (in my case, 19) into the interactive shell window. The debugger will resume and move down to line 6.</p>
+
+<p>Line 6 is an <span class='m'>if</span> statement. The condition is that the value in <span class='m'>answer</span> must match the sum of <span class='m'>number1</span> and <span class='m'>number2</span>. If the condition is <span class='m'>True</span>, then the debugger will move to line 7. If the condition is <span class='m'>False</span>, the debugger will move to line 9. Click Step one more time to find out where it goes.</p>
+
+<p>The debugger is now on line 9! What happened? The condition in the <span class='m'>if</span> statement must have been <span class='m'>False</span>. Take a look at the values for <span class='m'>number1</span>, <span class='m'>number2</span>, and <span class='m'>answer</span>. Notice that <span class='m'>number1</span> and <span class='m'>number2</span> are integers, so their sum would have also been an integer. But <span class='m'>answer</span> is a string. That means that the <span class='m'>answer == number1 + number2</span> condition would have evaluated to <span class='m'>'19' == 19</span>. A string value and an integer value will always not equal each other, so the condition would have evaluated to <span class='m'>False</span>.</p>
+
+<p>That is the bug in the program. The bug is that we use <span class='m'>answer</span> when we should be using <span class='m'>int(answer)</span>. Go ahead and change line 6 to use <span class='m'>int(answer) == number1 + number2</span> instead of <span class='m'>answer == number1 + number2</span>, and run the program again.</p>
+
+* pic of program output
+
+<p>This time, the program worked correctly. Run it one more time and enter a wrong answer on purpose to make sure the program doesn't tell us we gave the correct answer. We have now debugged this program. Remember, the computer will run your programs exactly as you type them, even if what you type is not what you intend.</p>
+
+<h2>Break Points</h2>
+* Sometimes you want to skip over a bunch of code, but you don't want to press Step over and over again. Clicking Go will let hte program execute as normal, but you won't be able to step through the program again. However, you can set breakpoints in your program. Clicking Go will have the program execute as normal until it reaches a breakpoint, and which point you can start stepping.
+* You can set break points by right clicking on a line in the file editor and selecting set breakpoint. If you want to get rid of breakpoints, right click and select clear break points.
+
+* Look at this code, which simulates flipping a coin 1000 times. We use 1 to represent heads. flips keeps track of how many flips we have made. 
+import random
+print 'I will flip a coin 1000 times. Guess how many times it will come up heads:'
+guess = raw_input()
+flips = 0
+heads = 0
+while flips < 1000:
+    if random.randint(0, 1) == 1:
+        heads = heads + 1
+    flips = flips + 1
+    if flips == 100:
+        print 'At 100 tosses, heads has come up ' + str(heads) + ' times so far.'
+    if flips == 500:
+        print 'Half way done, and heads has come up ' + str(heads) + ' times.'
+    if flips == 900:
+        print '900 flips and there have been ' + str(heads) + ' heads.'
+print 'Out of 1000 coin tosses, heads came up ' + str(heads) + ' times!'
+print 'Were you close?'
+
+
+* Try setting break points on the print statements. The code execution only gets here when those conditions are true. You can then try stepping through a few iterations.
+
+<h2>Print Debugging</h2>
+
+<p>Sometimes you might want to know what the value in variables are while the program is running. One trick that programmers do is add <span class='m'>print</span> statements to the program so that they can see these values when the program runs. This is called <span class='term'>print debugging</span>. When you are done with the program you can remove these <span class='m'>print</span> statements before giving the program to other people.</p>
+
+<p>For example, say we have a Guess the Number game, but just for testing we want to know what the secret number is before the program normally tells the player. The solution is to add a <span class='m'>print</span> statement to tell us what the secret number is. When we are done writing this program, we can remove these print statements.</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>import random<br/>
+secretNumber = random.randint(1, 20)<br/>
+print 'DEBUG: secretNumber = ' + str(secretNumber)<br/>
+print 'Guess my secret number!'<br/>
+guess = raw_input()<br/>
+</span>
+</blockquote>
+
+<p>While print debugging can be useful, it is often times much more efficient to use the real debugger. By using <span class='m'>print</span> statements, you will have to restart the program to look at the value of other variables at other places in the code. You might also accidentally forget some <span class='m'>print</span> statements when you give your program to other people. But if you just need to have a quick peek at only a few variables, print debugging is a good technique.</p>
+
+
+<h2>Using Other IDEs</h2>
+* There are other IDEs that offer more features than IDLE. Though it may take longer to learn them.
+
+* Other IDEs allow for fancier debuggers.
+* Other IDEs. http://en.wikipedia.org/wiki/Comparison_of_integrated_development_environments#Python
+
+
+
+<blockquote class='inthischapter'><h3>Things Covered In This Chapter:</h3>
+<ul>
+
+</ul>
+</blockquote>
+
+</body>
+</html>
