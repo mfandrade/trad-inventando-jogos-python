@@ -9,10 +9,10 @@ Essa página é a nossa referência no processo de tradução e é de suma impor
 == Arquivos/Tradutores ==
 
 || *Arquivo*                 || *Tradutor*             ||
-|| arq.html                  || Guido Van Robot        ||
+|| Intro.html                || Kao Cardoso Félix      ||
 
 
 == Arquivos/Revisores ==
 
 || *Arquivo*                 || *Revisor*              ||
-|| arq.html                  || Guido Van Robot        ||
+|| Intro.html                || Aguardando revisor...  ||
