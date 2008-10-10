@@ -1,10 +1,10 @@
 #summary Página definindo o ainda temos a fazer
 
-= Introdução ==
+== Introdução ==
 
 O que ainda temos a fazer ?
 
-= TODO =
+== TODO ==
 
   * Tradução dos arquivos html
   * Revisão dos arquivos
