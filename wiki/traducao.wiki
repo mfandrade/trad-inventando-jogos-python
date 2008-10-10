@@ -5,10 +5,12 @@
 
 Essa página é a nossa referência no processo de tradução e é de suma importância que ela sempre atualizada com o que está sendo feito, evitando o retrabalho.
 
+
 = Arquivos/Tradutores =
 
 || Arquivo                 || Tradutor             ||
 || arq.html                || Guido Van Robot      ||
+
 
 = Arquivos/Revisores =
 
