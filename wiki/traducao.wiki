@@ -15,9 +15,11 @@ A coluna Status deve conter um dos seguintes valores:
 
 || *Arquivo*                 || *Tradutor*             || *Status* ||
 || Intro.html                || Kao Cardoso Félix      || Aguardando revisão ||
+|| HelloWorld.html           || Kao Cardoso Félix      || Em andamento ||
 
 
 == Arquivos/Revisores ==
 
-|| *Arquivo*                 || *Revisor*                  ||
+|| *Arquivo*                 || *Revisores                 ||
 || Intro.html                || Douglas Soares de Andrade  ||
+|| HelloWorld.html           || Aguardando revisores       ||
