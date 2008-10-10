@@ -19,5 +19,5 @@ A coluna Status deve conter um dos seguintes valores:
 
 == Arquivos/Revisores ==
 
-|| *Arquivo*                 || *Revisor*              ||
-|| Intro.html                || Aguardando revisor...  ||
+|| *Arquivo*                 || *Revisor*                  ||
+|| Intro.html                || Douglas Soares de Andrade  ||
