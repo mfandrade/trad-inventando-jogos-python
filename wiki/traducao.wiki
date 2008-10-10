@@ -5,11 +5,16 @@
 
 Essa página é a nossa referência no processo de tradução e é de suma importância que ela sempre atualizada com o que está sendo feito, evitando o retrabalho.
 
+A coluna Status deve conter um dos seguintes valores:
+
+ * Em andamento: a tradução está sendo feita ainda
+ * Aguardando revisão: a tradução está concluída, mas ainda não foi revisada
+ * Concluída: a tradução já foi concluída e revisada
 
 == Arquivos/Tradutores ==
 
-|| *Arquivo*                 || *Tradutor*             ||
-|| Intro.html                || Kao Cardoso Félix      ||
+|| *Arquivo*                 || *Tradutor*             || *Status* ||
+|| Intro.html                || Kao Cardoso Félix      || Em andamento ||
 
 
 == Arquivos/Revisores ==
