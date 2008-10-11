@@ -18,7 +18,7 @@ A coluna Status deve conter um dos seguintes valores:
 || Capitulo2.html            || Fabiano Gomes            || Em andamento ||
 || HelloWorld.html           || Kao Cardoso Félix        || Em andamento ||
 || about.html                || Gustavo Nascente Cardoso || Aguardando revisão ||
-|| preface.html              || Magnun Leno              || Em andamento ||
+|| preface.html              || Magnun Leno              || Aguardando revisão ||
 
 == Arquivos/Revisores ==
 
@@ -26,3 +26,4 @@ A coluna Status deve conter um dos seguintes valores:
 || Intro.html                || Douglas Soares de Andrade  ||
 || HelloWorld.html           || Aguardando revisores       ||
 || about.html                || Aguardando revisores       ||
+|| preface.html              || Aguardando revisores       ||
