@@ -1,11 +1,11 @@
 <html>
 <head>
-<title>IYOCGwP Book 1 - Chapter 4 - Dragon Realm</title>
+<title>IYOCGwP Book 1 - Chapter 5 - Dragon Realm</title>
 <link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
 </head>
 <body>
 
-<h1>Chapter 4 - Dragon Realm</h1>
+<h1>Chapter 5 - Dragon Realm</h1>
 
 <p>In this game, the player is in a land full of dragons. The dragons all live in caves with their large piles of collected treasure. Some dragons are friendly, and will share their treasure with you. Other dragons are greedy and hungry, and will eat anyone who enters their cave. The player is in front of two caves, one with a friendly dragon and the other with a hungry dragon. The player is given a choice between the two.</p>
 
@@ -157,7 +157,7 @@ Do you want to play again? (yes or no)<br/>
 
 <p>Think of the sentence, "Cats have whiskers and dogs have tails." This sentence is true, because "cats have whiskers" is true and "dogs have tails" is also true.</p>
 
-<p>But the sentence, "Cats have whiskers and dogs have wings." would be false. Even though "cats have whiskers" is true, dogs do not have wings, so "dogs have wings" is false. The entire sentence is only true if both parts are true because the two parts are connected by the word "and." If one or both parts are false, then the entire sentence is false.</p>
+<p>But the sentence, "Cats have whiskers and dogs have wings." would be false. Even though "cats have whiskers" is true, dogs do not have wings, so "dogs have wings" is false. The entire sentence is only true if both parts are true because the two parts are connected by the word "and". If one or both parts are false, then the entire sentence is false.</p>
 
 <p>The <span class='m'>and</span> operator in Python works this way too. If the boolean values on both sides of the <span class='m'>and</span> keyword are <span class='m'>True</span>, then the expression with the <span class='m'>and</span> operator evaluates to <span class='m'>True</span>. If either of the boolean values are <span class='m'>False</span>, or both of the boolean values are <span class='m'>False</span>, then the expression evaluates to <span class='m'>False</span>.</p>
 
@@ -302,7 +302,7 @@ False and False<br/>
 
 <p>The <span class='m'>return</span> keyword is only found inside def-blocks. Once the <span class='m'>return</span> statement is executed, we immediately jump out of the def-block. (This is like how the <span class='m'>break</span> statement will make us jump out of a while-block.) The program execution moves back to the line that had called the function.</p>
 
-<p>You can also use the <span class='m'>return</span> keyword by itself just to break out of the function, just like the <span class='m'>break</span> keyword will break out of a <span class='m'>while</span> loop.</p>
+<p>You can also use the <span class='m'>return</span> keyword by itself just to break out of the function, just like the <span class='m'>break</span> keyword will break out of a while-loop.</p>
 
 <h2>Variable Scope</h2>
 <p>You should note that the value stored in the <span class='m'>cave</span> variable in the <span class='m'>chooseCave()</span> function is forgotten after the execution leaves the function. Just like the values in our program's variables are forgotten after the program ends, variables inside the function are forgotten after the execution leaves the function. Note only that, but when execution is inside the function, we cannot see the variables outside of the function, or variables inside other functions. We call this the variable's <span class='term'>scope</span>. The only variables that we can use inside a function are the ones we create inside of the function. That is, the scope of the variable is inside in the function's block. The scope of variables created outside of functions is everywhere in the program outside of def-blocks.</p>
@@ -640,7 +640,7 @@ sayGoodBye()</blockquote>
 </ol>
 </blockquote>
 
-<p>This is the start of a while-block. The value of <span class='m'>playAgain</span> is <span class='m'>'yes'</span> (we set it in the last line), so the condition evaluates to <span class='m'>True and False</span>, evaluates to <span class='m'>False</span>. But remember that <span class='m'>True</span> or <span class='m'>False</span> will evalute to <span class='m'>True</span>. So since the condition is <span class='m'>True</span>, we enter the <span class='m'>while</span> loop.</p>
+<p>This is the start of a while-block. The value of <span class='m'>playAgain</span> is <span class='m'>'yes'</span> (we set it in the last line), so the condition evaluates to <span class='m'>True and False</span>, evaluates to <span class='m'>False</span>. But remember that <span class='m'>True</span> or <span class='m'>False</span> will evalute to <span class='m'>True</span>. So since the condition is <span class='m'>True</span>, we enter the while-loop.</p>
 
 <br/>
 
@@ -724,7 +724,7 @@ sayGoodBye()</blockquote>
 </ol>
 </blockquote>
 
-<p>Here is the start of a while-block. To see if we enter the block or not, we check if the condition is true. <span class='m'>cave != '1'</span> evaluates to <span class='m'>True</span>, because the blank string is not equal to the string <span class='m'>'1'</span>. And <span class='m'>cave != '2'</span> also evaluates to <span class='m'>True</span>. So the condition evaluates to <span class='m'>True and True</span>. Both sides of the and operator must be <span class='m'>True</span> for the expression to evaluate to <span class='m'>True</span>, otherwise it will be <span class='m'>False</span>. <span class='m'>True and True</span> evaluates to <span class='m'>True</span>, so we do enter the <span class='m'>while</span> loop at line 14.</p>
+<p>Here is the start of a while-block. To see if we enter the block or not, we check if the condition is true. <span class='m'>cave != '1'</span> evaluates to <span class='m'>True</span>, because the blank string is not equal to the string <span class='m'>'1'</span>. And <span class='m'>cave != '2'</span> also evaluates to <span class='m'>True</span>. So the condition evaluates to <span class='m'>True and True</span>. Both sides of the and operator must be <span class='m'>True</span> for the expression to evaluate to <span class='m'>True</span>, otherwise it will be <span class='m'>False</span>. <span class='m'>True and True</span> evaluates to <span class='m'>True</span>, so we do enter the while-loop at line 14.</p>
 
 <br/>
 
@@ -952,7 +952,7 @@ sayGoodBye()</blockquote>
 
 <h2>Designing the Program</h2>
 
-<p>Dragon Realm was a pretty simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called "designing the program."</p>
+<p>Dragon Realm was a pretty simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called "designing the program".</p>
 
 <p>For example, it may help to draw a flow chart. A <span class='term'>flow chart</span> is a picture that shows every possible action that can happen in our game, and in what order. Normally we would create a flow chart before writing our program, so that we remember to write code for each thing that happens in the game. Here's a flow chart for Dragon Realm:</p>
 

@@ -1,0 +1,384 @@
+<html>
+<!-- TODO: Need to make the ouptut window go to the bottom on new output. 
+Needs the line order changed. It's the same as trace2's
+-->
+<head>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all" />
+<style type="text/css">
+.highlight {
+	background-color: #DDDDFF;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+p {
+	text-indent: 1em;
+}
+
+table { 
+    border-style: solid; 
+    border-width: 1px;
+    border-collapse: collapse; 
+} 
+
+td { 
+    border-style: solid; 
+    border-width: 1px; 
+    padding: 4px; 
+}
+
+ol {
+	font-family: courier;
+}
+</style>
+<script type="text/javascript">
+
+function onBodyLoad()
+{
+	var currentStep = 1;
+	changeToStep(currentStep);
+}
+
+function insertHighlight(sourceCode, x)
+{
+	return sourceCode.substring(0, x) + ' class="highlight"' + sourceCode.substring(x, sourceCode.length);
+}
+
+function getLinesToColsMap(sourceCode)
+{
+	var arrOfIndexes = new Array();
+	arrOfIndexes[0] = 0; // Compensates for one-off error. This way step 1 is at arrOfIndexes[1].
+
+	ind = 0;
+	while (ind > -1)
+	{
+		ind = sourceCode.indexOf("<li>");
+		if (ind > -1)
+		{
+			arrOfIndexes.push(ind + 3);
+		}
+		sourceCode = sourceCode.replace("<li>","XXXX");
+	}
+	return arrOfIndexes;
+}
+
+// TODO: Need to handle error conditions for these "DisplayType" functions that can handle bad keys.
+
+function highlightedDisplayType(displayData, stepNum)
+{
+	// highlightData is an associate array with keys 'sourceCode' (a string), 'mapLinesToCols' (an array), 'linesExecutionOrder' (an associative array) 
+	return insertHighlight(displayData['sourceCode'], displayData['mapLinesToCols'][displayData['linesExecutionOrder'][stepNum]]);
+}
+
+function mostRecentKeyDisplayType(displayData, stepNum)
+{
+	stepToUse = stepNum;
+	while (displayData[stepToUse] == undefined)
+	{
+		stepToUse -= 1;
+		if (stepToUse <= 0) return "";
+	}
+	return displayData[stepToUse];
+}
+
+function cumulativeDisplayType(displayData, stepNum)
+{
+	var retVal = '';
+	for (i = 0 ; i <= stepNum ; i++)
+	{
+		if (displayData[i] != undefined)
+		{
+			retVal += displayData[i];
+		}
+	}
+	return retVal;
+}
+
+function oneToOneDisplayType(displayData, stepNum)
+{
+	if (displayData[stepNum] == undefined)
+	{
+		return '';
+	}
+	else
+	{
+		return displayData[stepNum];
+	}
+}
+
+function assocArraySize(assocArr)
+{
+	var counter = 0;
+	for (var i in assocArr)
+	{
+	counter++;
+	}
+	return counter;
+}
+
+var sourceCodeData = new Array();
+// This is a single string that contains an HTML Ordered List, with each line of source code in an <li/> tag.
+sourceCodeData['sourceCode'] = '<ol>\n<li>import random<\/li>\n<li>import time<\/li>\n<li><\/li>\n<li>def displayIntro():<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'You are on a planet full of dragons. In front of you,\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'you see two caves. In one cave, the dragon is friendly\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'and will share his treasure with you. The other dragon\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'is greedy and hungry, and will eat you on sight.\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print<\/li>\n<li><\/li>\n<li>def chooseCave():<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;cave = \'\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != \'1\' and cave != \'2\':<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print \'Which cave will you go into? (1 or 2)\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cave = raw_input()<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;return cave<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;<\/li>\n<li>def checkCave(chosenCave):<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'You approach the cave...\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'It is dark and spooky...\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'A large dragon jumps out in front of you! He opens his jaws and...\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;friendlyCave = random.randint(1, 2)<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;if chosenCave == str(friendlyCave):<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print \'Gives you his treasure!\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;else:<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print \'Gobbles you down in one bite!\'<\/li>\n<li><\/li>\n<li>playAgain = \'yes\'<\/li>\n<li>while playAgain == \'yes\' or playAgain == \'y\':<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;displayIntro()<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;caveNumber = chooseCave()<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;checkCave(caveNumber)<\/li>\n<li><\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;print \'Do you want to play again? (yes or no)\'<\/li>\n<li>&nbsp;&nbsp;&nbsp;&nbsp;playAgain = raw_input()<\/li>\n<li><\/li>\n<\/ol>';
+// mapLinesToCols gives the indexes inside sourceCodeData['sourceCode'] that each <li/> tag begins. This index is used to dynamically add HTML to make the <li/> tag highlighted. e.g. mapLinesToCols[4] is the index of <li/> for the fourth line of code. (mapLinesToCols[0] is just padded with 0).
+sourceCodeData['mapLinesToCols'] = getLinesToColsMap(sourceCodeData['sourceCode']);
+// linesExecutionOrder has keys for steps and values of source code line numbers. These are fed to mapLinesToCols to get the position in the sourceCodeData['sourceCode'] string to insert the HTML highlight string. Note the difference: The 4th line of code is not necessarily the 4th line of code executed in a program (blank lines or loops will through this off). This could have been an array instead of an associative array, but using the incrementing keys makes it easier to edit.
+sourceCodeData['linesExecutionOrder'] = {1:1, 2:2, 3:4, 4:11, 5:19, 6:35, 7:36, 8:38, 9:4, 10:5, 11:6, 12:7, 13:8, 14:9, 15:40, 16:11, 17:12, 18:13, 19:14, 20:15, 21:13, 22:14, 23:15, 24:13, 25:17, 26:42, 27:19, 28:20, 29:21, 30:22, 31:23, 32:24, 33:25, 34:26, 35:28, 36:30, 37:31, 38:44, 39:45, 40:36, 41:38, 42:4, 43:5, 44:6, 45:7, 46:8, 47:9, 48:40, 49:11, 50:12, 51:13, 52:14, 53:15, 54:13, 55:17, 56:42, 57:19, 58:20, 59:21, 60:22, 61:23, 62:24, 63:25, 64:26, 65:28, 66:30, 67:33, 68:44, 69:45, 70:36, 71:46}; 
+
+var currentStep = 1;
+var MAXSTEP = assocArraySize(sourceCodeData['linesExecutionOrder']);
+
+
+var variablesData = {1:"<b>Global Scope</b><br/><br/><b>Local Scope</b><br/>",
+					7:"<b>Global Scope</b><br/>playAgain == 'yes'<br/><br/><b>Local Scope</b><br/>",
+					18:"<b>Global Scope</b><br/>playAgain == 'yes'<br/><br/><b>Local Scope</b><br/>cave == ''<br/>",
+					21:"<b>Global Scope</b><br/>playAgain == 'yes'<br/><br/><b>Local Scope</b><br/>cave == '3'<br/>",
+					24:"<b>Global Scope</b><br/>playAgain == 'yes'<br/><br/><b>Local Scope</b><br/>cave == '2'<br/>",
+					26:"<b>Global Scope</b><br/>playAgain == 'yes'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>",
+					28:"<b>Global Scope</b><br/>playAgain == 'yes'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>chosenCave == '2'<br/>",
+					36:"<b>Global Scope</b><br/>playAgain == 'yes'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>chosenCave == '2'<br/>friendlyCave == 2<br/>",
+					38:"<b>Global Scope</b><br/>playAgain == 'yes'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>",
+					40:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>",
+					51:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>cave == ''<br/>",
+					54:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '2'<br/><br/><b>Local Scope</b><br/>cave == '1'<br/>",
+					56:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '1'<br/><br/><b>Local Scope</b><br/>",
+					58:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '1'<br/><br/><b>Local Scope</b><br/>chosenCave == '1'<br/>",
+					66:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '1'<br/><br/><b>Local Scope</b><br/>chosenCave == '1'<br/>friendlyCave == 2<br/>",
+					68:"<b>Global Scope</b><br/>playAgain == 'y'<br/>caveNumber == '1'<br/><br/><b>Local Scope</b><br/>",
+					70:"<b>Global Scope</b><br/>playAgain == 'n'<br/>caveNumber == '1'<br/><br/><b>Local Scope</b><br/>"
+						};
+
+// notesData is the "one-to-one" display type. On step N, the N value will be in the window. If there is no N value, the window is blank.
+var notesData = {1:"This imports the <span class='m'>random</span> module, which has the <span class='m'>randint()</span> function we will use.",
+					2:"This imports the <span class='m'>time</span> module, which has the <span class='m'>sleep()</span> function we will use.",
+					3:"This defines the <span class='m'>displayIntro()</span> function. Execution will skip past this function, because we are only defining the function, not calling it.",
+					4:"This defines the <span class='m'>chooseCave()</span> function. Again, we are only defining the function, not calling it.",
+					5:"This defines the <span class='m'>checkCave()</span> function. <span class='m'>checkCave()</span> is defined with one parameter, <span class='m'>chosenCave</span>. Parameters are the variables that go in between the parentheses in a function definition.",
+					6:"Here we set the <span class='m'>playAgain</span> variable to <span class='m'>'yes'</span>. We do this because our game will keep playing in a loop as long as <span class='m'>playAgain</span> is set to <span class='m'>'yes'</span> or <span class='m'>'y'</span>.",
+					7:"This <span class='m'>while</span> loop's condition checks to see if <span class='m'>playAgain</span> has the <span class='m'>'yes'</span> string or the <span class='m'>'y'</span> string stored in it.",
+					8:"The first thing we do inside the loop is call the <span class='m'>displayIntro()</span> function. This will move execution to line 4.",
+					9:"Here we are at the start of the <span class='m'>displayIntro()</span> function.",
+					10:"We now print the game's introduction to the player.",
+					11:"We now print the game's introduction to the player.",
+					12:"We now print the game's introduction to the player.",
+					13:"We now print the game's introduction to the player.",
+					14:"We print a blank line.",
+					15:"Since the <span class='m'>displayIntro()</span> function ended, the program's execution moves to the next line after the original function call. On this line, we call <span class='m'>chooseCave()</span> and then assign the function call's return value to the <span class='m'>caveNumber</span> variable.",
+					16:"This is the start of the <span class='m'>chooseCave()</span> function.",
+					17:"<span class='m'>cave</span> is first assigned the blank string. Remember that because we are inside a function, new variables will be in the local scope.",
+					18:"This loop will continue to loop until the <span class='m'>cave</span> variable is equal to either <span class='m'>'1'</span> or <span class='m'>'2'</span>",
+					19:"We ask the player which cave they want to enter.",
+					20:"Let's pretend the player entered 3 as their answer.",
+					21:"Since the <span class='m'>cave</span> variable is equal to <span class='m'>'3'</span>, both parts of the condition are <span class='m'>True</span>, so the loop's condition is <span class='m'>True</span> and we enter the loop again.",
+					22:"We ask the player to enter a cave number again.",
+					23:"Let's pretend the player entered 2.",
+					24:"Because cave is not equal to <span class='m'>'1'</span> but is equal to <span class='m'>'2'</span>, this expression becomes <span class='m'>True and False</span>, which evaluates to <span class='m'>False</span>. (The <span class='m'>and</span> operator requires both sides to be <span class='m'>True</span> in order to evalute to <span class='m'>True</span>).",
+					25:"We skip past the loop, and for the return value of this function call, we return the string <span class='m'>'2'</span>.",
+					26:"When we leave a function, the variables in the function's local scope are forgotten and destroyed. Now we call the <span class='m'>checkCave()</span> function.",
+					27:"<span class='m'>chosenCave</span> is a parameter for this function, and will be assigned the value in <span class='m'>caveNumber</span> (which was the argument when this function was called).",
+					29:"This call to the <span class='m'>time.sleep()</span> function will cause the program to pause for 2 seconds.",
+					35:"We make a call to <span class='m'>random.randint()</span> to have it randomly return a <span class='m'>1</span> or a <span class='m'>2</span>, which is stored in the local variable, <span class='m'>friendlyCave</span>. Let's pretend the value randomly selected was <span class='m'>2</span>.",
+					36:"The return value of the <span class='m'>str(friendlyCave)</span> call was the string <span class='m'>'2'</span>, which is equal to the stirng stored in <span class='m'>chosenCave</span>. That makes the condition evaluate to <span class='m'>True</span>.",
+					37:"The player has won the treasure!",
+					38:"Again, now that the execution has moved out of the function, all the local variables are destroyed. Now we ask the player if she wants to play again.",
+					39:"Let's pretend the player typed in y.",
+					40:"The right side of the <span class='m'>or</span> operator evaluates to <span class='m'>True</span>, which makes the entire condition evaluate to <span class='m'>True</span>. We enter the <span class='m'>while</span> loop again.",
+					53:"Let's pretend the player enters 1.",
+					56:"The value of <span class='m'>caveNumber</span> was changed to the return value of the function call to <span class='m'>chooseCave() (which was <span class='m'>'1'</span>). Now we call <span class='m'>checkCave()</span>, passing <span class='m'>caveNumber</span>'s value as the argument.",
+					65:"This time, let's pretend the random integer returned by <span class='m'>randint()</span> was <span class='m'>1</span>.",
+					66:"This condition evaluates to <span class='m'>False</span>.",
+					67:"Because the <span class='m'>if</span> statement's condition was <span class='m'>False</span>, we will execute the code in the else-block. The player has been eaten.",
+					69:"Let's say the player is tired of playing this game, and she enters n.",
+					70:"Since neither side of the <span class='m'>or</span> operator evaluates the <span class='m'>True</span>, the entire condition evaluates to <span class='m'>False</span>. So we skip past the while-block.",
+					71:"There are no more lines of code to execute, so the program terminates."
+					};
+
+// outputData is of the "cumulative" type. The window will contain all of the text up to the index of the step number. e.g. If you are on step 7, the window will contain the strings in 0, 5, and 6.
+var outputData = {11:'You are on a planet full of dragons. In front of you,<br/>',
+					12:'you see two caves. In one cave, the dragon is friendly<br/>',
+					13:'and will share his treasure with you. The other dragon<br/>',
+					14:'is greedy and hungry, and will eat you on sight.<br/>',
+					15:'<br/>',
+					20:'Which cave will you go into? (1 or 2)<br/>',
+					21:'<font color="000000">3</font><br/>',
+					23:'Which cave will you go into? (1 or 2)<br/>',
+					24:'<font color="000000">2</font><br/>',
+					29:'You approach the cave...<br/>',
+					31:'It is dark and spooky...<br/>',
+					33:'A large dragon jumps out in front of you! He opens his jaws and...<br/>',
+					34:'<br/>',
+					38:'Gives you his treasure!<br/>',
+					39:'Do you want to play again? (yes or no)<br/>',
+					40:'<font color="000000">y</font><br/>',
+					44:'You are on a planet full of dragons. In front of you,<br/>',
+					45:'you see two caves. In one cave, the dragon is friendly<br/>',
+					46:'and will share his treasure with you. The other dragon<br/>',
+					47:'is greedy and hungry, and will eat you on sight.<br/>',
+					48:'<br/>',
+					53:'Which cave will you go into? (1 or 2)<br/>',
+					54:'<font color="000000">1</font><br/>',
+					59:'You approach the cave...<br/>',
+					61:'It is dark and spooky...<br/>',
+					63:'A large dragon jumps out in front of you! He opens his jaws and...<br/>',
+					64:'<br/>',
+					68:'Gobbles you down in one bite!<br/>',
+					69:'Do you want to play again? (yes or no)<br/>',
+					70:'<font color="000000">n</font><br/>'
+					};
+
+function set(viewport, displayString)
+{
+	document.getElementById(viewport).innerHTML = displayString;
+}
+
+function changeToStep(stepNum)
+{
+	set('codeVP', highlightedDisplayType(sourceCodeData, stepNum)); // "highlighted code" display type	
+	set('variablesVP', mostRecentKeyDisplayType(variablesData, stepNum)); // "most recent key" display type
+	set('notesVP', oneToOneDisplayType(notesData, stepNum)); // "one-to-one" display type
+	set('outputVP', cumulativeDisplayType(outputData, stepNum)); // "cumulative" display type
+	document.getElementById('stepNumDisplay').innerHTML = stepNum;
+}
+
+function next()
+{
+	if (currentStep == MAXSTEP) return;
+	currentStep += 1;
+	changeToStep(currentStep);
+}
+
+function previous()
+{
+	if (currentStep == 1) return;
+	currentStep -= 1;
+	changeToStep(currentStep);
+}
+
+function jump(stepNum)
+{
+	stepNum = parseInt(stepNum, 10);
+	if (stepNum < 1) return;
+	if (stepNum > MAXSTEP) return;
+	currentStep = stepNum;
+	changeToStep(currentStep);
+}
+
+//===BEGIN FLOATING MENU CODE==============================================================================
+<!--
+floatX=10;
+floatY=10;
+
+// This script is copyright (c) Henrik Petersen, NetKontoret
+// Feel free to use this script on your own pages as long as you do not change it.
+// It is illegal to distribute the script as part of a tutorial / script archive.
+// Updated version available at: http://www.echoecho.com/toolfloatinglayer.htm
+// This comment and the 4 lines above may not be removed from the code.
+
+NS6=false;
+IE4=(document.all);
+if (!IE4) {NS6=(document.getElementById);}
+NS4=(document.layers);
+
+function adjust() 
+{
+	if ((NS4) || (NS6)) 
+	{
+		lastX=window.pageXOffset + floatX;
+		lastY=window.pageYOffset + floatY;
+		
+		if (NS4)
+		{
+			document.layers['floatlayer'].pageX = lastX;
+			document.layers['floatlayer'].pageY = lastY;
+		}
+		if (NS6)
+		{
+			document.getElementById('floatlayer').style.left=lastX;
+			document.getElementById('floatlayer').style.top=lastY;
+		}
+	}
+	else if (IE4)
+	{
+		lastX=document.body.scrollLeft + floatX;
+		lastY=document.body.scrollTop + floatY;
+		document.all['floatlayer'].style.posLeft = lastX;
+		document.all['floatlayer'].style.posTop = lastY;
+	}
+	setTimeout('adjust()',50);
+}
+
+function define()
+{
+	if ((NS4) || (NS6))
+	{
+		floatX=ifloatX;
+		floatY=ifloatY;
+	}
+	if (IE4)
+	{
+		floatX=ifloatX;
+		floatY=ifloatY;
+	}
+}
+//===END FLOATING CODE==============================================================================
+//-->
+
+</script>
+
+</head>
+<body onLoad="onBodyLoad()">
+
+
+<div style="position:relative; width:100%; height:100%;">
+	<div style="position:absolute; width:50%; left:0px;"><br/><h1>Source code:dragon.py</h1><span id='codeVP'></span></div>
+
+<script>
+if (NS4) {document.write('<LAYER NAME="floatlayer" LEFT="'+floatX+'" TOP="'+floatY+'">');}
+if ((IE4) || (NS6)) {document.write('<div id="floatlayer" style="background-color:CCCCCC; padding:6px; position:absolute; left:'+floatX+'; top:'+floatY+';">');}
+</script>
+	<span style='background-color:CCCCCC;'><center><input type='button' value='Previous' onClick='previous()'>
+	<input type='button' value='Next' onClick='next()'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' id='jumpTextfield' size='3' value='1'> <input type='button' value='Jump' onClick='jump(document.getElementById("jumpTextfield").value);'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step #<span id="stepNumDisplay"></span></center></span>
+<script>
+if (NS4)
+{
+	document.write('</LAYER>');
+}
+if ((IE4) || (NS6))
+{
+	document.write('</DIV>');
+}
+ifloatX=floatX;
+ifloatY=floatY;
+define();
+window.onresize=define;
+lastX=-1;
+lastY=-1;
+adjust();
+</script>
+
+	<div id='variablesPane' style="position:absolute; right:0px; width:50%; ">
+	<table border='0' width="100%">
+	<tr><td>
+	<h1>Current variable values</h1><span id='variablesVP'></span>
+	</td></tr>
+
+	<tr><td style="background-color:EEEEEE;">
+	<h1>Notes</h1><span id='notesVP'></span>
+	</td></tr>
+
+	<tr><td>
+	<div style='height:400; overflow:auto;'><h1>Program output</h1><span id='outputVP' style='color:0000FF;'></span></div>
+	</td></tr>
+	</table>
+</div>
+
+
+</body>
+</html>
