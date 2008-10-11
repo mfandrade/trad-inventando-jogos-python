@@ -1,0 +1,986 @@
+<html>
+<head>
+<title>IYOCGwP Book 1 - Chapter 5 - Dragon World</title>
+<link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
+</head>
+<body>
+
+<h1>Chapter 5 - Dragon World</h1>
+
+<p>In this game, the player is on a planet of dragons. The dragons all live in caves with their large piles of collected treasure. Some dragons are friendly, and will share their treasure with you. Other dragons are greedy and hungry, and will eat anyone who enters their cave. The player is in front of two caves, one with a friendly dragon and the other with a hungry dragon. The player is given a choice between the two.</p>
+
+<p>Open a new file editor window by clicking on the File menu, then click on New Window. In the blank window that appears, type in the source code and save the source code as dragon.py. Then run the program by pressing F5.</p>
+
+<h2>Sample Run</h2>
+<blockquote class="samplerun">
+You are on a planet full of dragons. In front of you,<br/>
+you see two caves. In one cave, the dragon is friendly<br/>
+and will share his treasure with you. The other dragon<br/>
+is greedy and hungry, and will eat you on sight.<br/>
+<br/>
+Which cave will you go into? (1 or 2)<br/>
+<span class="sampleruninput">1</span><br/>
+You approach the cave...<br/>
+It is dark and spooky...<br/>
+A large dragon jumps out in front of you! He opens his jaws and...<br/>
+<br/>
+Gobbles you down in one bite!<br/>
+Do you want to play again? (yes or no)<br/>
+<span class="sampleruninput">no</span><br/>
+</blockquote>
+
+<!--
+<p>When you run this program, the Python shell window will look something like this:</p>
+
+<p class='centeredImageP'><img src='images/5_dragonrun.png' class='centeredImage'></p>
+-->
+
+
+<h2>Source Code</h2>
+
+<blockquote class="sourcecode"><span class='sourcecodeHeader'>dragon.py</span><br/>
+<ol start=1>
+<li>import random</li>
+<li>import time</li>
+<li></li>
+<li>def displayIntro():</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'You are on a planet full of dragons. In front of you,'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'you see two caves. In one cave, the dragon is friendly'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'and will share his treasure with you. The other dragon'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'is greedy and hungry, and will eat you on sight.'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print</li>
+<li></li>
+<li>def chooseCave():</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;cave = ''</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Which cave will you go into? (1 or 2)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cave = raw_input()</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return cave</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>def checkCave(chosenCave):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'You approach the cave...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'It is dark and spooky...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'A large dragon jumps out in front of you! He opens his jaws and...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;friendlyCave = random.randint(1, 2)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if chosenCave == str(friendlyCave):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Gives you his treasure!'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Gobbles you down in one bite!'</li>
+<li></li>
+<li>playAgain = 'yes'</li>
+<li>while playAgain == 'yes' or playAgain == 'y':</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;displayIntro()</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;caveNumber = chooseCave()</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;checkCave(caveNumber)</li>
+<li></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Do you want to play again? (yes or no)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;playAgain = raw_input()</li>
+</ol>
+</blockquote>
+
+<h2>Code Explanation</h2>
+
+<p>Let's look at the source code in more detail.</p>
+
+<blockquote class="sourcecode">
+<ol start=1>
+<li>import random</li>
+<li>import time</li>
+</ol>
+</blockquote>
+
+<p>Here we have two <span class='m'>import</span> statements. We import the <span class='m'>random</span> module like we did in the "Guess the Number" game. In Dragon World, we will also want some time-related functions that the <span class='m'>time</span> module includes, so we will import that as well.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=4>
+<li>def displayIntro():</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'You are on a planet full of dragons. In front of you,'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'you see two caves. In one cave, the dragon is friendly'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'and will share his treasure with you. The other dragon'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'is greedy and hungry, and will eat you on sight.'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print</li>
+</ol>
+</blockquote>
+
+<p>Here is a new type of statement, the <span class='term'>def</span> statement. The <span class='m'>def</span> statement is made up of the <span class='m'>def</span> keyword, followed by a function name with parentheses, and then a colon (the : sign). There is a block after the statement called the def-block.</p>
+
+<p class='centeredImageP'><img src='images/5_defstatement.png' class='centeredImage'></p>
+
+
+<h2>def Statements</h2>
+
+<p>The <span class='m'>def</span> statement isn't a call to a function named <span class='m'>displayIntro()</span>. Instead, the <span class='m'>def</span> statement means we are creating, or <span class='term'>defining</span>, a new function that we can call later in our program. After we define this function, we can call it the same way we call other functions. When we call this function, the code inside the def-block will be executed.</p>
+
+<p>We also say we define variables when we create them with an assignment statement. The code <span class='m'>spam = 42</span> defines the variable <span class='m'>m</span>.</p>
+
+<p>Remember, the def statement doesn't execute the code right now, it only defines what code is executed when we call the <span class='m'>displayIntro()</span> function later in the program. When the program's execution reaches a <span class='m'>def</span> statement, it skips down to the end of the def-block. We will jump back to the top of the def-block when the <span class='m'>displayIntro()</span> function is called. It will then execute all the print statements inside the def-block. So we call this function when we want to display the "You are on a planet full of dragons..." introduction to the user.</p>
+
+<p>When we call the <span class='m'>displayIntro()</span> function, the program's execution jumps to the start of the function on line 5. When the function's block ends, the program's execution returns to the line that called the function.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=11>
+<li>def chooseCave():</li>
+</ol>
+</blockquote>
+
+<p>Here we are defining another function called <span class='m'>chooseCave</span>. The code in this function will prompt the user to select which cave they should go into.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=12>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;cave = ''</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+</ol>
+</blockquote>
+
+<p>Inside the <span class='m'>chooseCave()</span> function, we create a new variable called <span class='m'>cave</span> and store a blank string in it. Then we will start a <span class='m'>while</span> loop. This while statement's condition contains a new operator we haven't seen before called <span class='m'>and</span>. Just like the <span class='m'>-</span> or <span class='m'>*</span> are mathematical operators, and <span class='m'>==</span> or <span class='m'>!=</span> are comparison operators, the <span class='m'>and</span> operator is a <span class='term'>boolean operator</span>.
+
+<h2>Boolean Operators</h2>
+<p>Boolean logic deals with things that are either true or false. This is why the boolean data type only has two values, <span class='m'>True</span> and <span class='m'>False</span>. Boolean statements are <b>always</b> either true or false. If the statement is not true, then it is false. And if the statement is not false, then it is true.</p>
+
+<p>Do you remember how the <span class='m'>*</span> operator will combine two integer values and produce a new integer value (the product of the two original integers)? And do you also remember how the <span class='m'>+</span> operator can combine two strings and produce a new string value (the concatenation of the two original strings)? The <span class='m'>and</span> operator combines two boolean values to produce a new boolean value. Here's how the <span class='m'>and</span> operator works.
+
+<p>Think of the sentence, "Cats have whiskers and dogs have tails." This sentence is true, because "cats have whiskers" is true and "dogs have tails" is also true.</p>
+
+<p>But the sentence, "Cats have whiskers and dogs have wings." would be false. Even though "cats have whiskers" is true, dogs do not have wings, so "dogs have wings" is false. The entire sentence is only true if both parts are true because the two parts are connected by the word "and". If one or both parts are false, then the entire sentence is false.</p>
+
+<p>The <span class='m'>and</span> operator in Python works this way too. If the boolean values on both sides of the <span class='m'>and</span> keyword are <span class='m'>True</span>, then the expression with the <span class='m'>and</span> operator evaluates to <span class='m'>True</span>. If either of the boolean values are <span class='m'>False</span>, or both of the boolean values are <span class='m'>False</span>, then the expression evaluates to <span class='m'>False</span>.</p>
+
+<p>So let's look at line 13 again:</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+</ol>
+</blockquote>
+
+<p>This condition is made up of two expressions connected by the <span class='m'>and</span> operator. We first evaluate these expressions to get their boolean values. Then we evaluate the boolean values with the <span class='m'>and</span> operator.</p>
+
+<p>The string value stored in <span class='m'>cave</span> when we first execute this while statement is the blank string, <span class='m'>''</span>. The blank string does not equal the string <span class='m'>'1'</span>, so the left side evaluates to <span class='m'>True</span>. The blank string also does not equal the string <span class='m'>'2'</span>, so the right side evaluates to <span class='m'>True</span>. So the condition then turns into <span class='m'>True and True</span>. Because both boolean values are <span class='m'>True</span>, the condition finally evaluates to <span class='m'>True</span>. And because the while statement's condition is <span class='m'>True</span>, the program execution enters the while-block.</p>
+
+<p>This is all done by the Python interpreter, but it is important to understand how the interpreter does this. This picture shows the steps of how the interpreter evaluates the condition (if the value of <span class='m'>cave</span> is the blank string):</p>
+
+<!--<p class='centeredImageP'><img src='images/5_condeval.png' class='centeredImage'></p>-->
+<blockquote class='sourceblurb'>
+while cave != '1' and cave != '2':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src='images/downarrow.png'><br/>
+while '' != '1' and cave != '2':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src='images/downarrow.png'><br/>
+while True and cave != '2':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src='images/downarrow.png'><br/>
+while True and '' != '2':<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src='images/downarrow.png'><br/>
+while True and True:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src='images/downarrow.png'><br/>
+while True:<br/>
+</blockquote>
+
+<p>Try typing the following into the interactive shell:</p>
+
+<blockquote class='sourceblurb'>
+True and True<br/>
+True and False<br/>
+False and True<br/>
+False and False<br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/5_and.png' class='centeredImage'></p>
+
+<p>There are two other boolean operators. The next one is the <span class='m'>or</span> operator. The <span class='m'>or</span> operator works similar to the <span class='m'>and</span>, except it will evaluate to <span class='m'>True</span> if EITHER of the two boolean values are <span class='m'>True</span>. The only time the <span class='m'>or</span> operator evaluates to <span class='m'>False</span> is if both of the boolean values are <span class='m'>False</span>.</p>
+
+<p>The sentence "Cats have whiskers or dogs have wings." is true. Even though dogs don't have wings, when we say "or" we mean that one of the two parts is true. The sentence "Cats have whiskers or dogs have tails." is also true. (Most of the time when we say this OR that, we mean one thing is true but the other thing is false. In programming, "or" means that either of the things are true, or maybe both of the things are true.)</p>
+
+<p>Try typing the following into the interactive shell:</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>True or True</span><br/>
+<span class='m'>True or False</span><br/>
+<span class='m'>False or True</span><br/>
+<span class='m'>False or False</span><br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/5_or.png' class='centeredImage'></p>
+
+<p>The third boolean operator is <span class='m'>not</span>. The <span class='m'>not</span> operator is different from every other operator we've seen before, because it only works on one value, not two. There is only value on the right side of the <span class='m'>not</span> keyword, and none on the left. The <span class='m'>not</span> operator will evaluate to <span class='m'>True</span> as <span class='m'>False</span> and will evaluate <span class='m'>False</span> as <span class='m'>True</span>.</p>
+
+<p>Try typing the following into the interactive shell:</p>
+
+<blockquote class='sourceblurb'>
+<span class='m'>not True</span><br/>
+<span class='m'>not False</span><br/>
+<span class='m'>True not</span><br/>
+</blockquote>
+
+<p class='centeredImageP'><img src='images/5_not.png' class='centeredImage'></p>
+
+<p>Notice that if we put the boolean value on the left side of the <span class='m'>not</span> operator results in a syntax error.</p>
+
+<p>We can use both the <span class='m'>and</span> and <span class='m'>not</span> operators in a single expression. Try typing <span class='m'>True and not False</span> into the shell:</p>
+
+<p class='centeredImageP'><img src='images/5_andnot.png' class='centeredImage'></p>
+
+<p>Normally the expression <span class='m'>True and False</span> would evaluate to <span class='m'>False</span>. But the <span class='m'>True and not False</span> expression evaluates to <span class='m'>True</span>. This is because <span class='m'>not False</span> evaluates to <span class='m'>True</span>, which turns the expression into <span class='m'>True and True</span>, which evaluates to <span class='m'>True</span>.</p>
+
+<p>If you ever forget how the boolean operators work, you can look at these charts, which are called <span class='term'>truth tables</span>:</p>
+
+<table align='center' class='simplefulltable'>
+<tr><td width='60'><b>A</b></td><td width='60'><b>and</b></td><td width='60'><b>B</b></td><td width='60'><b>is</b></td><td width='60'><b>Entire statement</b></td></tr>
+<tr><td width='60'>True</td><td width='60'>and</td><td width='60'>True</td><td width='60'>is</td><td width='60'>True</td></tr>
+<tr><td width='60'>True</td><td width='60'>and</td><td width='60'>False</td><td width='60'>is</td><td width='60'>False</td></tr>
+<tr><td width='60'>False</td><td width='60'>and</td><td width='60'>True</td><td width='60'>is</td><td width='60'>False</td></tr>
+<tr><td width='60'>False</td><td width='60'>and</td><td width='60'>False</td><td width='60'>is</td><td width='60'>False</td></tr>
+</table>
+
+<br/>
+
+<table align='center' class='simplefulltable'>
+<tr><td width='60'><b>A</b></td><td width='60'><b>or</b></td><td width='60'><b>B</b></td><td width='60'><b>is</b></td><td width='60'><b>Entire statement</b></td></tr>
+<tr><td width='60'>True</td><td width='60'>or</td><td width='60'>True</td><td width='60'>is</td><td width='60'>True</td></tr>
+<tr><td width='60'>True</td><td width='60'>or</td><td width='60'>False</td><td width='60'>is</td><td width='60'>True</td></tr>
+<tr><td width='60'>False</td><td width='60'>or</td><td width='60'>True</td><td width='60'>is</td><td width='60'>True</td></tr>
+<tr><td width='60'>False</td><td width='60'>or</td><td width='60'>False</td><td width='60'>is</td><td width='60'>False</td></tr>
+</table>
+
+<br/>
+
+<table align='center' class='simplefulltable'>
+<tr><td width='80'><b>not A</b></td><td><b>is</b></td><td width='60'><b>Entire statement</b></td></tr>
+<tr><td width='80'>not True</td><td width='60'>is</td><td width='60'>False</td></tr>
+<tr><td width='80'>not False</td><td width='60'>is</td><td width='60'>True</td></tr>
+</table>
+
+<h2>Code Explanation continued...</h2>
+<blockquote class="sourcecode">
+<ol start=14>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Which cave will you go into? (1 or 2)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cave = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>Here, the player is asked to enter which cave they chose to enter by typing in 1 or 2 and hitting enter. Whatever string the player typed will be stored in <span class='m'>cave</span>. After this code is executed, we jump back to the top of the <span class='m'>while</span> statement and recheck the condition. Remember that the line was:</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+</ol>
+</blockquote>
+
+<p>If this condition evaluates to <span class='m'>True</span>, we will enter the while-block again and ask the player for a cave number to enter. But if the player typed in 1 or 2, then the <span class='m'>cave</span> value will either be <span class='m'>'1'</span> or <span class='m'>'2'</span>. This causes the condition to evaluate to <span class='m'>False</span>, and the program execution will continue on past the while loop.</p>
+
+<p>The reason we have a loop here is because the player may have typed in 3 or 4 or HELLO. Our program doesn't make sense of this, so if the player did not enter 1 or 2, then the program loops back and asks the player again. In fact, the computer will patiently ask the player for the cave number over and over again until the player types in 1 or 2. When the player does that, the while-block's condition will be <span class='m'>False</span>, and we will jump down past the while-block and continue with the program.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=17>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return cave</li>
+</ol>
+</blockquote>
+
+<p>This is the <span class='term'>return</span> keyword, which only appears inside def-blocks. Remember how the <span class='m'>raw_input()</span> function returns the string value that the player typed in? Or how the <span class='m'>randint()</span> function will return a random integer value? Our function will also return a value. It returns the string that is stored in <span class='m'>cave</span>.</p>
+
+<p>This means that if we had a line of code like <span class='m'>spam = chooseCave()</span>, the code inside <span class='m'>chooseCave()</span> would be executed and the function call will evaluate to <span class='m'>chooseCave()</span>'s return value. The return value will either be the string <span class='m'>'1'</span> or the string <span class='m'>'2'</span>. (Our <span class='m'>while</span> loop guarantees that <span class='m'>chooseCave()</span> will ONLY return either <span class='m'>'1'</span> or <span class='m'>'2'</span>.)</p>
+
+<p>The <span class='m'>return</span> keyword is only found inside def-blocks. Once the <span class='m'>return</span> statement is executed, we immediately jump out of the def-block. (This is like how the <span class='m'>break</span> statement will make us jump out of a while-block.) The program execution moves back to the line that had called the function.</p>
+
+<p>You can also use the <span class='m'>return</span> keyword by itself just to break out of the function, just like the <span class='m'>break</span> keyword will break out of a while-loop.</p>
+
+<h2>Variable Scope</h2>
+<p>You should note that the value stored in the <span class='m'>cave</span> variable in the <span class='m'>chooseCave()</span> function is forgotten after the execution leaves the function. Just like the values in our program's variables are forgotten after the program ends, variables inside the function are forgotten after the execution leaves the function. Note only that, but when execution is inside the function, we cannot see the variables outside of the function, or variables inside other functions. We call this the variable's <span class='term'>scope</span>. The only variables that we can use inside a function are the ones we create inside of the function. That is, the scope of the variable is inside in the function's block. The scope of variables created outside of functions is everywhere in the program outside of def-blocks.</p>
+
+<p>Not only that, but if we have a variable named <span class='m'>spam</span> created outside of a function, if we create a variable named <span class='m'>spam</span> inside of the function, the Python interpreter will consider them to be two separate variables. That means we can change the value of <span class='m'>spam</span> inside the function, and this will not change the <span class='m'>spam</span> variable that is outside of the function. This is because these variables have different scopes.</p>
+
+<p>We have names for these scopes. The scope outside of all functions is called the <span class='term'>global scope</span>. The scope inside of a function is called the <span class='term'>local scope</span>. The entire program has only one global scope, but each function has a local scope of its own.</p>
+
+<p>Variables defined in the global scope can be used outside and inside functions. Variables defined in a function's local scope can only be used inside that function.</p>
+
+<p>When exactly is a variable defined? A variable is defined the first time we use it in an assignment statement. When the program first executes the line:</p>
+
+<blockquote class="sourcecode">
+<ol start=12>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;cave = ''</li>
+</ol>
+</blockquote>
+
+<p>...the variable <span class='m'>cave</span> is defined.</p>
+
+<p>If we call the <span class='m'>chooseCave()</span> function twice, the value stored in the variable the first time won't be remember the second time around. This is because when the execution left the <span class='m'>chooseCave()</span> function (that is, left <span class='m'>chooseCave()</span>'s scope), the <span class='m'>cave</span> variable was forgotten and destroyed. But it will be defined again when we call the function a second time.</p>
+
+<p>The important thing to remember is that the value of a variable in the local scope is not remembered in between function calls.</p>
+
+
+<h2>Code Explanation continued...</h2>
+<blockquote class="sourcecode">
+<ol start=19>
+<li>def checkCave(chosenCave):</li>
+</ol>
+</blockquote>
+
+<p>Now we are defining yet another function named <span class='m'>checkCave()</span>. Notice that we put the text <span class='m'>chosenCave</span> in between the parentheses. This is a type of variable called a <span class='term'>parameter</span>. For some functions, we would pass an argument, like for the <span class='m'>str()</span> or <span class='m'>randint()</span> functions:</p>
+
+<blockquote class='sourceblurb'>str(guessesTaken)<br/>
+random.randint(1, 20)</blockquote>
+
+<p>When we call <span class='m'>checkCave()</span>, we will also pass one value to it as an argument. When execution moves inside the <span class='m'>checkCave()</span> function, a new variable named <span class='m'>chosenCave</span> will be assigned this value. This is how we pass variable values to functions since functions cannot read variables outside of the function (that is, outside of the function's scope).</p>
+
+<h2>Parameters</h2>
+<p>For example, here is a short program that demonstrates parameters. Imagine we had a short program that looked like this:</p>
+
+<blockquote class='sourceblurb'>def sayHello(name):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;print 'Hello, ' + name<br/>
+<br/>
+print 'Say hello to Alice.'<br/>
+fizzy = 'Alice'<br/>
+sayHello(fizzy)<br/>
+print 'Do not forget to say hello to Bob.'<br/>
+sayHello('Bob')</blockquote>
+
+<p>If we run this program, it would look like this:</p>
+
+<p class='centeredImageP'><img src='images/5_param.png' class='centeredImage'></p>
+
+<p>This program calls a function we have created, <span class='m'>sayHello()</span> and first passes the value in the <span class='m'>fizzy</span> variable as an argument to it. (We stored the string <span class='m'>'Alice'</span> in <span class='m'>fizzy</span>.) Later, the program calls the <span class='m'>sayHello()</span> function again, passing the string <span class='m'>'Bob'</span> as an argument. </p>
+
+<p>The value in the <span class='m'>fizzy</span> variable and the string <span class='m'>'Bob'</span> are arguments. We send values as arguments to a function. The variable <span class='m'>name</span> is a parameter. Parameters are always local variables and only exist inside the function. That is the difference between arguments and parameters. It might be easier to just remember that the thing in between the parentheses in the <span class='m'>def</span> statement is an argument, and the thing in between the parentheses in the function call is a parameter.</p>
+
+<p>We could have just used the <span class='m'>fizzy</span> variable inside the <span class='m'>sayHello()</span> function instead of using a parameter. (This is because the local scope can still see variables in the global scope.) But then we would have to remember to assign the <span class='m'>fizzy</span> variable a string each time before we call the <span class='m'>sayHello()</span> function. Parameters make our programs simpler. Look at this code:</p>
+
+<blockquote class='sourceblurb'>def sayHello():<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;print 'Hello, ' + fizzy<br/>
+<br/>
+print 'Say hello to Alice.'<br/>
+fizzy = 'Alice'<br/>
+sayHello()<br/>
+print 'Do not forget to say hello to Bob.'<br/>
+sayHello()</blockquote>
+
+<p>When we run this code, it looks like this:</p>
+
+<p class='centeredImageP'><img src='images/5_param3.png' class='centeredImage'></p>
+
+<p>This program's <span class='m'>sayHello()</span> function does not have a parameter, but uses the global variable <span class='m'>fizzy</span> directly. Remember that you can read global variables inside of functions, you just can't read local variables outside of the function. But now we have to remember to set the <span class='m'>fizzy</span> variable before calling <span class='m'>sayHello()</span>. In this program, we forgot to do so, so the second time we called <span class='m'>sayHello()</span> the value of <span class='m'>fizzy</span> was still <span class='m'>'Alice'</span>. Using parameters makes function calling simpler to do, especially when our programs are very big and have many functions.</p>
+
+<h2>Local Variables and Global Variables with the Same Name</h2>
+
+<p>Now look at this program, which is a bit different:</p>
+
+<blockquote class='sourceblurb'>def spam(myName):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;print 'Hello, ' + myName<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;myName = 'Waffles'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;print 'Your new name is ' + myName<br/>
+<br/>
+myName = 'Albert'<br/>
+spam(myName)<br/>
+print 'Howdy, ' + myName</blockquote>
+
+<p>If we run this program, it would look like this:</p>
+
+<p class='centeredImageP'><img src='images/5_param2.png' class='centeredImage'></p>
+
+<p>This program defines a new variable called <span class='m'>myName</span> and stores the string <span class='m'>'Albert'</span> in it. Then the program calls the <span class='m'>spam()</span> function, passing the value in <span class='m'>myName</span> as an argument. The execution moves to the <span class='m'>spam()</span> function. The parameter in <span class='m'>spam()</span> is also named <span class='m'>myName</span>, and has the argument assigned to it. Remember, the <span class='m'>myName</span> inside the <span class='m'>spam()</span> function (the local scope) is considered a different variable than the <span class='m'>myName</span> variable outside the function (the global scope).</p>
+
+<p>The function then prints <span class='m'>'Hello, Albert'</span>, and then on the next line changes the value in <span class='m'>myName</span> to <span class='m'>'Waffles'</span>. Remember, this only changes the <span class='m'>myName</span> variable that is inside the function. The <span class='m'>myName</span> variable that is outside the function still has the value <span class='m'>'Albert'</span> stored in it.</p>
+
+<p>The function now prints out <span class='m'>'Your new name is Waffles'</span>, because the <span class='m'>myName</span> variable in the local scope has changed to <span class='m'>'Waffles'</span>. The execution has reached the end of the function, so it jumps back down to where the function call was. The local <span class='m'>myName</span> is destroyed and forgotten. The next line after that is <span class='m'>print 'Howdy, ' + myName</span>, which will display <span class='m'>Howdy, Albert</span>.</p>
+
+<p>Remember, the <span class='m'>myName</span> outside of functions (that is, in the global scope) still has the value <span class='m'>'Albert'</span>, not <span class='m'>'Waffles'</span>. This is because the <span class='m'>myName</span> in the global scope and the <span class='m'>myName</span> in <span class='m'>spam()</span>'s local scope are different variables, even though they have the same name.</p>
+
+<h2>Where to Put Function Definitions</h2>
+
+<p>A function's definition (where we put the <span class='m'>def</span> statement and the def-block) has to come before you call the function. This is like how you must assign a value to a variable before you can use the variable. If you put the function call before the function defintion, you will get an error. Look at this code:</p>
+
+<blockquote class="sourceblurb">sayGoodBye()<br/>
+<br/>
+def sayGoodBye():<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;print 'Good bye!'</blockquote>
+
+<p>If you try to run it, Python will give you an error message that looks like this:</p>
+
+<p class='centeredImageP'><img src='images/5_beforedef.png' class='centeredImage'></p>
+
+<p>To fix this, put the function definition before the function call:</p>
+
+<blockquote class="sourceblurb">
+def sayGoodBye():<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;print 'Good bye!'<br/>
+<br/>
+sayGoodBye()</blockquote>
+
+<h2>Code Explanation continued...</h2>
+<blockquote class="sourcecode">
+<ol start=20>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'You approach the cave...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+</ol>
+</blockquote>
+
+<p>We display some text to the player, and then call the <span class='m'>time.sleep()</span> function. Remember how in our call to <span class='m'>randint()</span>, the function <span class='m'>randint()</span> is inside the <span class='m'>random</span> module? In the dragon world game, we also imported the <span class='m'>time</span> module. The <span class='m'>time</span> module has a function called <span class='m'>sleep()</span> that will pause the program for a few seconds. We pass the integer value <span class='m'>2</span> as an argument to the <span class='m'>time.sleep()</span> function to tell it to pause for exactly 2 seconds.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=22>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'It is dark and spooky...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+</ol>
+</blockquote>
+
+<p>Here we print some more text and wait again for another 2 seconds. These short pauses add suspense to the game, instead of displaying all the text all at once. In our jokes program, we called the <span class='m'>raw_input()</span> function to wait until the player pressed the enter key. Here, the player doesn't have to do anything at all except wait.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=24>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'A large dragon jumps out in front of you! He opens his jaws and...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+</ol>
+</blockquote>
+
+<p>We have new action happening in our program. What does the dragon do?</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=28>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;friendlyCave = random.randint(1, 2)</li>
+</ol>
+</blockquote>
+
+<p>Now we are going to have the program randomly chose which cave had the friendly dragon in it. Our call to the <span class='m'>random.randint()</span> function will return either the integer 1 or the integer 2, and store this value in a variable called <span class='m'>friendlyCave</span>.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=30>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if chosenCave == str(friendlyCave):</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Gives you his treasure!'</li>
+</ol>
+</blockquote>
+
+<p>Here we check if the integer of the cave we chose (<span class='m'>'1'</span> or <span class='m'>'2'</span>) is equal to the cave randomly selected to have the friendly dragon. But wait, the value in <span class='m'>chosenCave</span> was a string (because <span class='m'>raw_input()</span> returns strings) and the value in <span class='m'>friendlyCave</span> is an integer (because <span class='m'>random.randint()</span> returns integers). We can't compare strings and integers with the <span class='m'>==</span> sign, because they will always be different (<span class='m'>'1'</span> does not equal <span class='m'>1</span>).</p>
+
+<p>So we are passing <span class='m'>friendlyCave</span> to the <span class='m'>str()</span> function, which returns the string value of <span class='m'>friendlyCave</span>.</p>
+
+<p>What the condition in this <span class='m'>if</span> statement is really comparing is the string in <span class='m'>chosenCave</span> and the string returned by the <span class='m'>str()</span> function. We could have also had this line instead:</p>
+
+<blockquote class="sourceblurb">
+&nbsp;&nbsp;&nbsp;&nbsp;if int(chosenCave) == friendlyCave:
+</blockquote>
+
+<p>Then the <span class='m'>if</span> statement's condition would compare the integer value returned by the <span class='m'>int()</span> function to the integer value in <span class='m'>friendlyCave</span>. The return value of the <span class='m'>int()</span> function is the integer form of the string stored in <span class='m'>chosenCave</span>.</p>
+
+<p>If the <span class='m'>if</span> statement's condition evaluates to <span class='m'>True</span>, we tell the player they have won the treasure.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=32>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Gobbles you down in one bite!'</li>
+</ol>
+</blockquote>
+
+<p>Line 32 has a is a new keyword. The <span class='term'>else</span> keyword always comes after the if-block. The else-block that follows the <span class='m'>else</span> keyword executes if the condition in the <span class='m'>if</span> statement was <span class='m'>False</span>. Think of it as the program's way of saying, "If this condition is true then execute the if-block or else execute the else-block."</p>
+
+<p>Remember to put the colon (the : sign) after the else keyword.</p>
+
+<h2>The Colon :</h2>
+
+<p>You may have noticed that we always place a colon at the end of <span class='m'>if</span>, <span class='m'>else</span>, <span class='m'>while</span>, and <span class='m'>def</span> statements. The colon marks the end of the statement, and tells us that the next line should be the beginning of a new block.</p>
+
+<h2>Code Explanation continued...</h2>
+
+<blockquote class="sourcecode">
+<ol start=35>
+<li>playAgain = 'yes'</li>
+</ol>
+</blockquote>
+
+<p>This is the first line that is not a <span class='m'>def</span> statement or inside a def-block. This line is where our program really begins.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=36>
+<li>while playAgain == 'yes' or playAgain == 'y':</li>
+</ol>
+</blockquote>
+
+<p>Here is the beginning of a <span class='m'>while</span> loop. We enter the loop if <span class='m'>playAgain</span> is equal to either <span class='m'>'yes'</span> or <span class='m'>'y'</span>. The first time we come to this while statement, we have just assigned the string value <span class='m'>'yes'</span> to the <span class='m'>playAgain</span> variable. That means this condition will be True.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=38>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;displayIntro()</li>
+</ol>
+</blockquote>
+
+<p>Here we call the <span class='m'>displayIntro()</span> function. This isn't a Python function, it is our function that we defined earlier in our program. When this function is called, the program execution jumps to the first line in the <span class='m'>displayIntro()</span> function on line 5. When all the lines in the function are done, the execution jumps back down to the line after this one.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=40>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;caveNumber = chooseCave()</li>
+</ol>
+</blockquote>
+
+<p>This line also calls a function that we created. Remember that the <span class='m'>chooseCave()</span> function lets the player type in the cave they choose to go into. When the return cave line in this function executes, the program execution jumps back down here, and the local variable <span class='m'>cave</span>'s value is the return value of this function. The return value is stored in a new variable named <span class='m'>caveNumber</span>. Then the execution moves to the next line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=42>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;checkCave(caveNumber)</li>
+</ol>
+</blockquote>
+
+<p>This line calls our <span class='m'>checkCave()</span> function with the argument of <span class='m'>caveNumber</span>'s value. Not only does execution jump to line 20, but the value stored in <span class='m'>caveNumber</span> is copied to the parameter <span class='m'>chosenCave</span> inside the <span class='m'>checkCave()</span> function. This is the function that will display either <span class='m'>'Gives you his treasure!'</span> or <span class='m'>'Gobbles you down in one bite!'</span>, depending on the cave the player chose to go in.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=44>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Do you want to play again? (yes or no)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;playAgain = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>After the game has been played, the player is asked if they would like to play again. The variable <span class='m'>playAgain</span> stores the string that the user typed in. Then we reach the end of the while-block, so the program rechecks the <span class='m'>while</span> statement's condition: <span class='m'>while playAgain == 'yes' or playAgain == 'y'</span></p>
+
+<p>The difference is, now the value of <span class='m'>playAgain</span> is equal to whatever string the player typed in. If the player typed in the string <span class='m'>'yes'</span> or <span class='m'>'y'</span>, then we would enter the loop again at line 38.</p>
+
+<p>If the player typed in <span class='m'>'no'</span> or <span class='m'>'n'</span> or something silly like <span class='m'>'Abraham Lincoln'</span>, then the <span class='m'>while</span> statement's condition would be <span class='m'>False</span>, and we would go to the next line after the while-block. But since there are no more lines after the while-block, the program terminates.</p>
+
+<p>But remember, the string <span class='m'>'YES'</span> is different from the string <span class='m'>'yes'</span>. If the player typed in the string <span class='m'>'YES'</span>, then the <span class='m'>while</span> statement's condition would evaluate to <span class='m'>False</span> and the program would still terminate.</p>
+
+<p>We've just completed our second game! In our Dragon World game, we used a lot of what we learned in the "Guess the Number" game and picked up a few new tricks as well. If you didn't understand some of the concepts in this program, then read the summary at the end of this chapter, or go over each line of the source code again, or try changing the source code and see how the program changes. In the next chapter we won't create a game, but a computer program that will create secret codes out of ordinary messages and also decode the secret code back to the original message.</p>
+
+<h2>Step by Step, One More Time</h2>
+
+<p>But first, let's trace the code one more time. A lot of new programming ideas were taught in this chapter. To help you understand everything, I will briefly go through the program just like the computer would, starting from the top.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=1>
+<li>import random</li>
+<li>import time</li>
+</ol>
+</blockquote>
+
+<p>We import the <span class='m'>random</span> and <span class='m'>time</span> modules, so that we can use the <span class='m'>random.randint()</span> and <span class='m'>time.sleep()</span> functions in our program.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=4>
+<li>def displayIntro():</li>
+</ol>
+</blockquote>
+
+<p>This defines a new function. We do not execute the code inside this function block (because this function is being defined, not called). We just define it so that we can call this function later.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=11>
+<li>def chooseCave():</li>
+</ol>
+</blockquote>
+
+<p>We define another function. Again, we skip past it for now.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=19>
+<li>def checkCave(chosenCave):</li>
+</ol>
+</blockquote>
+
+<p>We define a third function. Again, we skip it for now because we are only defining the function, not calling it.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=35>
+<li>playAgain = 'yes'</li>
+</ol>
+</blockquote>
+
+<p>The variable <span class='m'>playAgain</span> now has the string value of <span class='m'>'yes'</span>.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=36>
+<li>while playAgain == 'yes' or playAgain == 'y':</li>
+</ol>
+</blockquote>
+
+<p>This is the start of a while-block. The value of <span class='m'>playAgain</span> is <span class='m'>'yes'</span> (we set it in the last line), so the condition evaluates to <span class='m'>True and False</span>, evaluates to <span class='m'>False</span>. But remember that <span class='m'>True</span> or <span class='m'>False</span> will evalute to <span class='m'>True</span>. So since the condition is <span class='m'>True</span>, we enter the while-loop.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=38>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;displayIntro()</li>
+</ol>
+</blockquote>
+
+<p>Now we are calling the <span class='m'>displayIntro()</span> function. You can tell this is a function call, and not defining a function because there is no <span class='m'>def</span> keyword in front of the function name. Now we jump back to the beginning of the <span class='m'>displayIntro()</span> function on line 4.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=4>
+<li>def displayIntro():</li>
+</ol>
+</blockquote>
+
+<p>The program execution has jumped to line 4. We move down to the next line, which is line 5.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=5>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'You are on a planet full of dragons. In front of you,'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'you see two caves. In one cave, the dragon is friendly'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'and will share his treasure with you. The other dragon'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'is greedy and hungry, and will eat you on sight.'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print</li>
+</ol>
+</blockquote>
+
+<p>We print out the game introduction. This is the first text that the player sees, because this is the first time we have executed a <span class='m'>print</span> statement. The <span class='m'>print</span> statement without a string will just print a blank line. We know we have reached the end of this def-block, because line 11 does begin with less than four spaces. This means the execution jumps back down to line 38 (the line that sent us here).</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=38>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;displayIntro()</li>
+</ol>
+</blockquote>
+
+<p>We just made this call, so we move down to the next line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=40>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;caveNumber = chooseCave()</li>
+</ol>
+</blockquote>
+
+<p>We are going to assign the return value of the <span class='m'>chooseCave()</span> function to the variable <span class='m'>caveNumber</span>. In order to figure out what the return value is, we have to call the function. This moves the execution to line 11.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=11>
+<li>def chooseCave():</li>
+</ol>
+</blockquote>
+
+<p>Here we are at line 11. This line doesn't do anything, it just marks the beginning of the <span class='m'>chooseCave</span> function. We move down to line 12.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=12>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;cave = ''</li>
+</ol>
+</blockquote>
+
+<p>The value of the <span class='m'>cave</span> variable is now the blank string.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+</ol>
+</blockquote>
+
+<p>Here is the start of a while-block. To see if we enter the block or not, we check if the condition is true. <span class='m'>cave != '1'</span> evaluates to <span class='m'>True</span>, because the blank string is not equal to the string <span class='m'>'1'</span>. And <span class='m'>cave != '2'</span> also evaluates to <span class='m'>True</span>. So the condition evaluates to <span class='m'>True and True</span>. Both sides of the and operator must be <span class='m'>True</span> for the expression to evaluate to <span class='m'>True</span>, otherwise it will be <span class='m'>False</span>. <span class='m'>True and True</span> evaluates to <span class='m'>True</span>, so we do enter the while-loop at line 14.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=14>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Which cave will you go into? (1 or 2)'</li>
+</ol>
+</blockquote>
+
+<p>This line prints a question to the player. Move down to the next line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=15>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cave = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>The return value of the <span class='m'>raw_input()</span> function will be stored in the <span class='m'>cave</span> variable. The <span class='m'>raw_input()</span> question will let the player type in a string, and this string will be the return value. Let's say the player accidentally types in 3. The string value <span class='m'>'3'</span> will be the new value of the <span class='m'>cave</span>.</p>
+
+<p>We have reached the end of the while-block (we know this because the next line (line 17) does not begin with 8 spaces). So execution jumps back to the top of the while-block at line 13.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+</ol>
+</blockquote>
+
+<p>Now we re-evaluate the while statement's condition. The value of cave this time is <span class='m'>'3'</span>. The <span class='m'>'3' != '1'</span> expression is <span class='m'>True</span>, and the <span class='m'>'3' != '2'</span> expression is <span class='m'>True</span>. And because <span class='m'>True and True</span> evaluates to <span class='m'>True</span>, we have to re-enter the while-block again.</p>
+
+<p>Until the player types in the string <span class='m'>'1'</span> or <span class='m'>'2'</span>, this <span class='m'>while</span> statement's condition will be <span class='m'>True</span> and the program will keep asking the user for which <span class='m'>cave</span> they want to enter.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=14>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Which cave will you go into? (1 or 2)'</li>
+</ol>
+</blockquote>
+
+<p>Again, we display a message that asks the player which <span class='m'>cave</span> they want to enter. Move down to the next line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=15>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cave = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>Let's say the player this time enters the string <span class='m'>'2'</span>. This string is stored in <span class='m'>cave</span>. We've reached the end of the while-block, so we jump back up to the start of the while-block to line 13 one more time.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=13>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;while cave != '1' and cave != '2':</li>
+</ol>
+</blockquote>
+
+<p>Now we re-evaluate the <span class='m'>while</span> statement's condition. <span class='m'>cave</span> now equals <span class='m'>'2'</span>. The expression <span class='m'>cave != '1'</span> is <span class='m'>True</span>. The expression <span class='m'>cave != '2'</span> is <span class='m'>False</span>, because <span class='m'>cave</span> really does equal <span class='m'>'2'</span>. The expression evaluates to <span class='m'>True and False</span>. This expression evaluates to <span class='m'>False</span>. Because the <span class='m'>while</span> statement's condition is now <span class='m'>False</span>, we skip past the while-block to the next line after it, which is line 17.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=17>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;return cave</li>
+</ol>
+</blockquote>
+
+<p>The <span class='m'>return</span> statement will return the value inside the <span class='m'>cave</span> variable, which is the string <span class='m'>'2'</span>. Execution goes back to where this function was called from, which was line 40.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=40>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;caveNumber = chooseCave()</li>
+</ol>
+</blockquote>
+
+<p>Here we are back at line 40. But this time we know that the return value of this call to <span class='m'>chooseCave()</span> is the string <span class='m'>'2'</span>, so we store this string in the <span class='m'>caveNumber</span> variable. Move to the next line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=42>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;checkCave(caveNumber)</li>
+</ol>
+</blockquote>
+
+<p>Now we call the <span class='m'>checkCave()</span> function. This function has one parameter. We will pass the value inside <span class='m'>caveNumber</span> (the string <span class='m'>'2'</span>) as an argument for this parameter. Execution jumps up to line 19.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=19>
+<li>def checkCave(chosenCave):</li>
+</ol>
+</blockquote>
+
+<p>Now we are at the top of the <span class='m'>checkCave()</span> function. Since the string <span class='m'>'2'</span> was passed as the argument for the first parameter, the variable <span class='m'>chosenCave</span> will be assigned the string <span class='m'>'2'</span>. When we jump back out of this function (and leave the function's scope), the value inside <span class='m'>chosenCave()</span> will be erased. Move down to the next line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=20>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'You approach the cave...'</li>
+</ol>
+</blockquote>
+
+<p>We print a message to the player in this line.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=21>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+</ol>
+</blockquote>
+
+<p>We call the <span class='m'>sleep()</span> function (which is inside the <span class='m'>time</span> module). The <span class='m'>sleep()</span> function has one parameter, so we pass <span class='m'>2</span> as the argument for this parameter. The <span class='m'>sleep()</span> function pauses for however many seconds is given for the parameter. We make the program pause for two seconds, to add suspense for the player.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=22>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'It is dark and spooky...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+</ol>
+</blockquote>
+
+<p>We display another message to the player, and wait two seconds again.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=24>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'A large dragon jumps out in front of you! He opens his jaws and...'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+
+</ol>
+</blockquote>
+
+<p>We display another message telling the player the dragon has jumped out, followed by a blank line. We then pause again for two seconds, to let the player wonder what the dragon is going to do.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=28>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;friendlyCave = random.randint(1, 2)</li>
+</ol>
+</blockquote>
+
+<p>The <span class='m'>friendlyCave</span> variable will be assigned the return value of the <span class='m'>random.randint()</span> function. The <span class='m'>randint()</span> function returns a random integer between the two numbers we pass to the two parameters. We want a random number between <span class='m'>1</span> and <span class='m'>2</span> (including <span class='m'>1</span> and <span class='m'>2</span>). Pretend that the integer <span class='m'>1</span> was returned by the function call. So <span class='m'>1</span> is stored in <span class='m'>friendlyCave</span>. Remember, this function call could have returned either a <span class='m'>1</span> or a <span class='m'>2</span>. We don't know which until we actually run the program, and it won't always return the same number each time we call the function. But we will just pretend that this time it returned a <span class='m'>1</span>.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=30>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;if chosenCave == str(friendlyCave):</li>
+</ol>
+</blockquote>
+
+<p>This is an <span class='m'>if</span> statement. We must check if <span class='m'>'2'</span> (the string stored inside <span class='m'>chosenCave</span>) is equal to what str(friendlyCave) evaluates to. <span class='m'>str()</span> is a function that returns the string form of any integers passed to it. (Remember, the string value <span class='m'>'7'</span> is not equal to the integer value <span class='m'>7</span>.)</p>
+
+<p><span class='m'>friendlyCave</span> evaluates to the integer <span class='m'>1</span> that is stored inside of it. So the function call looks like <span class='m'>str(1)</span> and returns a value of <span class='m'>'1'</span>.</p>
+
+<p>So now, to finish evaluating the <span class='m'>if</span> statement's condition, we see if <span class='m'>'2' == '1'</span>. This evaluates to <span class='m'>False</span>, because they are not the same. So execution skips past the if-block.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=32>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
+</ol>
+</blockquote>
+
+<p>This is the first line after the if-block. It is the <span class='m'>else</span> keyword, which means that if the previous <span class='m'>if</span> statement's condition was <span class='m'>False</span>, we should execute the code inside the else-block. This means we move down one line to line 33, which is inside the else-block.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=33>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Gobbles you down in one bite!'</li>
+</ol>
+</blockquote>
+
+<p>The player has been eaten. There are no more lines in the function, so execution goes back to line 42.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=42>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;checkCave(caveNumber)</li>
+</ol>
+</blockquote>
+
+<p>We have just come back from the function call. Now we go to the next line down.<?p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=44>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Do you want to play again? (yes or no)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;playAgain = raw_input()</li>
+</ol>
+</blockquote>
+
+<p>The player is asked if they want to play again. Let's pretend the player typed in the string <span class='m'>'no'</span>. This is the end of the while-block, so execution jumps back up to line 36.</p>
+
+<br/>
+
+<blockquote class="sourcecode">
+<ol start=36>
+<li>while playAgain == 'yes' or playAgain == 'y':</li>
+</ol>
+</blockquote>
+
+<p>The <span class='m'>playAgain</span> variable contains the string <span class='m'>'no'</span>. That makes the condition evaluate to <span class='m'>False or False</span>, which evaluates to <span class='m'>False</span>. Since the condition is <span class='m'>False</span>, we skip past the while-block. But there are no more lines of code after the while-block, so the program terminates.</p>
+
+
+<h2>Designing the Program</h2>
+
+<p>Dragon World was a pretty simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called "designing the program".</p>
+
+<p>For example, it may help to draw a flow chart. A <span class='term'>flow chart</span> is a picture that shows every possible action that can happen in our game, and in what order. Normally we would create a flow chart before writing our program, so that we remember to write code for each thing that happens in the game. Here's a flow chart for Dragon World:</p>
+
+<p class='centeredImageP'><img src='images/5_dragonconcept.png' class='centeredImage'></p>
+
+<p>To see what happens in the game, put your finger on the "Start" box and follow one arrow from the box to another box. Your finger is kind of like the program execution. Your finger will trace out a path from box to box, until finally your finger lands on the "End" box. As you can see, when you get to the "Check for friendly or hungry dragon" box, the program could either go to the "Player wins" box or the "Player loses" box. Either way, both paths will end up at the "Ask to play again" box, and from there the program will either end or show the introduction to the player again.</p>
+
+<h2>A Web Page for Program Tracing</h2>
+
+<p>There is also a web page that lets you trace line by line through the Dragon World game. Go to the following web page to use it.</p>
+
+<ul>
+<li>Dragon World, trace 1 - <a href="http://pythonbook.coffeeghost.net/book1/traces/trace1DragonWorld.html">http://pythonbook.coffeeghost.net/book1/traces/trace1DragonWorld.html</a></li>
+</ul>
+
+<blockquote class='inthischapter'><h3>Things Covered In This Chapter:</h3>
+<ul>
+<li>The <span class='m'>time</span> module.</li>
+<li>The <span class='m'>time.sleep()</span> function.</li>
+<li>The <span class='m'>return</span> keyword.</li>
+<li>Creating our own functions with the <span class='m'>def</span> keyword.</li>
+<li>The <span class='m'>and</span> and <span class='m'>or</span> and <span class='m'>not</span> boolean operators.</li>
+<li>Truth tables</li>
+<li>Variable scope (Global and Local)</li>
+<li>Parameters and Arguments</li>
+<li>Flow charts</li>
+</ul>
+</blockquote>
+
+</body>
+</html>
