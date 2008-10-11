@@ -17,6 +17,7 @@ A coluna Status deve conter um dos seguintes valores:
 || Intro.html                || Kao Cardoso Félix        || Aguardando revisão ||
 || HelloWorld.html           || Kao Cardoso Félix        || Em andamento ||
 || about.html                || Gustavo Nascente Cardoso || Aguardando revisão ||
+|| preface.html              || Magnun Leno              || Em andamento ||
 
 == Arquivos/Revisores ==
 
