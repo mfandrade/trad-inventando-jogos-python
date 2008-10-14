@@ -15,7 +15,6 @@ A coluna Status deve conter um dos seguintes valores:
 
 || *Arquivo*                 || *Tradutor*                || *Status* ||
 || Intro.html                || Kao Cardoso Félix         || Aguardando revisão ||
-|| Capitulo2.html            || Fabiano Gomes             || Em andamento ||
 || HelloWorld.html           || Kao Cardoso Félix         || Em andamento ||
 || about.html                || Gustavo Nascente Cardoso  || Aguardando revisão ||
 || preface.html              || Magnun Leno               || Aguardando revisão ||
