@@ -22,6 +22,7 @@ A coluna Status deve conter um dos seguintes valores:
 || dedication.html           || Douglas Soares de Andrade || Em andamento ||
 || index.html                || Douglas Soares de Andrade || Em andamento ||
 || cover.html                || Douglas Soares de Andrade || Em andamento ||
+|| CaesarCipher.html         || Magnun Leno               || Em andamento ||
 
 == Arquivos/Revisores ==
 
