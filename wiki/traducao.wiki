@@ -19,9 +19,9 @@ A coluna Status deve conter um dos seguintes valores:
 || about.html                || Gustavo Nascente Cardoso  || Aguardando revisão ||
 || preface.html              || Magnun Leno               || Aguardando revisão ||
 || TicTacToe.html            || Marcio Hiroyuki Miyamoto  || Em andamento ||
-|| dedication.html           || Douglas Soares de Andrade || Em andamento ||
-|| index.html                || Douglas Soares de Andrade || Em andamento ||
-|| cover.html                || Douglas Soares de Andrade || Em andamento ||
+|| dedication.html           || Douglas Soares de Andrade || Aguardando revisão ||
+|| index.html                || Douglas Soares de Andrade || Aguardando revisão ||
+|| cover.html                || Douglas Soares de Andrade || Aguardando revisão ||
 || CaesarCipher.html         || Magnun Leno               || Em andamento ||
 
 == Arquivos/Revisores ==
@@ -31,3 +31,6 @@ A coluna Status deve conter um dos seguintes valores:
 || HelloWorld.html           || Aguardando revisores       ||
 || about.html                || Aguardando revisores       ||
 || preface.html              || Aguardando revisores       ||
+|| dedication.html           || ||
+|| index.html                || ||
+|| cover.html                || ||
