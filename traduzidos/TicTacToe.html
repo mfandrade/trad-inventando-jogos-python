@@ -103,7 +103,7 @@ Gostaria de jogar de novo? (sim ou não)<br/>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;# Returns a list with the player's letter as the first item, and the computer's letter as the second.
 <li>&nbsp;&nbsp;&nbsp;&nbsp;letter = ''</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;while not (letter == 'X' or letter == 'O'):</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Do you want to be X or O?'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Você gostaria de ser X ou 0?'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;letter = raw_input().upper()</li>
 <li></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;# the first element in the tuple is the player's letter, the second is the computer's letter.</li>
@@ -115,13 +115,13 @@ Gostaria de jogar de novo? (sim ou não)<br/>
 <li>def whoGoesFirst():</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;# Randomly choose the player who goes first.
 <li>&nbsp;&nbsp;&nbsp;&nbsp;if random.randint(0, 1) == 0:</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 'computer'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 'computador'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 'player'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 'jogador'</li>
 <li></li>
 <li>def playAgain():</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;# This function returns True if the player wants to play again, otherwise it returns False.</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Do you want to play again? (yes or no)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'Você gostaria de jogar novamente? (sim ou nao)'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;return raw_input().lower().startswith('y')</li>
 <li></li>
 <li>def makeMove(board, letter, move):</li>
@@ -157,7 +157,7 @@ Gostaria de jogar de novo? (sim ou não)<br/>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;# Let the player type in their move.
 <li>&nbsp;&nbsp;&nbsp;&nbsp;move = ' '</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;while move not in '1 2 3 4 5 6 7 8 9'.split() or not isSpaceFree(board, int(move)):</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'What is your next move? (1-9)'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Qual é a sua jogada? (1-9)'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move = raw_input()</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;return int(move)</li>
 <li></li>
@@ -218,14 +218,14 @@ Gostaria de jogar de novo? (sim ou não)<br/>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;return True</li>
 <li></li>
 <li></li>
-<li>print 'Welcome to Tic Tac Toe!'</li>
+<li>print 'Bem vindo ao Jogo da Velha!'</li>
 <li></li>
 <li>while True:</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;# Reset the board
 <li>&nbsp;&nbsp;&nbsp;&nbsp;theBoard = [' '] * 10</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;playerLetter, computerLetter = inputPlayerLetter()</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;turn = whoGoesFirst()</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'The ' + turn + ' will go first.'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;print 'O ' + turn + ' jogará primeiro.'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;gameIsPlaying = True</li>
 <li></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;while gameIsPlaying:</li>
@@ -237,15 +237,15 @@ Gostaria de jogar de novo? (sim ou não)<br/>
 <li></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isWinner(theBoard, playerLetter):</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawBoard(theBoard)</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Hooray! You have won the game!'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'Uha! Você ganhou!'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gameIsPlaying = False</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isBoardFull(theBoard):</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawBoard(theBoard)</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'The game is a tie!'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'O jogo está empatado!'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'computer'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'computador'</li>
 <li></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Computer's turn.</li>
@@ -254,24 +254,24 @@ Gostaria de jogar de novo? (sim ou não)<br/>
 <li></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isWinner(theBoard, computerLetter):</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawBoard(theBoard)</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'The computer has beaten you! You lose.'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'O computador te superou. Você perdeu.'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gameIsPlaying = False</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if isBoardFull(theBoard):</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawBoard(theBoard)</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'The game is a tie!'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print 'O jogo está empatado!'</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'player'</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turn = 'jogador'</li>
 <li></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;if not playAgain():</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
 </ol>
 </blockquote>
 
-<h2>Designing the Program</h2>
+<h2>Desenvolvimento do programa</h2>
 
-<p>Tic Tac Toe is a very easy and short game to play on paper. In our Tic Tac Toe computer game, we'll let the player choose if they want to be X or O, randomly choose who goes first, and then let the player and computer take turns making moves on the board. Here is what a flow chart of this game could look like:</p>
+<p>O jogo da velha é um jogo muito fácil e rápido no papel. Em nosso jogo da velha no computador, podemos deixar o jogador escolher se eles querem ser o X ou 0, randomicamente escolhe quem for primeiro, e então deixa o jogador e o computador revezarem suas jogadas sobre a tela. Aqui está como o fluxograma desse jogo pode parece:</p>
 
 <p class='centeredImageP'><img src='images/7_flow.png' class='centeredImage'></p>
 
