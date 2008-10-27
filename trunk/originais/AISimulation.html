@@ -1,23 +1,23 @@
 <html>
 <head>
-<title>IYOCGwP Book 1 - Chapter 12 - AI Simulation</title>
+<title>IYOCGwP Livro 1 - Capíulo 12 - Simulação de IA</title>
 <link rel="stylesheet" href="inventbook.css" type="text/css" media="all">
 </head>
 <body>
 
-<h1>Chapter 12 - AI Simulation</h1>
+<h1>Capíulo 12 - Simulação de IA</h1>
 
-<h2>"Computer vs. Computer" Games</h2>
+<h2>Jogos de "Computador vs. Computador"</h2>
 
-<!--<p>TODO: note to the reader how the percentages always add up to 100. Add more pie charts.</p>-->
+<!--<p>TODO: nota para o leitor de como as porcentagens sempre somam 100.  Adicionar mais gráficos de pizza.</p>-->
 
-<p>The Reversi AI algorithm was very simple, but it beats me almost every time I play it. This is because the computer can process instructions very fast, so checking each possible position on the board and selecting the highest scoring move is easy. If I took the time to look at every space on the board and write down the score of each possible move, it would take a long time for me to find the best move.</p>
+<p>O algorítmo de IA do Reversi é muito simples, mas é um jogo que sempre me complica toda vez que eu o jogo.  Isto é porque o computador pode processar instruções muito rapidamente, verificando cada possível posição no tabuleiro e então selecionar o movimento que resulte num placar mais alto é fácil.  Se eu levar o tempo para conferir cada casa no tabuleiro e escrever a pontuação para cada movimento possível, com isso eu levaria muito tempo para encontrar o melhor movimento.</p>
 
-<p>Did you notice that our Reversi program in Chapter 11 had two functions, <span class='m'>getPlayerMove()</span> and <span class='m'>getComputerMove()</span>, which both returned the move selected as a two-item list like <span class='m'>[x, y]</span>? The both also had the same parameters, the game board data structure and which tile they were. <span class='m'>getPlayerMove()</span> decided which <span class='m'>[x, y]</span> move to return by letting the player type in the coordinates. <span class='m'>getComputerMove()</span> decided which <span class='m'>[x, y]</span> move to return by running the Reversi AI algorithm.</p>
+<p>Você percebeu que nosso programa Reversi no Capítulo 11 tinha duas funções, <span class='m'>getPlayerMove()</span> e <span class='m'>getComputerMove()</span>, e que ambas retornavam o movimento selecionado como uma lista de dois itens como <span class='m'>[x, y]</span>?  Essas duas funções tinham os mesmos parâmetros, a estrutura de dados do tabuleiro e em qual casa estavam.  <span class='m'>getPlayerMove()</span> escolhia qual movimento <span class='m'>[x, y]</span> retornar deixando o jogados digitar as coordenadas.  Já <span class='m'>getComputerMove()</span> escolhia qual movimento <span class='m'>[x, y]</span> retornar executando o algorítmo de IA do Reversi.</p>
 
-<p>What happens when we replace the call to <span class='m'>getPlayerMove()</span> with a call to <span class='m'>getComputerMove()</span>? Then the player never types in a move, it is decided for them! The computer is playing against itself!</p>
+<p>O que acontece quando trocamos a chamada a <span class='m'>getPlayerMove()</span> por uma chamada a <span class='m'>getComputerMove()</span>?  Então o jogador nunca digita um movimento, que é decidido por ele!  O computador está jogando contra si mesmo!</p>
 
-<p>Save the old reversi.py file as AISim1.py by clicking on File and then Save As, and then entering AISim1.py for the file name and clicking Ok. This will create a copy of our Reversi source code as a new file that we can make changes to, while leaving the original Reversi game the same (we may want to play it again). Change the following code in AISim1.py:</p>
+<p>Salve o antigo arquivo reversi.py como AISim1.py clicando em File e então Save As, e então entre com AISim1.py para o nome do arquivo clicando depois em Ok.  Isto vai criar uma cópia do código-fonte do nosso Reverse como um novo arquivo em que podemos fazer alterações, mantendo o jogo Reversi original (ainda vamos querer jogá-lo de novo).  Modifique o seguinte código no arquivo AISim1.py:</p>
 
 <blockquote class="sourcecode">
 <ol start=266>
@@ -25,7 +25,7 @@
 </ol>
 </blockquote>
 
-<p>To this (the change is in bold):</p>
+<p>Para fazer isso (as alterações estão em negrito):</p>
 
 <blockquote class="sourcecode">
 <ol start=266>
@@ -33,9 +33,9 @@
 </ol>
 </blockquote>
 
-<p>And run the program. Notice that the game still asks you if you want to be X or O, but it will not ask you to enter in any moves. When we replaced <span class='m'>getPlayerMove()</span>, we no longer call any code that takes this input from the player. We still press Enter after the original computer's moves (because of the <span class='m'>raw_input('Press Enter to see the computer\'s move.')</span> on line 285), but the game plays itself!</p>
+<p>E execute o programa.  Note que o jogo ainda pergunta se você quer ser o X ou o O, mas ele não irá mais pedir que você informe quaisquer movimentos.  Quando substituímos <span class='m'>getPlayerMove()</span>, não chamamos mais nenhum código que solicite esta entrada do jogador.  Ainda pressionamos Enter depois do movimento original do computador (por causa do <span class='m'>raw_input('Press Enter to see the computer\'s move.')</span> na linha 285), mas o jogo joga por si só!</p>
 
-<p>Let's make some other changes. All of the functions we defined for Reversi can stay the same. But change the entire main section of the program (line 246 and on) to look like the following:</p>
+<p>Vamos fazer mais algumas alterações.  Todas as funções que definimos para o Reversi podem permanecer as mesmas.  Mas modifique toda a seção principal do programa (a partir da linha 246) para ficar parecido com isto:</p>
 
 <blockquote class="sourcecode"><span class='sourcecodeHeader'>AISim1.py</span><br/>
 <ol start=246>
@@ -83,13 +83,13 @@
 </ol>
 </blockquote>
 
-<h2>Code Explanation</h2>
+<h2>Explicação do Código</h2>
 
-<p>When you run the AISim1.py program, all you can do is press Enter for each turn until the game ends. Run through a few games and watch the computer play itself. Since both the X and O players are using the same algorithm, it really is just a matter of luck to see who wins. The X player will win half the time, and the O player will win half the time.</p>
+<p>Quando você executar o programa AISim1.py, tudo o que você pode fazer é pressionar Enter para cada jogada até que o jogo termine.  Execute alguns jogos e assista ao computador jogando consigo mesmo.  Uma vez que tanto o jogador X como o O estão usando o mesmo algorítmo, é realmente apenas uma questão de sorte ver que vence.  O jogador X irá vencer metade das vezes, e o jogador O também irá vencer metade das vezes.</p>
 
-<p>But what if we created a new algorithm? Then we could set this new AI against the one implemented in <span class='m'>getComputerMove()</span>, and see which one is better. Let's make some changes to our program. Click on File and then Save As, and save this file as AISim2.py so that we can make changes without affecting AISim1.py.</p>
+<p>Mas e se criarmos um novo algorítmo?  Então poderíamos atribuir esta nova IA para confrontar aquela implementada em <span class='m'>getComputerMove()</span>, e assim ver qual é melhor.  Vamos fazer algumas alterações em nosso programa.  Clique em File em então em Save As, e salve este arquivo como AISim2.py para que possamos fazer nossas modificações sem alterar o AISim1.py.</p>
 
-<p>Add the following code. The additions are in bold, and some lines have been removed:</p>
+<p>Adicione o seguinte código.  As adições estão em negrito, e algumas linhas foram removidas:</p>
 
 <blockquote class="sourcecode"><span class='sourcecodeHeader'>AISim2.py</span><br/>
 <ol start=246>
@@ -146,13 +146,13 @@
 </ol>
 </blockquote>
 
-<h2>Code Explanation</h2>
+<h2>Explicação do Código</h2>
 
-<p>We have added the variables <span class='m'>xwins</span>, <span class='m'>owins</span>, and <span class='m'>ties</span> to keep track of how many times X wins, O wins, and when they tie. Lines 284 to 289 increment these variables at the end of each game, before it loops back to start a brand new game.</p>
+<p>Adicionamos as variáveis <span class='m'>xwins</span>, <span class='m'>owins</span>, e <span class='m'>ties</span> para registrar as vitórias de X, as vitórias de 0, e os empates.  As linhas 284 a 289 incrementam essas variáveis ao final de cada jogo, antes do fim do laço responsável por dar início a cada novo jogo.</p>
 
-<p>We have removed most of the <span class='m'>print</span> statements from the program, and the calls to <span class='m'>drawBoard()</span>. When you run AISim2.py, it asks you how many games you wish to run. Now that we've taken out the call to <span class='m'>drawBoard()</span> and replace the <span class='m'>while True:</span> loop with a <span class='m'>for game in range(numGames):</span> loop, we can run a number of games without stopping for the user to type anything. Here is a sample run where we run ten games of computer vs. computer Reversi:</p>
+<p>Nós removemos a maioria a maioria das declarações <span class='m'>print</span> do programa, bem como as chamadas a <span class='m'>drawBoard()</span>.  Quando você executa AISim2.py, ele lhe pergunta quantos jogos você vai querer jogar.  Agora que retiramos a chamada a <span class='m'>drawBoard()</span> e substituímos o laço <span class='m'>while True:</span> por um laço <span class='m'>for game in range(numGames):</span>, nós podemos jogar diversas vezes continuamente, sem solicitar que o usuário digite qualquer coisa.  Aqui está um exemplo de execução em que executamos o jogo Reversi dez vezes com o computador vs. computador:</p>
 
-<h2>Sample Run</h2>
+<h2>Exemplo de Execução</h2>
 
 <blockquote class='samplerun'>
 Welcome to Reversi!<br/>
@@ -170,31 +170,31 @@ Game #9: X scored 41 points. O scored 22 points.<br/>
 X wins 5 games (50.0%), O wins 4 games (40.0%), ties for 1 games (10.0%) of 10.0 games total.<br/>
 </blockquote>
 
-<p>Because the algorithm does have a random part, your run might not have the exact same numbers as above.</p>
+<p>Como o algorítmo tem uma parte aleatória, sua execução pode não resultar nos mesmos números acima.</p>
 
-<p>Printing things out to the screen slows the computer down, but now that we have removed that code, the computer can run an entire game of Reversi in about a second or two. Think about it. Each time our program printed out one of those lines, it ran through an entire game (which is about fifty or sixty moves, each move carefully checked to be the one that gets the most points).</p>
+<p>Imprimir coisas na tela retarda o computador, mas agora que removemos esse código, o computador pode executar um jogo completo de Reversi em cerca de um ou dois segundos.  Pense desta maneira.  A cada vez que seu programa exibiu uma daquelas linhas, ele executou um jogo completamente (que é cerca de quinze ou dezesseis movimentos, cada movimento cuidadosamente analisado para ser um dos que resulta em mais pontos).</p>
 
-<h2>Percentages</h2>
+<h2>Porcentagens</h2>
 
-<p>Percentages are a portion of a total amount, and range from 0% to 100%. If you had 100% of a pie, you would have the entire pie. If you had 0% of a pie, you wouldn't have any pie at all. 50% of the pie would be half of the pie. A pie is a common image to use for percentages. In fact, there is a kind of chart called a <span class='term'>pie chart</span> which shows how much of the full total a certain portion is. Here is a pie chart with 10%, 15%, 25%, and 50% portions:</p>
+<p>Porcentagens são a porção do montante total, e estão no intervalo de 0% a 100%.  Se você tiver 100% de uma pizza, então significa que você tem a pizza completa.  Se você tiver 0% da pizza, então você não tem nada.  50% da pizza deve ser a metade da pizza.  Uma pizza é uma associação comum para representação de porcentagens.  De fato, há um tipo de gráfico chamado de <span class='term'>gráfico de pizza</span> que mostra o quanto de um total uma dada parte representa.  Aqui há um gráfico de pizza com partes de 10%, 15%, 25%, e 50%:</p>
 
 <p class='centeredImageP'><img src='images/13_pie.png' class='centeredImage'></p>
 
-<p>We can calculate the percentage with division. To get a percentage, divide the part you have by the total, and then multiply by one hundred. For example, if X won 50 out of 100 games, you would calculate the expression <span class='m'>50 / 100.0</span>, which would evaluate to <span class='m'>0.5</span>. We multiple this by <span class='m'>100</span> to get a percentage (in this case, 50%).</p>
+<p>Calculamos a porcentagem com divisão.  Para obter a porcentagem, divida a parte que você tem pelo total, e então multiplique por cem.  Por exemplo, se X ganhou 50 de 100 jogos, você deveria calcular a expressão <span class='m'>50 / 100.0</span>, o que deve resultar em <span class='m'>0.5</span>.  Multiplicamos este valor por <span class='m'>100</span> para obter a porcentagem (neste caso, 50%).</p>
 
-<h2>Integer Division</h2>
+<h2>Divisão Inteira</h2>
 
-<p>Did you notice that we divided <span class='m'>50 / 100.0</span>, not <span class='m'>50 / 100</span>? The reason behind this is that there are two types of division in the Python language. Regular division is done when at least one of the numbers in the division expression is a float data type, that is, a number that has a decimal point and then a certain fraction after it. Regular division will evaluate to another float value. (For example, <span class='m'>50 / 100.0</span> evaluates to <span class='m'>0.5</span>.)</p>
+<p>Você notou que dividimos <span class='m'>50 / 100.0</span> e não <span class='m'>50 / 100</span>?  O motivo para isto é que há dois tipos de divisão na linguagem Python.  A divisão normal é feita quando pelo menos um dos números na expressão for do tipo float, isto é, um número que tem um ponto decimal e então uma fração depois disso.  A divisão normal irá sempre resultar em outro valor do tipo float. (Por exemplo, <span class='m'>50 / 100.0</span> é igual a <span class='m'>0.5</span>.)</p>
 
-<p>However, if both numbers in the division expression are integers (that is, whole numbers without a decimal point), then Python will do integer division. <span class='term'>Integer division</span> is division of two integer numbers that evaluate to a rounded-down integer.</p>
+<p>No entanto, se ambos os números na expressão de divisão forem inteiros (isto é, número inteiros, sem ponto decimal), então o Python irá fazer uma divisão inteira. <span class='term'>Divisão inteira</span> é uma divisão de dois números inteiros e que resulta em um valor inteiro arredondado para baixo.</p>
 
-<p>For example, the expression <span class='m'>20 / 3.0</span> or the expression <span class='m'>20.0 / 3</span> will evaluate to <span class='m'>6.666666666666667</span>. However, the expression <span class='m'>20 / 3</span> evaluates to the integer <span class='m'>6</span>. This is because twenty divided by three is six, with a remainder of two. In integer division, the remainder part is dropped.</p>
+<p>Por exemplo, a expressão <span class='m'>20 / 3.0</span> ou a expressão <span class='m'>20.0 / 3</span> irá resultar em <span class='m'>6.666666666666667</span>.  Porém, a expressão <span class='m'>20 / 3</span> tem como resultado o valor inteiro <span class='m'>6</span>.  É por isso que vinte dividido por três dá seis, e ainda restam dois.  Na divisão inteira, o resto é desconsiderado.</p>
 
-<p>We want to use regular division when we calculate our percentages, because otherwise instead of a float value like <span class='m'>0.5</span>, integer division for percentages will always evaluate to <span class='m'>0</span>.</p>
+<p>Queremos usar a divisão normal quando calcularmos nossas porcentagens, pois de outra forma, ao invés de um valor decimal como <span class='m'>0.5</span>, a divisão inteira para porcentagens iria sempre resultar em <span class='m'>0</span>.</p>
 
-<h2>The <span class='m'>round()</span> Function</h2>
+<h2>A Função <span class='m'>round()</span></h2>
 
-<p>The <span class='m'>round()</span> function will round a float number to the nearest whole float number. Try typing the following into the interactive shell:</p>
+<p>A função <span class='m'>round()</span> irá arredondar um número float para o valor float inteiro mais próximo.  Experimente digitar o seguinte no shell interativo:</p>
 
 <blockquote class='sourceblurb'>
 round(10.0)<br/>
@@ -208,9 +208,9 @@ round(2.5422, 2)<br/>
 
 <p class='centeredImageP'><img src='images/13_round.png' class='centeredImage'></p>
 
-<p>As you can see, whenever the fraction part of a number is <span class='m'>.5</span> or greater, the number is rounded up. Otherwise, the number is rounded down. The <span class='m'>round()</span> function also has an optional parameter, where you can specify to what place you wish to round the number to. For example, the expression <span class='m'>round(2.5422, 2)</span> evaluates to <span class='m'>2.54</span>.</p>
+<p>Como você pode ver, sempre que a parte fracionária de um número for <span class='m'>.5</span> ou maior, o número é arredondado para cima.  Do contrário, o número é arredondado para baixo.  A função <span class='m'>round()</span> ainda tem um parâmetro opcional, em que você pode especificar em que casa decimal você quer que o número seja arredondado.  Por exemplo, a expressão <span class='m'>round(2.5422, 2)</span> resulta em <span class='m'>2.54</span>.</p>
 
-<h2>Code Explanation continued...</h2>
+<h2>Continuação da Explicação de Código...</h2>
 
 <blockquote class='sourcecode'>
 <ol start=291>
@@ -490,13 +490,13 @@ X wins 32 games (32.0%), O wins 67 games (67.0%), ties for 1 games (1.0%) of 100
 
 <p>Now get going and invent your own games. And good luck!</p>
 
-<blockquote class='inthischapter'><h3>Things Covered In This Chapter:</h3>
+<blockquote class='inthischapter'><h3>Assuntos Abordados Neste Capítulo:</h3>
 <ul>
-<li>Simulations</li>
-<li>Percentages</li>
-<li>Pie Charts</li>
-<li>Integer Division</li>
-<li>The <span class='m'>round()</span> Function</li>
+<li>Simulações</li>
+<li>Porcentagens</li>
+<li>Gráficos de Pizza</li>
+<li>Divisão de Inteiros</li>
+<li>A Função <span class='m'>round()</span></li>
 </ul>
 </blockquote>
 
