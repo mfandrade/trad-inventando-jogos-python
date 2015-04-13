@@ -1,0 +1,35 @@
+## Introdução ##
+
+Essa página é a nossa referência no processo de tradução e é de suma importância que ela sempre atualizada com o que está sendo feito, evitando o retrabalho.
+
+A coluna Status deve conter um dos seguintes valores:
+
+  * Em andamento: a tradução está sendo feita ainda
+  * Aguardando revisão: a tradução está concluída, mas ainda não foi revisada
+  * Concluída: a tradução já foi concluída e revisada
+
+## Arquivos/Tradutores ##
+
+| **Arquivo**                 | **Tradutor**                | **Status** |
+|:----------------------------|:----------------------------|:-----------|
+| Intro.html                | Kao Cardoso Félix         | Revisado |
+| HelloWorld.html           | Kao Cardoso Félix         | Em andamento |
+| about.html                | Gustavo Nascente Cardoso  | Aguardando revisão |
+| preface.html              | Magnun Leno               | Revisado |
+| TicTacToe.html            | Marcio Hiroyuki Miyamoto  | Em andamento |
+| dedication.html           | Douglas Soares de Andrade | Aguardando revisão |
+| index.html                | Douglas Soares de Andrade | Aguardando revisão |
+| cover.html                | Douglas Soares de Andrade | Aguardando revisão |
+| CaesarCipher.html         | Magnun Leno               | Em andamento |
+
+## Arquivos/Revisores ##
+
+| **Arquivo**                 | **Revisores**|
+|:----------------------------|:|
+| Intro.html                | Douglas Soares de Andrade  |
+| HelloWorld.html           | Aguardando revisores       |
+| about.html                | Aguardando revisores       |
+| preface.html              | Douglas Soares de Andrade  |
+| dedication.html           |  |
+| index.html                |  |
+| cover.html                |  |
